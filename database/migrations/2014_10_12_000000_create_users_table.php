@@ -15,27 +15,30 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname', 150);
-            $table->string('othername', 150);
-            $table->string('name')->virtualAs("CONCAT(firstname, ' ', othername)");
             $table->string('username', 150);
             $table->string('password', 100);
+            $table->string('firstname', 150);
+            $table->string('othername', 150);
+            $table->string('fullname')->virtualAs("CONCAT(firstname, ' ', othername)");
             $table->string('salt', 100)->nullable();
             $table->string('telephone', 50);
+            $table->string('telephone_verified', 50)->nullable();
+            $table->timestamp('telephone_verified_at')->nullable();
+            $table->string('telephone', 50);
             $table->string('gender', 100);
-            $table->string('mode', 100);
+            $table->string('role', 100);
             $table->string('mode', 100);
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at', 50)->nullable();
-            $table->string('added_id', 100);
-            $table->string('added_date', 100);
+            $table->string('email_verified', 20)->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('added_id', 100)->nullable();
+            $table->timestamp('added_date')->nullable();
             $table->string('udpated_by', 100);
-            $table->string('status', 100);
-            $table->string('archived', 100);
-            $table->string('archived_by', 100);
-            $table->date('archived_date', 100);
-            // $table->rememberToken();
-            // $table->timestamps();
+            $table->string('status', 100)->default('Active');
+            $table->string('archived', 100)->default('No');
+            $table->string('archived_id', 100)->nullable();
+            $table->string('archived_by', 100)->nullable();
+            $table->date('archived_date', 100)->nullable();
         });
     }
 
