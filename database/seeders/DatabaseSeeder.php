@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,5 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
         // \App\Models\User::factory(10)->create();
+
+         $this->call([
+            UserSeeder::class,
+            // GenderSeeder::class,
+            // TitleSeeder::class,
+            // StoreSeeder::class,
+        ]);
     }
 }

@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="vendor/fonts/boxicons.css" /> -->
+    <link rel="stylesheet" href="vendor/fonts/boxicons.css" />
     <link rel="stylesheet" href="{{ asset('vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/fonts/flag-icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
@@ -66,12 +66,12 @@
                      
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <x-text-input id="username" placeholder="Enter Username" class="form-control" type="text" name="username" :value="old('username')" required autofocus autocomplete="off" value="mohammed"/>
+            <x-text-input id="username" placeholder="Enter Username" class="form-control" type="text" name="username" :value="old('username')" autofocus autocomplete="off" value="mohammed"/>
             <x-input-error :messages="$errors->get('username')" class="mt-2" style="color:red"/>
           </div>
           <div class="mb-3">
             <label for="username" class="form-label">Password</label>
-            <x-text-input id="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" class="form-control" type="password" name="password" :value="old('password')" required value="@Mohammed200535"/>
+            <x-text-input id="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" class="form-control" type="password" name="password" :value="old('password')" value="@Mohammed200535"/>
             <x-input-error :messages="$errors->get('password')" class="mt-2" style="color:red"/>
           </div>
           <div class="mb-3">

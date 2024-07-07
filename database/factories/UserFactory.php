@@ -18,7 +18,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'id' => Str::uuid(),
+            'user_id' => Str::uuid(),
             'username' => $this->faker->userName,
             'firstname' => $this->faker->firstName,
             'othername' => $this->faker->lastName,
@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'mode' => $this->faker->randomElement(['New', 'Old']),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'oldpassword' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             // 'remember_token' => Str::random(10),
         ];
     }
