@@ -16,6 +16,7 @@ return new class extends Migration
        Schema::create('gender', function (Blueprint $table) {
             $table->string('gender_id', 50);
             $table->string('gender', 150);
+            $table->string('user_id', 100)->nullable();
             $table->string('added_id', 100)->nullable();
             $table->timestamp('added_date')->nullable();
             $table->string('updated_by', 100)->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
             $table->primary('gender_id');
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('middlename', 100);
             $table->string('lastname', 100);
             $table->date('dob');
+            $table->string('age');
             $table->string('dependant', 50)->nullable();
             $table->string('sponsor_type', 100);
             $table->string('sponsor_name', 100);
@@ -45,6 +46,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
             $table->primary('patient_id');
+             $table->foreign('user_id')->references('user_id')->on('users');
 
         });
     }

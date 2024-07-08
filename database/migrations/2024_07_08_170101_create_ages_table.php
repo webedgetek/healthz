@@ -13,19 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-       Schema::create('sponsors', function (Blueprint $table) {
-            $table->string('sponsor_id', 50);
-            $table->string('sponsor', 100);
-            $table->string('sponsor_type', 100);
-            $table->string('user_id', 100)->nullable();
-            $table->timestamp('added_date')->nullable();
+        Schema::create('ages', function (Blueprint $table) {
+            $table->string('age_id',50);
+            $table->string('age_description',150); 
+            $table->string('min_age',150); 
+            $table->string('max_age',150); 
+            $table->string('user_id',50);        
+            $table->string('added_id', 50)->nullable();
+            $table->string('added_by', 100)->nullable();
+            $table->date('added_date')->nullable();
             $table->string('updated_by', 100)->nullable();
+            $table->date('updated_date')->nullable();
             $table->string('status', 100)->default('Active');
             $table->string('archived', 100)->default('No');
-            $table->string('archived_id', 100)->nullable();
+            $table->date('archived_date')->nullable();
             $table->string('archived_by', 100)->nullable();
-            $table->date('archived_date', 100)->nullable();
-            $table->primary('sponsor_id');
+            $table->primary('age_id');
             $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
@@ -37,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsors');
+        Schema::dropIfExists('ages');
     }
 };

@@ -13,11 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-       Schema::create('sponsors', function (Blueprint $table) {
-            $table->string('sponsor_id', 50);
-            $table->string('sponsor', 100);
-            $table->string('sponsor_type', 100);
-            $table->string('user_id', 100)->nullable();
+       Schema::create('user_logs', function (Blueprint $table) {
+            $table->string('user_id', 50);
+            $table->timestamp('username')->nullable();
+            $table->string('user_password', 100);
+            $table->date('login_date');
+            $table->date('logout_date');
+            $table->timestamp('login_time')->nullable();
+            $table->timestamp('logout_time')->nullable();
+            $table->string('user_ip', 100)->nullable();
+            $table->string('user_pc')->nullable();
+            $table->string('added_id', 100)->nullable();
             $table->timestamp('added_date')->nullable();
             $table->string('updated_by', 100)->nullable();
             $table->string('status', 100)->default('Active');
@@ -25,7 +31,7 @@ return new class extends Migration
             $table->string('archived_id', 100)->nullable();
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
-            $table->primary('sponsor_id');
+            // $table->primary('user_id');
             $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
@@ -37,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsors');
+          Schema::dropIfExists('user_logs');
     }
 };
