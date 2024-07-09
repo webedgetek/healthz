@@ -68,7 +68,7 @@
       </a>
       <ul class="menu-sub">
       <li class="menu-item">
-          <a href="{{ url('applications') }}" class="menu-link">
+          <a href="{{ url('patients') }}" class="menu-link">
             <div class="text-truncate" data-i18n="List">Registration</div>
           </a>
         </li>

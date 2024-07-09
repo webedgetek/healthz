@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
 
          $this->call([
             UserSeeder::class,
+            TitleSeeder::class,
             // GenderSeeder::class,
-            // TitleSeeder::class,
+           
             // StoreSeeder::class,
         ]);
     }

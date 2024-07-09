@@ -10,40 +10,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-     public function index()
-    {
-
-    }
-
-    public function create()
-    {
-
-    }
-
-    public function store()
-    {
-
-    }
-
-    public function show()
-    {
-
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function destroy()
-    {
-
-        
-    }
 }
