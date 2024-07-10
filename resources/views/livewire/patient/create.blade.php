@@ -43,61 +43,64 @@
               </select>
             </div>
             <div class="col">
-              <label class="form-label" for="manufacturer">Firstname</label>
-              <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Manufacturer">
+              <label class="form-label" for="firstname">Firstname</label>
+              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" autocomplete="off">
             </div>
             <div class="col">
-              <label class="form-label" for="manufacturer">Middlename</label>
-              <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Manufacturer">
+              <label class="form-label" for="middlename">Middlename</label>
+              <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middlename" autocomplete="off">
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="product_description">Lastname</label>
-              <input type="text" class="form-control" id="product_description" name="product_description" placeholder="Other Descrption" >
+              <label class="form-label" for="lastname">Lastname</label>
+              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" >
             </div>
             <div class="col">
-              <label class="form-label" for="manufacturer">Date of Birth</label>
-              <input type="date" class="form-control" id="manufacturer" name="manufacturer" placeholder="Manufacturer">
+              <label class="form-label" for="birth_date">Date of Birth</label>
+              <input type="date" class="form-control" id="birth_date" name="birth_date" autocomplete="off">
             </div>
             <div class="col">
-              <label class="form-label" for="manufacturer">Gender</label>
+              <label class="form-label" for="gender">Gender</label>
               <select name="gender" id="gender" class="form-control">
                 <option value="" disabled selected>-Select-</option>
-                <option value="">Male</option>
-                <option value="">Female</option>
+                @foreach($gender as $patient_gender)                                        
+                  <option value="{{ $patient_gender->gender_id }}">{{ $patient_gender->gender }}</option>
+                 @endforeach
               </select>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
               <label class="form-label" for="telephone">Telephone</label>
-              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Other Descrption" autocomplete="off">
+              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone" autocomplete="off">
             </div>
             <div class="col">
               <label class="form-label" for="address">Address</label>
               <input type="text" class="form-control" id="address" name="address" placeholder="Address" autocomplete="off">
             </div>
             <div class="col">
-              <label class="form-label" for="manufacturer">Region</label>
-              <select name="gender" id="gender" class="form-control">
+              <label class="form-label" for="region">Region</label>
+              <select name="region" id="region" class="form-control">
                 <option value="" disabled selected>-Select-</option>
-                <option value="">Male</option>
-                <option value="">Female</option>
+                @foreach($region as $ur)                                        
+                  <option value="{{ $ur->region_id }}">{{ $ur->region }}</option>
+                 @endforeach
               </select>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="product_description">Religion</label>
-              <!-- <input type="text" class="form-control" id="relationship" name="relationship" > -->
+              <label class="form-label" for="religion">Religion</label>
                <select name="religion" id="religion" class="form-control">
                 <option value="" disabled selected>-Select-</option>
-                <!-- <option value=""></option> -->
+                @foreach($religion as $u_u)                                        
+                  <option value="{{ $u_u->religion_id }}">{{ $u_u->religion }}</option>
+                 @endforeach
                </select>
             </div>
             <div class="col">
-              <label class="form-label" for="manufacturer">Email</label>
+              <label class="form-label" for="email">Email</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off">
             </div>
             <div class="col">
@@ -113,17 +116,21 @@
           <br>
           <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="contact_name">Fullname</label>
-              <input type="text" class="form-control" id="contact_name" name="product_description" placeholder="Name" autocomplete="off">
+              <label class="form-label" for="e_fullname">Fullname</label>
+              <input type="text" class="form-control" id="e_fullname" name="e_fullname" placeholder="Name" autocomplete="off">
             </div>
             <div class="col">
-              <label class="form-label" for="relationship">Relationship</label>
-              <input type="text" class="form-control" id="relationship" name="relationship" placeholder="Relationship" autocomplete="off">
+              <label class="form-label" for="e_relationship">Relationship</label>
+              <input type="text" class="form-control" id="e_relationship" name="e_relationship" placeholder="Relationship" autocomplete="off">
             </div>
             <div class="col">
-              <label class="form-label" for="telephone">Telephone</label>
-              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone" autocomplete="off">
+              <label class="form-label" for="e_telephone">Telephone</label>
+              <input type="text" class="form-control" id="e_telephone" name="e_telephone" placeholder="Telephone" autocomplete="off">
             </div>
+          </div>
+          <br>
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0">Emergency Contact</h5>
           </div>
           <!-- <div class="row mb-3">
             <div class="col">
@@ -149,46 +156,45 @@
     <div class="col-12 col-lg-4">
       <div class="card mb-4">
         <div class="card-body">
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0">Sponsorship Details</h5>
+          </div>
+          <br>
         <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="expirable">
-              Sales Type
-            </label>
-            <select name="sales_type" id="sales_type" class="form-control">
-              <option disable selected>-Select-</option>
-              <option value="All">All</option>
+            <label class="form-label mb-1" for="sponsorship_type">Sponsor Type</label>
+             <select name="sponsorship_type" id="sponsorship_type" class="form-control">
+              <option disable selected>-Select sponsor-</option>
+              <!-- <option value="All">All</option>
               <option value="Wholesale">Wholesale</option>
-              <option value="Resale">Resale</option>
+              <option value="Resale">Resale</option> -->
             </select>
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="expirable">
-              Expirable
-            </label>
-            <select id="expirable" name="expirable" class="select2 form-select">
+            <label class="form-label mb-1" for="sponsor_name">Sponsor Name </label>
+            <select id="sponsor_name" name="sponsor_name" class="select2 form-select">
               <option value="" disabled selected>-Select-</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
+              <!-- <option value="Yes">Yes</option>
+              <option value="No">No</option> -->
             </select>
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="stockable">
-              Stockable
-            </label>
-            <select id="stockable" name="stockable" class="select2 form-select">
+            <label class="form-label mb-1" for="stockable">Membership Number</label>
+             <input type="text" name="membership" id="membership" class="form-control" >
+            <!-- <select id="stockable" name="stockable" class="select2 form-select">
               <option value="" disabled selected>-Select-</option>
               <option value="101">Yes</option>
               <option value="404">No</option>
-            </select>
+            </select> -->
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
             <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="status">
-              <span>Status</span>
-            </label>
-            <select id="status" name="status" class="select2 form-select">
-              <option disabled selected>-Select-</option>
-              <option value="Active">Publish</option>
-              <option value="Inactive">Disable</option>
-            </select>
+              <span>Start Date</span></label>
+            <input type="date" name="start_date" id="start_date" class="form-control">
+          </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="status">
+              <span>End Date</span></label>
+            <input type="date" name="start_date" id="start_date" class="form-control">
           </div>
         </div>
       </div>

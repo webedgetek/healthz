@@ -40,13 +40,6 @@ class TitleSeeder extends Seeder
         ]);
 
         $titledata = Title::create([
-            'title_id' => 't004',
-            'title' => 'Master',
-            'added_date' => now(),
-            'status' => 'Active',
-            'archived' => 'No',
-        ]);
-        $titledata = Title::create([
             'title_id' => 't005',
             'title' => 'Dr',
             'added_date' => now(),
