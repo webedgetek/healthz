@@ -13,9 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attendance_services', function (Blueprint $table) {
-            $table->id('att_service_id');
-            $table->string('description',150); 
+        Schema::create('daily_attendance', function (Blueprint $table) {
+            $table->string('patient_id', 50);
+            $table->string('opd_number', 50);
+            $table->date('attendance_date');
+            $table->timestamp('attendance_time'); 
+            $table->string('pat_age'); 
+            $table->string('status_code'); 
+            $table->string('reg_type'); 
+            $table->string('reg_status'); 
+            $table->string('membership_number'); 
+            $table->string('insured'); 
+            $table->string('claims_check_code'); 
+            $table->string('episode_id'); 
+            $table->string('sponsor_id'); 
+            $table->string('clinic_code'); 
+            $table->string('records_no'); 
+            $table->string('attendance_no'); 
             $table->string('gender_id',50); 
             $table->string('age_id',50); 
             $table->string('child_code',50)->nullable(); 
@@ -44,6 +58,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance_services');
+        Schema::dropIfExists('daily_attendance');
     }
 };

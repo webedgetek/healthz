@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\AttendanceService;
 use App\Models\User;
 use App\Models\Gender;
+use App\Models\Age;
 
 class AttendanceServiceSeeder extends Seeder
 {
@@ -242,7 +243,7 @@ class AttendanceServiceSeeder extends Seeder
         ]);
 
         $service = AttendanceService::create([
-            'att_service_id' => '0020',
+            'att_service_id' => '0021',
             'description' => 'Diabetic Consultation',
             'gender_id' => $gender->gender_id,
             'age_id' => $age->age_id,
