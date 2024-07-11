@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gender extends Model
+class Relation extends Model
 {
     use HasFactory;
 
-    protected $table = 'gender';
-    protected $primaryKey = 'gender_id';
+    protected $table = 'relation';
+    protected $primaryKey = 'relation_id';
     public $timestamps = false;
     protected $keyType = 'string';
     public $incrementing= false;
 
     protected $fillable = [
-        'gender_id',
-        'gender',
+        'relation_id',
+        'relation',
         'user_id',
         'added_id',
         'added_date',
@@ -28,4 +28,5 @@ class Gender extends Model
         'archived_by',
         'archived_date'
     ];
+    
 }

@@ -8,6 +8,7 @@ use App\Models\Title;
 use App\Models\Religion;
 use App\Models\Gender;
 use App\Models\Region;
+use App\Models\Relation;
 
 class Patient extends Component
 {
@@ -20,6 +21,7 @@ class Patient extends Component
             'religion' => Religion::all(), 
             'gender' => Gender::all(),
             'region'=> Region::all(),
+            'relation'=> Relation::all(),
         ]);
     }
 }

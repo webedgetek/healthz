@@ -69,12 +69,12 @@
       <ul class="menu-sub">
       <li class="menu-item">
           <a href="{{ url('patients') }}" class="menu-link">
-            <div class="text-truncate" data-i18n="List">Registration</div>
+            <div class="text-truncate" data-i18n="List">Attendance</div>
           </a>
         </li>
          <li class="menu-item">
           <a href="/employees" class="menu-link">
-            <div class="text-truncate" data-i18n="List">Service</div>
+            <div class="text-truncate" data-i18n="List">Appointments</div>
           </a>
         </li>
          <li class="menu-item">

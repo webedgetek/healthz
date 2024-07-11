@@ -4,22 +4,20 @@
                  <span class="text-muted fw-light">Product Category/</span> List
                </h4> -->
           <div class="app-ecommerce">
-      <!-- Add Product -->
-      <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div class="d-flex flex-column justify-content-center">
           <h4 class="mb-1 mt-3">Patient Registration</h4>
           <p class="text-muted">Add new patient to the system</p>
         </div>
-        <!-- <div class="d-flex align-content-center flex-wrap gap-3">
+        <div class="d-flex align-content-center flex-wrap gap-3">
           <button class="btn btn-label-secondary">Discard</button>
           <button class="btn btn-label-primary">Save draft</button>
           <button type="submit" class="btn btn-primary">Publish product</button>
-        </div> -->
+        </div>
       </div>
   <div class="row">
    <!-- First column-->
    <div class="col-12 col-lg-8">
-      <!-- Product Information -->
       <div class="card mb-4">
         <div class="card-header">
           <h5 class="card-tile mb-0">Patient Bio-information</h5>
@@ -27,11 +25,11 @@
         <div class="card-body">
           <form id="product_save" enctype="multipart/form-data" method="post"> 
           @csrf
-          <!-- <div class="mb-3">
+          <div class="mb-3">
             <label class="form-label" for="product_name">Product Name</label>
                     <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product Name">
                     <input type="text" name="product_id" id="product_id" hidden>
-          </div> -->
+          </div>
           <div class="row mb-3">
             <div class="col">
               <label class="form-label" for="product_description">Title</label>
@@ -108,7 +106,6 @@
               <input type="text" class="form-control" id="old_folder" name="old_folder" placeholder="Old Folder Number" autocomplete="off">
             </div>
           </div>
-         
           <br>
           <div class="row mb 3">
                 <h5 class="card-tile mb-0">Emergency Contact</h5>
@@ -121,7 +118,12 @@
             </div>
             <div class="col">
               <label class="form-label" for="e_relationship">Relationship</label>
-              <input type="text" class="form-control" id="e_relationship" name="e_relationship" placeholder="Relationship" autocomplete="off">
+              <select name="e_relationship" id="e_relationship" class="form-control">
+                <option disabled selected>-Select-</option>
+                @foreach($relation as $rel)                                        
+                  <option value="{{ $rel->relation_id }}">{{ $rel->relation }}</option>
+                 @endforeach
+              </select>
             </div>
             <div class="col">
               <label class="form-label" for="e_telephone">Telephone</label>

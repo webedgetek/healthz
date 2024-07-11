@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('title', function (Blueprint $table) {
-            $table->string('title_id',50);
-            $table->string('title',150); 
-            $table->string('gender_id',50); 
+        Schema::create('relation', function (Blueprint $table) {
+            $table->id('relation_id');
+            $table->string('relation',50); 
+            // $table->string('opd_number',50); 
             $table->string('user_id',50)->nullable();        
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();
@@ -27,9 +27,8 @@ return new class extends Migration
             $table->string('archived', 100)->default('No');
             $table->date('archived_date')->nullable();
             $table->string('archived_by', 100)->nullable();
-            $table->primary('title_id');
+            // $table->primary('relation_id');
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('gender_id')->references('gender_id')->on('gender');
         });
     }
 
@@ -40,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('title');
+        Schema::dropIfExists('relation');
     }
 };

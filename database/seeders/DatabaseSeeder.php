@@ -20,10 +20,11 @@ class DatabaseSeeder extends Seeder
 
          $this->call([
             UserSeeder::class,
+            GenderSeeder::class,
             TitleSeeder::class,
-            // GenderSeeder::class,
+            ReligionSeeder::class,
+            RelationSeeder::class,
            
-            // StoreSeeder::class,
         ]);
     }
 }
