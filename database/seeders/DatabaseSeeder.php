@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             RelationSeeder::class,
             AgeSeeder::class,
+            AttendanceServiceSeeder::class,
         ]);
     }
 }
