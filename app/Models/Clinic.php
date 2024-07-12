@@ -5,23 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AttendanceService extends Model
+class Clinic extends Model
 {
     use HasFactory;
-    
-    protected $table = 'attendance_services';
-    protected $primaryKey = 'att_service_id';
+
+    protected $table = 'clinics';
+    protected $primaryKey = 'clinic_id';
     public $timestamps = false;
     protected $keyType = 'string';
     public $incrementing= false;
 
     protected $fillable = [
-        'att_service_id',
-        'description',
+        'clinic_id',
+        'clinic',
         'gender_id',
         'age_id',
-        'child_code',
-        'adult_code',
+        // 'child_code',
+        // 'adult_code',
         'user_id',
         'added_id',
         'added_date',

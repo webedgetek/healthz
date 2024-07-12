@@ -25,11 +25,11 @@
         <div class="card-body">
           <form id="product_save" enctype="multipart/form-data" method="post"> 
           @csrf
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label class="form-label" for="product_name">Product Name</label>
                     <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product Name">
                     <input type="text" name="product_id" id="product_id" hidden>
-          </div>
+          </div> -->
           <div class="row mb-3">
             <div class="col">
               <label class="form-label" for="product_description">Title</label>
@@ -65,6 +65,30 @@
                 @foreach($gender as $patient_gender)                                        
                   <option value="{{ $patient_gender->gender_id }}">{{ $patient_gender->gender }}</option>
                  @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="nationality">Nationality</label>
+              <select name="nationality" id="nationality" class="form-control">
+                <option disabled selected>-Select-</option>
+                <option value="">Ghanaian</option>
+                <option value="">Non-Ghanaian</option>
+              </select>
+            </div>
+            <div class="col">
+              <label class="form-label" for="occupation">Occupation</label>
+              <!-- <input type="text" class="form-control" id="occupation" name="occupation" placeholder="Address" autocomplete="off"> -->
+              <select name="occupation" id="occupation" class="form-control">
+                <option value="">-Select-</option>
+              </select>
+            </div>
+            <div class="col">
+              <label class="form-label" for="education">Education</label>
+              <select name="education" id="education" class="form-control">
+                <option value="" disabled selected>-Select-</option>
+    
               </select>
             </div>
           </div>

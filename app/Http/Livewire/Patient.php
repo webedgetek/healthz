@@ -12,6 +12,20 @@ use App\Models\Relation;
 
 class Patient extends Component
 {
+
+    public function submit()
+    {
+        $validate_data = $this->validate([
+            
+        ]);
+    }
+
+    public function getopdnumebr()
+    {
+
+    }
+
+
     public function render()
     {
         // return view('livewire.patient.create');

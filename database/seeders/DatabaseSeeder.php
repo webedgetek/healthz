@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             RelationSeeder::class,
             AgeSeeder::class,
             AttendanceServiceSeeder::class,
+            ClinicSeeder::class,
+
         ]);
     }
 }
