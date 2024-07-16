@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         
         $userdata = User::create([
             'user_id' => '6541258-xxxxx-xxxxx-xxxxx-6541258',
-            'username' => 'mohammed',
+            'username' => 'admin',
             'password'  => '$2y$10$V4.AAnGPPrhLLJsBT28H3.1vF9rpK25BnMr5v420szqNbIWVNq9k6',   //@Mohammed200535
             'oldpassword' => 'Mohammed',
             'firstname' => 'Mohammed',

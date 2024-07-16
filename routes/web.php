@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // Route::get('/add-patient', [EmployeeController::class, 'index']); //fetch employee
-    Route::get('/patients', \App\Http\Livewire\Patient::class);
+    // Route::get('/patients', \App\Http\Livewire\PatientRegister::class);
     // Route::get('/patients', \App\Http\Livewire\Patient::class);
-    // Route::get('/add-patient', [EmployeeController::class, 'index']); //fetch employee
+    Route::get('/patients', [PatientController::class, 'index']); //fetch employee
 });
 
 require __DIR__.'/auth.php';

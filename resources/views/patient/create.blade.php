@@ -1,264 +1,300 @@
 <x-app-layout>
-<div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="py-3 mb-4">
-                              <span class="text-muted fw-light">Employee/</span> Add
-                          </h4>
-                <div class="row">
-                  <div class="col">
-                    <!-- <h6 class="mt-4"> Add New Student </h6> -->
-                    <div class="nav-align-top mb-3">
-                      <ul class="nav nav-tabs" role="tablist">
-                       <!--  <li class="nav-item">
-                          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">Personal Info</button>
-                        </li> -->
-                       <!--  <li class="nav-item">
-                          <button class="nav-link " data-bs-toggle="tab" data-bs-target="#form-tabs-account" role="tab" aria-selected="false">Academic Details</button>
-                        </li> -->
-                       <!--  <li class="nav-item">
-                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-social" role="tab" aria-selected="false">Parents/Guardians Details</button>
-                        </li> -->
-                      </ul>
-                      <div class="tab-content">
-                        <!-- Personal Info -->
-                        <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel">
-                          <form method="post" id="employee_add">
-                              @csrf
-                            <div class="row">
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Title <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-user"></i></span>
-                                      <select class="form-select" name="title" id="title">
-                                        <option disabled selected>-select-</option>
-                                      @foreach($title as $tit)                                        
-                                        <option value="{{ $tit->title }}">{{ $tit->title }}</option>
-                                        @endforeach
-                                    </select>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">First Name <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control" placeholder="First name" name="firstname" id="firstname" autocomplete="off"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Middle Name <label class="" style="font-size: 15px; color: white;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control"  name="middlename" id="middlename" placeholder="Middle name" aria-label="Middle name" autocomplete="off"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Last Name <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control"  name="lastname" id="lastname" placeholder="Last name" aria-label="Last name"/>
-                                  </div>
-                              </div>
-                               <div class="col-md-4 col-sm-4 p-1">
-                                  <label class="col-form-label" for="basic-icon-default-fullname">Gender <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text"
-                                        ><i class="bx bx-user"></i></span>
-                                      <select class="form-select" name="gender" id="gender">
-                                        <option disabled selected>-select-</option>
-                                        @foreach($gender as $g)                                        
-                                        <option value="{{ $g->gender }}">{{ $g->gender }}</option>
-                                        @endforeach
-                                      </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 p-1">
-                                  <label class="col-form-label" for="basic-icon-default-fullname">Telephone<label class="text-danger" style="font-size: 15px;">*</label></label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text">
-                                        <i class="bx bx-book"></i></span>
-                                      <input type="number" class="form-control" name="telephone" id="telephone" aria-label="John Doe" onchange="calculateAge()" aria-describedby="basic-icon-default-fullname2" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 p-1">
-                                  <label class="col-form-label" for="basic-icon-default-fullname">Date of Birth <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text">
-                                        <i class="bx bx-book"></i></span>
-                                      <input type="date" class="form-control" name="birth_date" id="birth_date" aria-label="John Doe" onchange="calculateAge()" aria-describedby="basic-icon-default-fullname2" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 p-1">
-                                  <label class="col-form-label" for="basic-icon-default-fullname">Age <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text">
-                                        <i class="bx bx-book"></i></span>
-                                      <input type="text" class="form-control" name="age" id="age" aria-describedby="basic-icon-default-fullname2" disabled />
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Portfolio <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-globe"></i></span>
-                                    <select class="form-select" name="portfolio" id="portfolio">
-                                      <option value="" disabled selected>-select-</option>
-                                      <option value="NURSE">Nurse</option>
-                                      <option value="DOCTOR">Doctor</option>
-                                      <option value="PA">Physician Assistant</option>
-                                    </select>
-                                  </div>
-                              </div>
-                               <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Department <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-globe"></i></span>
-                                    <select class="form-select" name="department" id="department">
-                                      <option value="" disabled selected>-select-</option>
-                                      <option value="MAIN OFFICE">MAIN OFFICE</option>
-                                    </select>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Designation <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-globe"></i></span>
-                                    <select class="form-select" name="designation" id="designation">
-                                      <option value="" disabled selected>-select-</option>
-                                      <option value="Community">Community Nurse</option>
-                                    </select>
-                                  </div>
-                              </div>
-                               <div class="col-md-4 col-sm-4 p-1">
-                                  <label class="col-form-label" for="basic-icon-default-fullname">Religion <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-table"></i></span>
-                                      <select class="form-select" name="religion" id="religion">
-                                        <option value="" disabled selected>-select-</option>
-                                        <option value="ISLAM">ISLAM</option>
-                                        
-                                      </select>
-                                    </div>
-                                </div>
-                                 <div class="col-md-4 col-sm-4 p-1">
-                                  <label class="col-form-label" for="basic-icon-default-fullname">Address <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-book"></i></span>
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="Address"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Region <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <select class="form-select" name="region" id="region">
-                                      <option disabled selected>-select-</option>
-                                      <option value="ASHANTI">ASHANTI</option>
-                                    </select>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Bank
-                                   <label style="font-size: 15px;color: white;">*</label>
-                               </label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <input type="text" class="form-control" id="bank" name="bank" placeholder="Enter Bank" aria-describedby="basic-icon-default-fullname2"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Bank Account Number
-                                   <label style="font-size: 15px;color: white;">*</label>
-                               </label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <input type="text" class="form-control" id="bank_account" name="bank_account" placeholder="Enter Bank Account Number" aria-describedby="basic-icon-default-fullname2"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">SSNIT Number
-                                 <label style="font-size: 15px;color: white;">*</label>
-                               </label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <input type="text" class="form-control" id="ssnit_number" name="ssnit_number" placeholder="Enter SSNIT Number"  aria-describedby="basic-icon-default-fullname2"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Ghana Card Number
-                                 <label style="font-size: 15px;color: white;">*</label>
-                               </label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <input type="text" class="form-control" id="gh_card" name="gh_card" placeholder="Enter Ghana Card Number"  aria-describedby="basic-icon-default-fullname2"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Generated File Number
-                                 <label style="font-size: 15px;color: white;">*</label>
-                               </label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <input type="text" class="form-control" id="file_number" name="file_number" placeholder="Enter File Number"  aria-describedby="basic-icon-default-fullname2"/>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">Staff Type <label class="text-danger" style="font-size: 15px;">*</label></label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <select class="form-select" name="staff_type" id="staff_type">
-                                      <option disabled selected>-select-</option>
-                                      <option value="FULL TIME">FULL TIME</option>
-                                      <option value="PART TIME">PART TIME</option>
-                                    </select>
-                                  </div>
-                              </div>
-                               <div class="col-md-4 col-sm-4 p-1">
-                                <label class="col-form-label" for="basic-icon-default-fullname">User
-                                 <label class="text-danger" style="font-size: 15px;">*</label>
-                               </label>
-                                  <div class="input-group input-group-merge">
-                                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                                      <i class="bx bx-table"></i>
-                                    </span>
-                                    <input type="text" class="form-control" maxlength="60" id="user_id" name="user_id" value="{{ Auth::user()->id }}" autocomplete="off"/>
-                                  </div>
-                              </div>
-                              
-                             <div class="row mt-4">
-                              <div class="col-md-6">
-                                <div class="row justify-content-end">
-                                  <div class="col-sm-9">
-                                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                                    <button type="submit" class="btn btn-secondary me-sm-3 me-1">Update</button>
-                                    <button type="reset" class="btn btn-label-secondary">Clear</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                        </div>
-                        </div>
+<div class="container-xxl flex-grow-1 container-p-y">    
+              <!-- <h4 class="py-3 mb-4">
+                 <span class="text-muted fw-light">Product Category/</span> List
+               </h4> -->
+          <div class="app-ecommerce">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+        <div class="d-flex flex-column justify-content-center">
+          <h4 class="mb-1 mt-3">Patient Registration</h4>
+          <p class="text-muted">Add new patient to the system</p>
+        </div>
+        <div class="d-flex align-content-center flex-wrap gap-3">
+          <button class="btn btn-label-secondary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Claims Check Code</button>
+          <button class="btn btn-label-primary">Service Request</button>
+          <button type="submit" class="btn btn-primary">Sponsorship</button>
+        </div>
+      </div>
+  <div class="row">
+   <!-- First column-->
+   <div class="col-12 col-lg-8">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-tile mb-0">Patient Bio-information</h5>
+        </div>
+        <div class="card-body">
+          <!-- <form id="patient_info" enctype="multipart/form-data" method="post">  -->
+          <form wire:submit.prevent="submit" enctype="multipart/form-data">
+
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="title">Title</label>
+              <select name="title" id="title" class="form-control" wire:model="title">
+                <option disabled selected>-Select-</option>
+                @foreach($title as $patient_title)                                        
+                  <option value="{{ $patient_title->title_id }}">{{ $patient_title->title }}</option>
+                 @endforeach
+              </select>
+              @error('title') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="firstname">Firstname</label>
+              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" autocomplete="off" wire:model="firstname">
+              @error('firstname') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="middlename">Middlename</label>
+              <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middlename" autocomplete="off" wire:model="middlename">
+              @error('middlename') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="lastname">Lastname</label>
+              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" wire:model="lastname">
+              @error('lastname') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="birth_date">Date of Birth</label>
+              <input type="date" class="form-control" id="birth_date" name="birth_date" autocomplete="off" wire:model="birth_date">
+              @error('birth_date') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="gender">Gender</label>
+              <select name="gender" id="gender" class="form-control" wire:model="gender">
+                <option value="" disabled selected>-Select-</option>
+                @foreach($gender as $patient_gender)                                        
+                  <option value="{{ $patient_gender->gender_id }}">{{ $patient_gender->gender }}</option>
+                 @endforeach
+              </select>
+              @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="nationality">Nationality</label>
+              <select name="nationality" id="nationality" class="form-control">
+                <option disabled selected>-Select-</option>
+                <option value="">Ghanaian</option>
+                <option value="">Non-Ghanaian</option>
+              </select>
+              @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="occupation">Occupation</label>
+              <select name="occupation" id="occupation" class="form-control">
+                <option disabled selected>-Select-</option>
+                <option value="Trader">-Trader-</option>
+              </select>
+              @error('occupation') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="education">Education</label>
+              <select name="education" id="education" class="form-control">
+                <option value="" disabled selected>-Select-</option>
+                <option value="None">None</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="telephone">Telephone</label>
+              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone" autocomplete="off">
+            </div>
+            <div class="col">
+              <label class="form-label" for="address">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="Address" autocomplete="off">
+            </div>
+            <div class="col">
+              <label class="form-label" for="region">Region</label>
+              <select name="region" id="region" class="form-control">
+                <option value="" disabled selected>-Select-</option>
+                @foreach($region as $ur)                                        
+                  <option value="{{ $ur->region_id }}">{{ $ur->region }}</option>
+                 @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="religion">Religion</label>
+               <select name="religion" id="religion" class="form-control">
+                <option value="" disabled selected>-Select-</option>
+                @foreach($religion as $u_u)                                        
+                  <option value="{{ $u_u->religion_id }}">{{ $u_u->religion }}</option>
+                 @endforeach
+               </select>
+            </div>
+            <div class="col">
+              <label class="form-label" for="email">Email</label>
+              <input type="text" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off">
+            </div>
+            <div class="col">
+              <label class="form-label" for="old_folder">Old Folder Number</label>
+              <input type="text" class="form-control" id="old_folder" name="old_folder" placeholder="Old Folder Number" autocomplete="off">
+            </div>
+          </div>
+          <br>
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0">Emergency Contact</h5>
+          </div>
+          <br>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="e_fullname">Fullname</label>
+              <input type="text" class="form-control" id="e_fullname" name="e_fullname" placeholder="Name" autocomplete="off">
+            </div>
+            <div class="col">
+              <label class="form-label" for="e_relationship">Relationship</label>
+              <select name="e_relationship" id="e_relationship" class="form-control">
+                <option disabled selected>-Select-</option>
+                @foreach($relation as $rel)                                        
+                  <option value="{{ $rel->relation_id }}">{{ $rel->relation }}</option>
+                 @endforeach
+              </select>
+            </div>
+            <div class="col">
+              <label class="form-label" for="e_telephone">Telephone</label>
+              <input type="text" class="form-control" id="e_telephone" name="e_telephone" placeholder="Telephone" autocomplete="off">
+            </div>
+          </div>
+          <br>
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0">Emergency Contact</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0">Sponsorship Details</h5>
+          </div>
+          <br>
+        <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1" for="sponsorship_type">Sponsor Type</label>
+             <select name="sponsorship_type" id="sponsorship_type" class="form-control">
+              <option disable selected>-Select sponsor-</option>
+               <option value="Cash">Cash</option> 
+              <option value="NHIS">Public NHIS</option>
+              <option value="Company">Co-operate Company</option>
+              <option value="Private Insurance">Private Insurance</option>
+            </select>
+          </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1" for="sponsor_name">Sponsor Name </label>
+            <select id="sponsor_name" name="sponsor_name" class="select2 form-select">
+              <option value="" disabled selected>-Select-</option>
+              <option value="National Health Insurance">NHIS</option>
+              <option value="Aacacia">Acacia</option>
+            </select>
+          </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1" for="membership">Membership Number</label>
+             <input type="text" name="membership" id="membership" class="form-control" >
+          </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="start_date">
+              <span>Start Date</span></label>
+            <input type="date" name="start_date" id="start_date" class="form-control">
+          </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="end_date">
+              <span>End Date</span></label>
+            <input type="date" name="end_date" id="end_date" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex align-content-center flex-wrap gap-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-label-secondary" wire:click="resetForm">clear</button>
+    </div>
+  </form>
+  </div>
+</div>
+<br>
+      <div class="app-ecommerce-category">
+                  <div class="card">
+                    <div class="card-datatable table-responsive">
+                      <div style="margin:15px">
                       </div>
+                      <table class="datatables-category-list table border-top" id="product_list">
+                        <thead>
+                          <tr>
+                            <th>Sn</th>
+                            <th>Product</th>
+                            <th>Categories</th>
+                            <th>Barcode</th>
+                            <th class="text-nowrap text-sm-end">Stocked &nbsp;</th>
+                            <th class="text-nowrap text-sm-end">Expirable</th>
+                            <th>Status</th>
+                            <th class="text-lg-center">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         
+                             
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Sn</th>
+                            <th>Product</th>
+                            <th>Categories</th>
+                            <th>Barcode</th>
+                            <th class="text-nowrap text-sm-end">Stocked &nbsp;</th>
+                            <th class="text-nowrap text-sm-end">Expirable </th>
+                            <th>Status</th>
+                            <th class="text-lg-center">Actions</th>
+                          </tr>
+                        </tfoot>
+                      </table>
                     </div>
-                  </div>
+                  </div>   
+             </div>
+</div>   
+          <!-- add Modal -->
+          <div class="modal fade" id="mdoal_form" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+            <div class="modal-content p-3 p-md-5">
+              <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                  <h3>Patient Details</h3>
+                  <p>Kindly fill out the form to register. <b style="color:red">All fields marked (*) are mandatory.</b></p>
                 </div>
-              </x-app-layout>
+                <form id="employee_add" class="row g-3" onsubmit="return false" method="post">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="bank_account">Bank Account Number <label class="text-danger" style="font-size: 15px;">*</label></label>
+                    <input type="text" id="bank_account" name="bank_account" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="ssnit_number">SSNIT No</label>
+                    <input type="text" id="ssnit_number" name="ssnit_number" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="gh_card">Ghana Card Number</label>
+                    <input type="text" id="gh_card" name="gh_card" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="staff_type">Staff Type <label class="text-danger" style="font-size: 15px;">*</label></label>
+                    <select id="staff_type" name="staff_type" class="select2 form-select" data-allow-clear="true">
+                      <option disabled selected>-Select-</option>
+                      <option value="United Arab Emirates">Fulltime</option>
+                      <option value="United Kingdom">Parttime</option>
+                      <!-- <option value="United States">United States</option> -->
+                    </select>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    <!-- <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">xxCancel</button> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal -->
+</x-app-layout>

@@ -60,13 +60,12 @@
         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
         <x-auth-session-status class="mb-4" :status="session('status')" />
-
         <form method="POST" action="{{ route('login') }}" class="mb-3">
            @csrf
                      
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <x-text-input id="username" placeholder="Enter Username" class="form-control" type="text" name="username" :value="old('username')" autofocus autocomplete="off" value="mohammed"/>
+            <x-text-input id="username" placeholder="Enter Username" class="form-control" type="text" name="username" :value="old('username')" autofocus autocomplete="off" value="admin"/>
             <x-input-error :messages="$errors->get('username')" class="mt-2" style="color:red"/>
           </div>
           <div class="mb-3">
