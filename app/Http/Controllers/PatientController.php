@@ -10,6 +10,7 @@ use App\Models\Gender;
 use App\Models\Region;
 use App\Models\Relation;
 use App\Models\Patient;
+use App\Models\PatientSponsor;
 use App\Models\YearlyCount;
 use Carbon\Carbon;
 
@@ -29,19 +30,18 @@ class PatientController extends Controller
 
     public function create()
     {
-        $title = Title::where('archived', 'No')->where('status', '=','Active')->get();
-        $religion = Religion::where('archived', 'No')->where('status', '=','Active')->get();
-        $gender = Gender::where('archived', 'No')->where('status', '=','Active')->get();
-        $region = Region::where('archived', 'No')->where('status', '=','Active')->get();
-        $relation = Relation::where('archived', 'No')->where('status', '=','Active')->get();
+        // $title = Title::where('archived', 'No')->where('status', '=','Active')->get();
+        // $religion = Religion::where('archived', 'No')->where('status', '=','Active')->get();
+        // $gender = Gender::where('archived', 'No')->where('status', '=','Active')->get();
+        // $region = Region::where('archived', 'No')->where('status', '=','Active')->get();
+        // $relation = Relation::where('archived', 'No')->where('status', '=','Active')->get();
     
-        return view('patient.create', compact('title','religion','gender', 'region', 'relation'));
+        // return view('patient.create', compact('title','religion','gender', 'region', 'relation'));
     }
 
-    private function pat_number(Request $request)
+    private function pat_id(Request $request)
     {
         $current_year = date('Y');
-        $currentDateTime = Carbon::now();
 
         // Check if there is an entry for the current year
         $yearly_count = YearlyCount::firstOrCreate(
@@ -55,7 +55,51 @@ class PatientController extends Controller
     
         // Format the patient number
         $formatted_id = str_pad($yearly_count->count, 6, '0', STR_PAD_LEFT);
-        $pat_number = $formatted_id. '/' .$current_year;
+        $pat_id = $formatted_id. '/' .$current_year;
+
+        return $pat_id;
+
+    }
+
+    private function opd_number()
+    {
+
+    }
+
+    public function store(Request $request)
+    {
+
+        $validated_data = $request->validate([
+            'pat_id' => 'nullable',
+            'title' => 'required',
+            'firstname' => 'required|min:3',
+            'middlename' => 'nullable',
+            'lastname' => 'required|min:3',
+            'birth_date' => 'required',
+            'gender' => 'required',
+            'occupation' => 'required|min:3',
+            'education' => 'required|min:3',
+            'religion' => 'required',
+            'nationality' => 'required',
+            'old_folder' => 'nullable',
+            'telephone' => 'nullable',
+            'work_telephone' => 'nullable',
+            'email' => 'nullable',
+            'address' => 'nullable',
+            'town' => 'nullable',
+            'region' => 'nullable',
+            'contact_persion' => 'nullable',
+            'contact_telephone' => 'nullable',
+            'contact_relationship' => 'nullable',
+            'sponsor_type' => 'nullable',
+            'sponsor_name' => 'nullable',
+            'member_no' => 'nullable',
+            'start_date' => 'nullable',
+            'end_date' => 'nullable',
+            'dependant' => 'nullable',
+        ]);
+
+        $currentDateTime = Carbon::now();
 
         $transaction = [
             'year' => $currentDateTime->year,
@@ -64,40 +108,58 @@ class PatientController extends Controller
             'time' => $currentDateTime->format('H:i:s')
         ];
 
-        // return $pat_number;
-        return [
-            'pat_number' => $pat_number,
-            'transaction' => $transaction
-        ];
-    }
-
-    public function store(Request $request)
-    {
-        $validated_data = $request->validate([
-            'title' => 'required|min:3|max:50',
-            'lastname' => 'required|min:3|max:50',
-            'middlename' => 'required|min:3|max:50',
-            'firstname' => 'required|min:3|max:50',
-            'gender' => 'required|min:3|max:50',
-        ]); 
-
-        $available = Patient::where('surname', $request->input('category_name')) ->first();
+        $available = Patient::where('lastname', $request->input('lastname'))
+        ->where('firstname', $request->input('firstname'))
+        ->where('birth_date', $request->input('birth_date'))
+        ->first();
        
         if ($available)
         {
             return 200;
-         }
+        }
 
-        $patient_number = $this->pat_number($request);         
+        $pat_id_gen = $this->pat_id($request);         
         $patient = new Patient();
-        $patient->category_name = $request->input('category_name');
-        $patient->status = $request->input('category_status');
+        $patient->patient_id = $pat_id_gen;
+        $patient->title = $request->input('title');
+        $patient->firstname = $request->input('firstname');
+        $patient->middlename = $request->input('middlename');
+        $patient->lastname = $request->input('lastname');
+        $patient->birth_date = $request->input('birth_date');
+        $patient->gender = $request->input('gender');
+        $patient->occupation = $request->input('occupation');
+        $patient->education = $request->input('education');
+        $patient->religion = $request->input('religion');
+        $patient->nationality = $request->input('nationality');
+        $patient->old_folder = $request->input('old_folder');
+        $patient->telephone = $request->input('telephone');
+        $patient->work_telephone = $request->input('work_telephone');
+        $patient->email = $request->input('email');
+        $patient->address = $request->input('adress');
+        $patient->town = $request->input('town');
+        $patient->region = $request->input('region');
+        $patient->contact_person = $request->input('contact_person');
+        $patient->contact_telephone = $request->input('contact_telephone');
+        $patient->contact_relationship = $request->input('contact_relationship');
+        $patient->sponsor_type = $request->input('sponsor_type');
+        $patient->sponsor_name = $request->input('sponsor_name');
+        $patient->member_no = $request->input('member_no');
         $patient->added_date = now();
         $patient->user_id =  Auth::user()->user_id;
-        $patient->added_id =  Auth::user()->user_id;
+        // $patient->added_id =  Auth::user()->user_id;
         $patient->save();
 
         return 201;
+
+        $sponsor = new PatientSponsor();
+        $sponsor->patient_id = $pat_id_gen; 
+        $sponsor->sponsor_type = $request->input('sponsor_type');
+        $sponsor->sponsor_name = $request->input('sponsor_name');
+        $sponsor->member_no = $request->input('member_no');
+        $sponsor->start_date = $request->input('start_date');
+        $sponsor->end_date = $request->input('end_date');
+        $sponsor->status = 'Active';
+
     }
 
     public function show()

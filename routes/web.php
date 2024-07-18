@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
+use illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,12 @@ Route::middleware('auth')->group(function () {
     // Route::get('/add-patient', [EmployeeController::class, 'index']); //fetch employee
     // Route::get('/patients', \App\Http\Livewire\PatientRegister::class);
     // Route::get('/patients', \App\Http\Livewire\Patient::class);
-    Route::get('/patients', [PatientController::class, 'index']); //fetch employee
+    Route::resource('patients', PatientController::class)
+        ->missing(function (Request $request){
+          return Redirect::route('patient.create');
+    })
+    ;
+    // Route::get('/patients', [PatientController::class, 'index']); //fetch employee
 });
 
 require __DIR__.'/auth.php';

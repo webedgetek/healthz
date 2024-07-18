@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class YearlyCount extends Model
 {
     use HasFactory;
+
+    protected $table = 'yearly_count';
+    protected $primaryKey = 'year_id';
+    public $timestamps = false;
+    protected $keyType = 'string';
+    public $incrementing= false;
     
-    protected $fillable = ['year', 'count'];
+    protected $fillable = [
+         'year',
+         'count'
+        ];
 }

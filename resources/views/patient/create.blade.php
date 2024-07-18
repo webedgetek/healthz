@@ -1,8 +1,5 @@
 <x-app-layout>
 <div class="container-xxl flex-grow-1 container-p-y">    
-              <!-- <h4 class="py-3 mb-4">
-                 <span class="text-muted fw-light">Product Category/</span> List
-               </h4> -->
           <div class="app-ecommerce">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div class="d-flex flex-column justify-content-center">
@@ -20,16 +17,16 @@
    <div class="col-12 col-lg-8">
       <div class="card mb-4">
         <div class="card-header">
-          <h5 class="card-tile mb-0">Patient Bio-information</h5>
+          <h5 class="card-tile mb-0"><b>Bio-information</b></h5>
         </div>
         <div class="card-body">
-          <!-- <form id="patient_info" enctype="multipart/form-data" method="post">  -->
-          <form wire:submit.prevent="submit" enctype="multipart/form-data">
-
+          <form id="patient_info" enctype="multipart/form-data" method="post">
+           @csrf
           <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="title">Title</label>
-              <select name="title" id="title" class="form-control" wire:model="title">
+              <input type="text" class="form-control" id="pat_id" name="pat_id" hidden>
+              <label class="form-label" for="title">Title <a style="color: red;">*</a></label>
+              <select name="title" id="title" class="form-control">
                 <option disabled selected>-Select-</option>
                 @foreach($title as $patient_title)                                        
                   <option value="{{ $patient_title->title_id }}">{{ $patient_title->title }}</option>
@@ -38,29 +35,36 @@
               @error('title') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
-              <label class="form-label" for="firstname">Firstname</label>
-              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" autocomplete="off" wire:model="firstname">
+              <label class="form-label" for="firstname">Firstname <a style="color: red;">*</a></label>
+              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" autocomplete="off">
               @error('firstname') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
               <label class="form-label" for="middlename">Middlename</label>
-              <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middlename" autocomplete="off" wire:model="middlename">
+              <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middlename" autocomplete="off">
               @error('middlename') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="lastname">Lastname</label>
-              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname" wire:model="lastname">
+              <label class="form-label" for="lastname">Lastname <a style="color: red;">*</a></label>
+              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname">
               @error('lastname') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
-              <label class="form-label" for="birth_date">Date of Birth</label>
-              <input type="date" class="form-control" id="birth_date" name="birth_date" autocomplete="off" wire:model="birth_date">
+              <label class="form-label" for="birth_date">Date of Birth <a style="color: red;">*</a></label>
+              <input type="date" class="form-control" id="birth_date" name="birth_date" autocomplete="off">
               @error('birth_date') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
-              <label class="form-label" for="gender">Gender</label>
+              <label class="form-label" for="age">Age</label>
+              <input type="text" class="form-control" id="age" name="age" autocomplete="off" disabled>
+              @error('birth_date') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+          </div>
+          <div class="row mb-3">
+             <div class="col">
+              <label class="form-label" for="gender">Gender <a style="color: red;">*</a></label>
               <select name="gender" id="gender" class="form-control" wire:model="gender">
                 <option value="" disabled selected>-Select-</option>
                 @foreach($gender as $patient_gender)                                        
@@ -69,41 +73,86 @@
               </select>
               @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
-          </div>
-          <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="nationality">Nationality</label>
-              <select name="nationality" id="nationality" class="form-control">
-                <option disabled selected>-Select-</option>
-                <option value="">Ghanaian</option>
-                <option value="">Non-Ghanaian</option>
-              </select>
-              @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="col">
-              <label class="form-label" for="occupation">Occupation</label>
+              <label class="form-label" for="occupation">Occupation <a style="color: red;">*</a></label>
               <select name="occupation" id="occupation" class="form-control">
                 <option disabled selected>-Select-</option>
-                <option value="Trader">-Trader-</option>
+                <option value="Trader">Trader</option>
               </select>
               @error('occupation') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
-              <label class="form-label" for="education">Education</label>
+              <label class="form-label" for="education">Education <a style="color: red;">*</a></label>
               <select name="education" id="education" class="form-control">
                 <option value="" disabled selected>-Select-</option>
                 <option value="None">None</option>
               </select>
+              @error('education') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <label class="form-label" for="telephone">Telephone</label>
-              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone" autocomplete="off">
+              <label class="form-label" for="religion">Religion <a style="color: red;">*</a></label>
+               <select name="religion" id="religion" class="form-control">
+                <option value="" disabled selected>-Select-</option>
+                @foreach($religion as $u_u)                                        
+                  <option value="{{ $u_u->religion_id }}">{{ $u_u->religion }}</option>
+                 @endforeach
+               </select>
+               @error('religion') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
-              <label class="form-label" for="address">Address</label>
+              <label class="form-label" for="nationality">Nationality <a style="color: red;">*</a></label>
+              <select name="nationality" id="nationality" class="form-control">
+                <option disabled selected>-Select-</option>
+                <option value="GHANAIAN">Ghanaian</option>
+                <option value="NON GHANAIAN">Non-Ghanaian</option>
+              </select>
+              @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="old_folder">Old Folder Number</label>
+              <input type="text" class="form-control" id="old_folder" name="old_folder" placeholder="Old Folder Number" autocomplete="off">
+              @error('old_folder') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+          </div>
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0"><b>Contact Information</b></h5>
+          </div>
+          <br>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="telephone">Cell phone</label>
+              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone" autocomplete="off">
+              @error('telephone') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="work_telephone">Work Telephone</label>
+              <input type="text" class="form-control" id="work_telephone" name="work_telephone" placeholder="Work Telephone" autocomplete="off">
+              @error('telephone') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off">
+              @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+           
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label" for="address">Home Address</label>
               <input type="text" class="form-control" id="address" name="address" placeholder="Address" autocomplete="off">
+              @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="col">
+              <label class="form-label" for="town">Town</label>
+              <select name="town" id="town" class="form-control">
+                <option value="" disabled selected>-Select-</option>
+                @foreach($region as $ur)                                        
+                  <option value="{{ $ur->region_id }}">{{ $ur->region }}</option>
+                 @endforeach
+              </select>
+              @error('region') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
               <label class="form-label" for="region">Region</label>
@@ -113,36 +162,20 @@
                   <option value="{{ $ur->region_id }}">{{ $ur->region }}</option>
                  @endforeach
               </select>
+              @error('region') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
           </div>
-          <div class="row mb-3">
-            <div class="col">
-              <label class="form-label" for="religion">Religion</label>
-               <select name="religion" id="religion" class="form-control">
-                <option value="" disabled selected>-Select-</option>
-                @foreach($religion as $u_u)                                        
-                  <option value="{{ $u_u->religion_id }}">{{ $u_u->religion }}</option>
-                 @endforeach
-               </select>
-            </div>
-            <div class="col">
-              <label class="form-label" for="email">Email</label>
-              <input type="text" class="form-control" id="email" name="email" placeholder="Email" autocomplete="off">
-            </div>
-            <div class="col">
-              <label class="form-label" for="old_folder">Old Folder Number</label>
-              <input type="text" class="form-control" id="old_folder" name="old_folder" placeholder="Old Folder Number" autocomplete="off">
-            </div>
-          </div>
+          
           <br>
           <div class="row mb 3">
-                <h5 class="card-tile mb-0">Emergency Contact</h5>
+                <h5 class="card-tile mb-0"><b>Emergency Contact</b></h5>
           </div>
           <br>
           <div class="row mb-3">
             <div class="col">
               <label class="form-label" for="e_fullname">Fullname</label>
               <input type="text" class="form-control" id="e_fullname" name="e_fullname" placeholder="Name" autocomplete="off">
+              @error('e_fullname') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
               <label class="form-label" for="e_relationship">Relationship</label>
@@ -152,6 +185,7 @@
                   <option value="{{ $rel->relation_id }}">{{ $rel->relation }}</option>
                  @endforeach
               </select>
+              @error('e_relationship') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
               <label class="form-label" for="e_telephone">Telephone</label>
@@ -169,12 +203,12 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="row mb 3">
-                <h5 class="card-tile mb-0">Sponsorship Details</h5>
+                <h5 class="card-tile mb-0"><b>Sponsorship Details</b></h5>
           </div>
           <br>
         <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="sponsorship_type">Sponsor Type</label>
-             <select name="sponsorship_type" id="sponsorship_type" class="form-control">
+            <label class="form-label mb-1" for="sponsor_type">Sponsor Type</label>
+             <select name="sponsor_type" id="sponsor_type" class="form-control sponsorship_type">
               <option disable selected>-Select sponsor-</option>
                <option value="Cash">Cash</option> 
               <option value="NHIS">Public NHIS</option>
@@ -184,15 +218,22 @@
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
             <label class="form-label mb-1" for="sponsor_name">Sponsor Name </label>
-            <select id="sponsor_name" name="sponsor_name" class="select2 form-select">
+            <select id="sponsor_name" name="sponsor_name" class="select2 form-select sponsor_name">
               <option value="" disabled selected>-Select-</option>
               <option value="National Health Insurance">NHIS</option>
               <option value="Aacacia">Acacia</option>
             </select>
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="membership">Membership Number</label>
-             <input type="text" name="membership" id="membership" class="form-control" >
+            <label class="form-label mb-1" for="member_no">Membership Number</label>
+             <input type="text" name="member_no" id="member_no" class="form-control" >
+          </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1" for="dependant">Dependant</label>
+             <select class="form-control" class="form-control" id="dependant" name="dependant">
+              <option value="NO" selected>NO</option>
+              <option value="YES">YES</option>
+             </select>
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
             <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="start_date">
@@ -204,18 +245,23 @@
               <span>End Date</span></label>
             <input type="date" name="end_date" id="end_date" class="form-control">
           </div>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="end_date">
+              <span style="color: red;">Active</span></label>
+            <!-- <input type="date" name="end_date" id="end_date" class="form-control"> -->
+          </div>
         </div>
       </div>
     </div>
     <div class="d-flex align-content-center flex-wrap gap-3">
       <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="reset" class="btn btn-label-secondary" wire:click="resetForm">clear</button>
+      <button type="reset" class="btn btn-label-secondary">clear</button>
     </div>
   </form>
   </div>
 </div>
 <br>
-      <div class="app-ecommerce-category">
+      <!-- <div class="app-ecommerce-category">
                   <div class="card">
                     <div class="card-datatable table-responsive">
                       <div style="margin:15px">
@@ -252,7 +298,7 @@
                       </table>
                     </div>
                   </div>   
-             </div>
+             </div> -->
 </div>   
           <!-- add Modal -->
           <div class="modal fade" id="mdoal_form" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">

@@ -42,7 +42,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('preloader.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('preloader.css') }}"> -->
     </head>
 <body>
     <!-- Layout wrapper -->
@@ -89,23 +89,20 @@
     <script src="{{ asset('vendor/libs/apex-charts/apexcharts.js') }}"></script>
     <script src="{{ asset('vendor/libs/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('vendor/libs/tagify/tagify.js') }}"></script>
-    <!-- <script src="{{ asset('vendor/libs/dropzone/dropzone.js') }}"></script> -->
     <script src="{{ asset('vendor/libs/@form-validation/popular.js') }}"></script>
     <script src="{{ asset('vendor/libs/@form-validation/bootstrap5.js') }}"></script>
     <script src="{{ asset('vendor/libs/@form-validation/auto-focus.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <!-- <script src="{{ asset('js/app-ecommerce-product-add.js') }}"></script> -->
     <script src="{{ asset('js/dashboards-analytics.js') }}"></script>
     <script src="{{ asset('js/app-academy-dashboard.js') }}"></script>
     <script src="{{ asset('js/app-ecommerce-category-list.js') }}"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js') }}"></script>
     <!-- <script src="{{ asset('js/tables-datatables-basic.js') }}"></script> -->
-    <!-- <script src="{{ asset('js/form-wizard-numbered.js') }}"></script> -->
     <script src="{{ asset('vendor/libs/jquery-repeater/jquery-repeater.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  
-    <script src="{{ asset('mainjs.js') }}"></script>
+    <script src="{{ asset('js/custom_js.js') }}"></script>
     </body>
 </html>
 
@@ -118,164 +115,16 @@
         $('#employee_details').DataTable();
         $('#product_list').DataTable();
 
-        $('.product_search').select2();
+        $('.sponsor_name').select2();
+        $('.sponsorship_type').select2();
 
-});
-
-$(document).ready( function () {
-        // $('#employee_details').DataTable();
 });
 
 $(document).ready( function () {
         // $('#product_list').DataTable();
 });
 </script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-
-      // $('.product_search').select2();
-
-        $('#employee_add').submit(function(e) {
-            e.preventDefault();
-
-            // Collect form data
-            var formData = new FormData(this);
-
-            // Client-side validation
-            var title = $('#title').val();
-            var firstname = $('#firstname').val();
-            var lastname = $('#lastname').val();
-            var gender = $('#gender').val();
-            var telephone = $('#telephone').val();
-            var birth_date = $('#birth_date').val();
-            var portfolio = $('#portfolio').val();
-            var department = $('#department_id').val();
-            var designation = $('#designation_id').val();
-            var religion = $('#religion').val();
-            var address = $('#address').val();
-            var region = $('#region').val();
-            var bank = $('#bank').val();
-            var bank_account = $('#bank_account').val();
-            var ssnit_number = $('#ssnit_number').val();
-            var file_number = $('#file_number').val();
-            var staff_type = $('#staff_type').val();
-            var gh_card = $('#gh_card').val();
-
-            if (!title) {
-                toastr.warning('Title is required.', 'Validation Error');
-                return;
-            }
-
-            if (firstname.length < 3) {
-                toastr.warning('First name must be at least 3 characters long.', 'Validation Error');
-                return;
-            }
-
-            if (lastname.length < 3) {
-                toastr.warning('Last name must be at least 3 characters long.', 'Validation Error');
-                return;
-            }
-
-            if (!gender) {
-                toastr.warning('Gender is required.', 'Validation Error');
-                return;
-            }
-
-            if (telephone.length < 10) {
-                toastr.error('Telephone number must be at least 10 characters long.', 'Validation Error');
-                return;
-            }
-
-            if (!birth_date) {
-                toastr.error('Birth date is required.', 'Validation Error');
-                return;
-            }
-
-            if (!portfolio) {
-                toastr.error('Portfolio is required.', 'Validation Error');
-                return;
-            }
-
-            if (!department) {
-                toastr.error('Department is required.', 'Validation Error');
-                return;
-            }
-
-            if (!designation) {
-                toastr.error('Designation is required.', 'Validation Error');
-                return;
-            }
-
-            if (!religion) {
-                toastr.error('Religion is required.', 'Validation Error');
-                return;
-            }
-
-            if (address.length < 3) {
-                toastr.error('Address must be at least 3 characters long.', 'Validation Error');
-                return;
-            }
-
-            if (!region) {
-                toastr.error('Region is required.', 'Validation Error');
-                return;
-            }
-
-            if (!staff_type) {
-                toastr.error('Staff type must be specified.', 'Validation Error');
-                return;
-            }
-
-            $.ajax({
-                url: '/storeemployee',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    toastr.success('Data submitted successfully.', 'Success');
-                    $('#employee_add')[0].reset();
-                    $('#addUser').modal('hide');
-                },
-                error: function(xhr, status, error) {
-                    toastr.error('An error occurred while submitting the form. Please try again later.', 'Error');
-                }
-            });
-        });
-    });
-</script>
-
- <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-          var birthDateInput = document.getElementById('birth_date');
-          birthDateInput.addEventListener('input', function() {
-              var dob = new Date(this.value);
-              if (!isValidDate(dob)) return;
-              var age = calculateAge(dob);
-              document.getElementById('age').value = age;
-          });
-      });
-
-      function calculateAge(birthDate) {
-          var now = new Date();
-          var dob = new Date(birthDate);
-          var age = now.getFullYear() - dob.getFullYear();
-          var monthDiff = now.getMonth() - dob.getMonth();
-
-          if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < dob.getDate())) {
-              age--;
-          }
-
-          return age;
-      }
-
-      function isValidDate(date) {
-          return !isNaN(date.getTime());
-      }
- </script>
-  <script>
+<script>
     // Handle delete functionality
     $(document).on('click', '.product_delete_btn', function() {
       var product_id = $(this).data('id');
@@ -340,93 +189,80 @@ $(document).ready( function () {
     });
 
 
-    $('#product_save').on('submit', function(e) {
+    $('#patient_info').on('submit', function(e) {
       e.preventDefault();
 
       // Collect form data
-      var product_id = $('#product_id').val();
-      var product_name = $('#product_name').val();
-      var product_description = $('#product_description').val();
-      var manufacturer = $('#manufacturer').val();
-      var category = $('#category').val();
-      var sales_type = $('#sales_type').val();
-      var expirable = $('#expirable').val();
-      var stockable = $('#stockable').val();
-      var status = $('#status').val();
+      var pat_id = $('#pat_id').val();
+      var title = $('#title').val();
+      var firstname = $('#firstname').val();
+      var middlename = $('#middlename').val();
+      var lastname = $('#lastname').val();
+      var birth_date = $('#birth_date').val();
+      var gender = $('#gender').val();
+      var occupation = $('#occupation').val();
+      var education = $('#education').val();
+      var religion = $('#religion').val();
+      var nationality = $('#nationality').val();
+      var old_folder = $('#old_folder').val();
+      var telephone = $('#telephone').val();
+      var work_telephone = $('#work_telephone').val();
+      var email = $('#email').val();
+      var address = $('#address').val();
+      var town = $('#town').val();
+      var region = $('#region').val();
+      var contact_persion = $('#contact_persion').val();
+      var contact_telephone = $('#contact_telephone').val();
+      var contact_relationship = $('#contact_relationship').val();
+      var sponsor_type = $('#sponsor_type').val();
+      var sponsor_name = $('#sponsor_name').val();
+      var member_no = $('#member_no').val();
+      var dependant = $('#dependant').val();
+      var start_date = $('#start_date').val();
+      var end_date = $('#end_date').val();
 
-      var url = product_id ? '/product/' + product_id : '/product';
-      var method = product_id ? 'PUT' : 'POST';
+
+      var url = pat_id ? '/patients/' + pat_id : '/patients';
+      var method = pat_id ? 'PUT' : 'POST';
 
       // Client-side validation
-      if(product_name.length < 3) {
-          toastr.warning('Product name must be at least 3 characters long');
+      if(firstname.length < 3) {
+          toastr.warning('First name must be at least 3 characters long');
         return;
       }
 
-      if (manufacturer.length < 3) {
-        toastr.warning('Manufacturer is required');
+      if (lastname.length < 3) {
+        toastr.warning('Lastname is must be at least 3 characters long');
         return;
       }
 
-      if (!category) {
-        toastr.warning('Category is required.');
-        return;
-      }
-
-      if (!sub_category) {
-        toastr.warning('Sub Category is required.');
-        return;
-      }
-      
-      if (!sales_type) {
-        toastr.warning('Sales Type is required');
-        return;
-      }
-    
-      if (!expirable) {
-        toastr.warning('Expirable is required');
-        return;
-      }
-
-      if (!stockable) {
-        toastr.warning('Stockable is required');
-        return;
-      }
-    
-
-      if (!status) {
-        toastr.warning('Status is required');
-        return;
-      }
-
-
-      // Check if product_id has a value before update
-      if (product_id && method === 'PUT') {
+      // Check if pat_id has a value before update
+      if (pat_id && method === 'PUT') {
         $.ajax({
-          url: product_id ? '/product/' + product_id : '/product',
+          url: pat_id ? '/patients/' + pat_id : '/patients',
           type: method,
           data: $(this).serialize(),
           success: function(response) {
-            toastr.success('Data updated successfully!');
-            $("#product_list").load(location.href + " #product_list");
-            $('#product_save')[0].reset();
-            $('#product_id').val('');
+            toastr.success('Patients saved successfully!');
+            // $("#product_list").load(location.href + " #product_list");
+            $('#patient_info')[0].reset();
+            $('#pat_id').val('');
           },
           error: function(xhr, status, error) {
-            toastr.error('Error updating category! Try again.');
+            toastr.error('Error updating Patient Information! Try again.');
           }
         });
       } else {
         $.ajax({
-          url: '/product',
+          url: '/patients',
           type: 'POST',
           data: $(this).serialize(),
           success: function(response) {
             var result = JSON.parse(response);
               if (result == 201) {
-                $("#product_list").load(location.href + " #product_list");
-                $('#product_save')[0].reset();
-                toastr.success('Data save successfully!');
+                // $("#product_list").load(location.href + " #product_list");
+                $('#patient_info')[0].reset();
+                toastr.success('Patient saved successfully!');
               } else if (result == 200) {
                 toastr.warning('Ops');
               }    
@@ -437,84 +273,9 @@ $(document).ready( function () {
         });
       }
     });
-
-
-
-  </script>
-
+ </script>
+<!-- 
 <script>
-$('#price_save').on('submit', function(e) {
-      e.preventDefault();
-      // Collect form data
-      var product_id = $('#product_id').val();
-      var cost_price = $('#cost_price').val();
-      var selling_price = $('#selling_price').val();
-      var distribution_price = $('#distribution_price').val();
-      var wholesale_price = $('#wholesale_price').val();
-      var effective_date = $('#effective_date').val();
-      var end_date = $('#end_date').val();
-      var status = $('#status').val();
-
-      // var url = product_id ? '/product/' + product_id : '/product';
-      // var method = product_id ? 'PUT' : 'POST';
-
-      // Client-side validation
-      if(!cost_price) {
-          toastr.warning('Cost price is needed');
-        return;
-      }
-
-      if (!selling_price) {
-        toastr.warning('Selling price is require');
-        return;
-      }
-
-      if (!wholesale_price) {
-        toastr.warning('Wholesale price is required.');
-        return;
-      }
-      
-      // Check if product_id has a value before update
-      // if (product_id && method === 'PUT') {
-      //   $.ajax({
-      //     url: product_id ? '/price/' + product_id : '/price',
-      //     type: method,
-      //     data: $(this).serialize(),
-      //     success: function(response) {
-      //       toastr.success('Data updated successfully!');
-      //       $("#product_list").load(location.href + " #product_list");
-      //       $('#product_save')[0].reset();
-      //       $('#product_id').val('');
-      //     },
-      //     error: function(xhr, status, error) {
-      //       toastr.error('Error updating category! Try again.');
-      //     }
-      //   });
-      // } else {
-        $.ajax({
-          url: '/price',
-          type: 'POST',
-          data: $(this).serialize(),
-          success: function(response) {
-            var result = JSON.parse(response);
-              if (result == 201) {
-                $("#product_list").load(location.href + " #product_list");
-                $('#price_save')[0].reset();
-                toastr.success('Data save successfully!');
-              } else if (result == 200) {
-                // toastr.warning('Ops');
-                $("#product_list").load(location.href + " #product_list");
-                $('#price_save')[0].reset();
-                toastr.success('Data Updated successfully!');
-              }    
-          },
-          error: function(xhr, status, error) {
-            toastr.error('Error saving data! Try again.');
-          }
-        });
-      // }
-    });
-
     $(document).on('change', '#product_search', function() {
       var product_id = $(this).val(); // Get the selected product ID from the dropdown
   
@@ -542,5 +303,5 @@ $('#price_save').on('submit', function(e) {
       });
     });
 
-</script>
+</script> -->
 
