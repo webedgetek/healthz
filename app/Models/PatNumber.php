@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientSponsor extends Model
+class PatNumber extends Model
 {
     use HasFactory;
 
-    protected $table = 'patient_sponsorship';
+    protected $table = 'patient_nos';
     // protected $primaryKey = 'patient_id';
     public $timestamps = false;
     protected $keyType = 'string';
@@ -18,13 +18,8 @@ class PatientSponsor extends Model
     protected $fillable = [
         'patient_id',
         'opd_number',
-        'member_no',
-        'sponsor_type',
-        'sponsor_name',
-        'start_date',
-        'end_date',
-        'dependant',
-        'records_id',
+        'registration_date',
+        'registration_time',
         'user_id',
         'added_id',
         'added_date',

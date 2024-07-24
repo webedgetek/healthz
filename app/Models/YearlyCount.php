@@ -13,9 +13,10 @@ class YearlyCount extends Model
     protected $primaryKey = 'year_id';
     public $timestamps = false;
     protected $keyType = 'string';
-    public $incrementing= false;
+    // public $incrementing= false;
     
     protected $fillable = [
+        'year_id',
          'year',
          'count'
         ];

@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('patient_sponsor', function (Blueprint $table) {
+        Schema::create('patient_sponsorship', function (Blueprint $table) {
             $table->string('patient_id', 50);
             $table->string('opd_number', 20)->nullable();
             $table->string('member_no', 150);
             $table->string('sponsor_type', 50)->nullable();
             $table->string('sponsor_name', 50)->nullable();
             $table->date('start_date', 100)->nullable();
-            $table->start('end_date', 100)->nullable();
+            $table->string('end_date', 100)->nullable();
             $table->string('dependant', 50)->default('0');
             $table->string('records_id', 100)->nullable();
             $table->string('user_id', 100)->nullable();
@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
             // $table->primary('patient_id');
-             $table->foreign('user_id')->references('user_id')->on('users');
-             $table->foreign('patient_id')->references('patient_id')->on('patient_info');
+            //  $table->foreign('user_id')->references('user_id')->on('users');
+            //  $table->foreign('patient_id')->references('patient_id')->on('patient_info');
         });
     }
 
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patient_sponsor');
+        Schema::dropIfExists('patient_sponsorship');
     }
 };

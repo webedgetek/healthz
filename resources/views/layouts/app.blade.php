@@ -264,7 +264,7 @@ $(document).ready( function () {
                 $('#patient_info')[0].reset();
                 toastr.success('Patient saved successfully!');
               } else if (result == 200) {
-                toastr.warning('Ops');
+                toastr.warning('Same data is available in the system');
               }    
           },
           error: function(xhr, status, error) {
