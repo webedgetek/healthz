@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | Anywhere, Everywhere </title>
     <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
     <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
     <!-- <script>
@@ -45,7 +45,8 @@
   <div class="authentication-inner row m-0">
     <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center p-5">
       <div class="w-100 d-flex justify-content-center">
-        <img src="{{ asset('img/illustrations/boy-with-rocket-light.png') }}" class="img-fluid" alt="Login image" width="700" data-app-dark-img="{{ asset('illustrations/boy-with-rocket-dark.png') }}" data-app-light-img="{{ asset('illustrations/boy-with-rocket-light.png') }}">
+        <!-- <img src="{{ asset('img/illustrations/boy-with-rocket-light.png') }}" class="img-fluid" alt="Login image" width="700" data-app-dark-img="{{ asset('illustrations/boy-with-rocket-dark.png') }}" data-app-light-img="{{ asset('illustrations/boy-with-rocket-light.png') }}"> -->
+        <img src="{{ asset('img/undraw/login.svg') }}" class="img-fluid" alt="Login image" width="700" data-app-dark-img="{{ asset('undraw/login.svg') }}" data-app-light-img="{{ asset('undraw/login.svg') }}">
       </div>
     </div>
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
@@ -58,11 +59,10 @@
         <!-- /Logo -->
         <h4 class="mb-2" align="center">Welcome to {{ config('app.name') }}</h4>
         <p class="mb-4">Please sign-in to your account and start the adventure</p>
-
         <x-auth-session-status class="mb-4" :status="session('status')" />
+
         <form method="POST" action="{{ route('login') }}" class="mb-3">
            @csrf
-                     
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <x-text-input id="username" placeholder="Enter Username" class="form-control" type="text" name="username" :value="old('username')" autofocus autocomplete="off" value="admin"/>
@@ -85,6 +85,7 @@
             Sign in
           </button>
         </form>
+
         <!-- <p class="text-center"> -->
           <!-- <span>New on our platform?</span> -->
          <!--  <a href="auth-register-cover.html">
@@ -99,10 +100,7 @@
       </div>
     </div>
   </div>
-</div>
-  <!-- <div class="buy-now">
-    <a href="/dashboard" class="btn btn-danger btn-buy-now">Go to Dashboard</a>
-  </div> -->
+  </div>
   <script src="{{ asset('vendor/libs/jquery/jquery.js') }}"></script>
   <script src="{{ asset('vendor/libs/popper/popper.js') }}"></script>
   <script src="{{ asset('vendor/js/bootstrap.js') }}"></script>

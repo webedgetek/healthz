@@ -259,12 +259,20 @@ $(document).ready( function () {
           data: $(this).serialize(),
           success: function(response) {
             var result = JSON.parse(response);
-              if (result == 201) {
+              if (result.code === 201) {
                 // $("#product_list").load(location.href + " #product_list");
                 $('#patient_info')[0].reset();
-                toastr.success('Patient saved successfully!');
-              } else if (result == 200) {
-                toastr.warning('Same data is available in the system');
+                Swal.fire({
+                      icon: 'success',
+                      title: 'Success',
+                      text: result.message + ' OPD Number: ' + result.opd_number
+                    });
+              } else if (result.code === 200) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'Same data is available in the system'
+                  });
               }    
           },
           error: function(xhr, status, error) {

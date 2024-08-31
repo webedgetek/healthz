@@ -18,7 +18,7 @@ class UserController extends Controller
         return view('profile.create'); 
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $request->validate([
             'user_id' => 'required',
@@ -41,7 +41,7 @@ class UserController extends Controller
 
     }
 
-    public function update()
+    public function update(Request $request)
     {
         $request->user()->fill($request->validated());
 
@@ -50,10 +50,10 @@ class UserController extends Controller
         }
 
         $request->user()->save();
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
 
         $request->validateWithBag('userDeletion', [
@@ -62,7 +62,7 @@ class UserController extends Controller
 
         $user = $request->user();
 
-        Auth::logout();
+        // Auth::logout();
         $user->delete();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

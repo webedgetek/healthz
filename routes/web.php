@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ServiceRequestController;
+use App\Http\Controllers\SponsorController;
+use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Route;
 use illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -35,9 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('patients', PatientController::class)
         ->missing(function (Request $request){
           return Redirect::route('patient.create');
-    })
-    ;
-    // Route::get('/patients', [PatientController::class, 'index']); //fetch employee
+    });
+
+    Route::resource('service', ServiceRequestController::class);
+    Route::resource('users', ProfileController::class);
+    Route::resource('sponsors', SponsorController::class); 
 });
 
 require __DIR__.'/auth.php';

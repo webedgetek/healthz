@@ -73,8 +73,8 @@
           </a>
         </li>
          <li class="menu-item">
-          <a href="#" class="menu-link">
-            <div class="text-truncate" data-i18n="List">Sponsor</div>
+          <a href="{{ url('service') }}" class="menu-link">
+            <div class="text-truncate" data-i18n="List">Service</div>
           </a>
         </li>
          <li class="menu-item">
@@ -93,22 +93,22 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="{{ url('category') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Category</div>
           </a>
         </li>
          <li class="menu-item">
-          <a href="{{ url('product') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Product</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{{ url('add-product') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Add Product</div>
           </a>
         </li>
         <li class="menu-item">
-         <a href="{{ url('add-price') }}" class="menu-link">
+         <a href="#" class="menu-link">
           <div class="text-truncate" data-i18n="list">Pricing</div>
          </a>
         </li>
@@ -129,12 +129,12 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="{{url('purchases') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Purchase Order</div>
           </a>
         </li>
          <li class="menu-item">
-          <a href="/employees" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Requisitions</div>
           </a>
         </li>
@@ -154,7 +154,7 @@
           </a>
         </li> -->
          <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Sales</div>
           </a>
         </li>
@@ -176,17 +176,17 @@
           </a>
         </li> -->
          <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Contacts</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Emails</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">SMS</div>
           </a>
         </li>
@@ -208,17 +208,17 @@
           </a>
         </li> -->
          <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Contacts</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">Emails</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{{ url('sales') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="List">SMS</div>
           </a>
         </li>
@@ -253,7 +253,7 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="{{ url('/users') }}" class="menu-link">
+          <a href="#" class="menu-link">
             <div class="text-truncate" data-i18n="Basic">Manage Users</div>
           </a>
         </li>

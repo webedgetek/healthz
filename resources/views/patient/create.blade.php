@@ -7,8 +7,8 @@
           <p class="text-muted">Add new patient to the system</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-3">
-          <button class="btn btn-label-secondary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Claims Check Code</button>
-          <button class="btn btn-label-primary">Service Request</button>
+          <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Search Patient</button>
+          <button class="btn btn-primary">Service Request</button>
           <button type="submit" class="btn btn-primary">Sponsorship</button>
         </div>
       </div>
@@ -165,7 +165,6 @@
               @error('region') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
           </div>
-          
           <br>
           <div class="row mb 3">
                 <h5 class="card-tile mb-0"><b>Emergency Contact</b></h5>
@@ -192,10 +191,10 @@
               <input type="text" class="form-control" id="e_telephone" name="e_telephone" placeholder="Telephone" autocomplete="off">
             </div>
           </div>
-          <br>
-          <div class="row mb 3">
+          <!-- <br> -->
+          <!-- <div class="row mb 3">
                 <h5 class="card-tile mb-0">Emergency Contact</h5>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -261,7 +260,7 @@
   </div>
 </div>
 <br>
-      <!-- <div class="app-ecommerce-category">
+      <div class="app-ecommerce-category">
                   <div class="card">
                     <div class="card-datatable table-responsive">
                       <div style="margin:15px">
@@ -280,8 +279,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                         
-                             
                         </tbody>
                         <tfoot>
                         <tr>
@@ -298,7 +295,7 @@
                       </table>
                     </div>
                   </div>   
-             </div> -->
+             </div>
 </div>   
           <!-- add Modal -->
           <div class="modal fade" id="mdoal_form" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -307,37 +304,69 @@
               <div class="modal-body">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center mb-4">
-                  <h3>Patient Details</h3>
-                  <p>Kindly fill out the form to register. <b style="color:red">All fields marked (*) are mandatory.</b></p>
+                  <h3>Patient Search Criteria</h3>
+                  <!-- <p>Enter Search criteria <b style="color:red">All fields marked (*) are mandatory.</b></p> -->
                 </div>
                 <form id="employee_add" class="row g-3" onsubmit="return false" method="post">
                   <div class="col-12 col-md-6">
-                    <label class="form-label" for="bank_account">Bank Account Number <label class="text-danger" style="font-size: 15px;">*</label></label>
-                    <input type="text" id="bank_account" name="bank_account" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                    <label class="form-label" for="telephone">Search Criteria <label class="text-danger" style="font-size: 15px;">*</label></label>
+                     <select name="search_name" id="search_name" class="form-control">
+                      <option selected disabled>-Select-</option>
+                      <option value="opd_number">OPD #</option>
+                      <option value="membership_number">Membership #</option>
+                      <option value="firstname">Firstname</option>
+                      <option value="surname">Surname</option>
+                      <option value="middlename">Middlename</option>
+                      <option value="telephone">Telephone</option>
+                     </select>
                   </div>
+                  <!-- <div class="col-12 col-md-6">
+                    <label class="form-label" for="ssnit_number">Registration Date</label>
+                    <input type="date" id="data_search" name="data_search" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div> -->
+                  <!-- <div class="col-12 col-md-6">
+                    <label class="form-label" for="gh_card">Date of Birth</label>
+                    <input type="date" id="gh_card" name="gh_card" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div> -->
                   <div class="col-12 col-md-6">
-                    <label class="form-label" for="ssnit_number">SSNIT No</label>
-                    <input type="text" id="ssnit_number" name="ssnit_number" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label" for="gh_card">Ghana Card Number</label>
-                    <input type="text" id="gh_card" name="gh_card" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label" for="staff_type">Staff Type <label class="text-danger" style="font-size: 15px;">*</label></label>
-                    <select id="staff_type" name="staff_type" class="select2 form-select" data-allow-clear="true">
-                      <option disabled selected>-Select-</option>
-                      <option value="United Arab Emirates">Fulltime</option>
-                      <option value="United Kingdom">Parttime</option>
-                      <!-- <option value="United States">United States</option> -->
-                    </select>
+                    <label class="form-label" for="staff_type">Criteria<label class="text-danger" style="font-size: 15px;">*</label></label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Firstname/Middlename/Surname">
                   </div>
                   <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-                    <!-- <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">xxCancel</button> -->
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Search</button>
+                    <button type="reset" class="btn btn-label-warning me-sm-3 me-1">Clear</button>
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="modal" aria-label="Close">close</button>
                   </div>
                 </form>
+              </div>
+              <div class="table table-hover">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Sn</th>
+                      <th>Patient Name</th>
+                      <th>Date of Birth</th>
+                      <th>Category</th>
+                      <th>Member #</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="6" align="center">No Data Available</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                      <th>Sn</th>
+                      <th>Patient Name</th>
+                      <th>Date of Birth</th>
+                      <th>Category</th>
+                      <th>Member #</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
             </div>
           </div>

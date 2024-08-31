@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ class PatientController extends Controller
         $gender = Gender::where('archived', 'No')->where('status', '=','Active')->get();
         $region = Region::where('archived', 'No')->where('status', '=','Active')->get();
         $relation = Relation::where('archived', 'No')->where('status', '=','Active')->get();
+        // $news = Relation::with('users')->get();
+
     
         return view('patient.create', compact('title','religion','gender', 'region', 'relation'));
     
@@ -52,13 +55,12 @@ class PatientController extends Controller
               );
 
             if ($yearly_count->wasRecentlyCreated) {
-                $yearly_count->count = 1; 
+                 $yearly_count->count = 1; 
             } else {
-                $yearly_count->count += 1;
+                 $yearly_count->count += 1;
             }
                 // $yearly_count->count += 1;
                 // $yearly_count->save();
-
             $yearly_count->save();
 
             // Format the incremented count as a 6-digit number with leading zeros
@@ -72,39 +74,6 @@ class PatientController extends Controller
                 'patient_number' => $patient_number
             ];
     }
-
-    // private function pat_id_gen()
-    // {
-    //     $current_year = date('Y');
-    //     $small_year = date('y');
-
-    //     $yearly_count = YearlyCount::firstOrCreate(
-    //         ['year' => $current_year],
-    //         ['count' => 0]
-    //     );
-    
-    //     // Increment the count
-    //     $yearly_count->count += 1;
-    //     $yearly_count->save();
-    
-    //     // Format the patient number
-    //     $formatted_id = str_pad($yearly_count->count, 6, '0', STR_PAD_LEFT);
-    //     $patient_id = $formatted_id. '/' .$current_year;
-    //     $patient_number = 'G'.$formatted_id.'/'.$small_year;
-       
-    //     // return $patient_id;
-    //     return [
-    //         'patient_id' => $patient_id,
-    //         'patient_number' => $patient_number
-    //     ];
-       
-
-    // }
-
-    // private function opd_number()
-    // {
-
-    // }
 
     public function store(Request $request)
     {
@@ -146,24 +115,23 @@ class PatientController extends Controller
 
         if($available)
         {
-            return 200;
+            return response()->json(['message' => 'Patient data available', 'code' => 200], 200);
         }
         
         DB::beginTransaction();
 
         try {
-                $pati = $this->pat_id_gen($request);
-                $pat_id = $pati['patient_id'];
-                $pat_number = strval($pati['patient_number']);
-                $current_date = Carbon::now();
+            $pati = $this->pat_id_gen($request);
+            $pat_id = $pati['patient_id'];
+            $pat_number = strval($pati['patient_number']);
+            $current_date = Carbon::now();
                 
-                $year = $current_date->year;
-                $month = $current_date->month;
-                $day =  $current_date->day;
-                $time = $current_date->format('H:i:s');
+            $year = $current_date->year;
+            $month = $current_date->month;
+            $day =  $current_date->day;
+            $time = $current_date->format('His');
 
-                $transaction = $year.$month.$day.$time;
-
+            $transaction = $year.$month.$day.$time;
              
             $patient = new Patient();
             $patient->patient_id = $pat_id;
@@ -204,20 +172,26 @@ class PatientController extends Controller
             $patient->added_date = now();
             $opd_number->save();
 
-            $sponsor = new PatientSponsor();
-            $sponsor->patient_id = $pat_id; 
-            $sponsor->sponsor_type = $request->input('sponsor_type');
-            $sponsor->sponsor_name = $request->input('sponsor_name');
-            $sponsor->member_no = $request->input('member_no');
-            $sponsor->start_date = $request->input('start_date');
-            $sponsor->end_date = $request->input('end_date');
-            $patient->user_id =  Auth::user()->user_id;
-            $patient->added_date = now();
-            $sponsor->status = 'Active';
-            $sponsor->save();
+            $check_sponsor = $request->input('sponsor_name');
+
+                if($check_sponsor!='')
+                {
+                    $sponsor = new PatientSponsor();
+                    $sponsor->patient_id = $pat_id; 
+                    $sponsor->sponsor_type = $request->input('sponsor_type');
+                    $sponsor->sponsor_name = $request->input('sponsor_name');
+                    $sponsor->member_no = $request->input('member_no');
+                    $sponsor->start_date = $request->input('start_date');
+                    $sponsor->end_date = $request->input('end_date');
+                    $patient->user_id =  Auth::user()->user_id;
+                    $patient->added_date = now();
+                    $sponsor->status = 'Active';
+                    $sponsor->save();
+                }
+           
          DB::commit();
 
-            return response()->json(['message' => 'Patient saved successfully', 'code' => 201], 201);
+            return response()->json(['message' => 'Patient saved successfully', 'code' => 201, 'opd_number' => $pat_number], 201);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['message' => 'Error saving patient details', 'error' => $e->getMessage()], 500);

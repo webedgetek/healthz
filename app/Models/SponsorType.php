@@ -5,20 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SponsorList extends Model
+class SponsorType extends Model
 {
     use HasFactory;
 
-    protected $table = 'sponsor_list';
-    protected $primaryKey = 'sponsor_list_id';
+    protected $table = 'sponsor_type';
+    protected $primaryKey = 'sponsor_type_id';
     public $timestamps = false;
     protected $keyType = 'string';
     public $incrementing= false;
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     protected $fillable = [
-        'sponsor_list_id',
-        'sponsor_id',
-        'sponsor_name',
+        'sponsor_type_id',
+        'sponsor_type',
         'user_id',
         'added_id',
         'added_date',

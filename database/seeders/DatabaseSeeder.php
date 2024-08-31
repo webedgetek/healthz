@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SponsorType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AgeSeeder::class,
             AttendanceServiceSeeder::class,
             ClinicSeeder::class,
+            SponsorTypeSeeder::class,
 
         ]);
     }

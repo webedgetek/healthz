@@ -15,6 +15,22 @@ class AttendanceService extends Model
     protected $keyType = 'string';
     public $incrementing= false;
 
+    
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class. 'gender_id');
+    }
+
+    public function age()
+    {
+        return $this->belongsTo(Age::class, 'age_id');
+    }
+
     protected $fillable = [
         'att_service_id',
         'description',
@@ -25,7 +41,7 @@ class AttendanceService extends Model
         'user_id',
         'added_id',
         'added_date',
-        'udpated_by',
+        'updated_by',
         'status',
         'archived',
         'archived_id',

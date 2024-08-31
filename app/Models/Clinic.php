@@ -13,8 +13,23 @@ class Clinic extends Model
     protected $primaryKey = 'clinic_id';
     public $timestamps = false;
     protected $keyType = 'string';
-    public $incrementing= false;
+    public $incrementing = false;
+    
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class. 'gender_id');
+    }
+
+    public function age()
+    {
+        return $this->belongsTo(Age::class, 'age_id');
+    }
+    
     protected $fillable = [
         'clinic_id',
         'clinic',

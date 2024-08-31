@@ -15,6 +15,11 @@ class Religion extends Model
     protected $keyType = 'string';
     public $incrementing= false;
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     protected $fillable = [
         'religion_id',
         'religion',
