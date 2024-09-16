@@ -1,100 +1,100 @@
     <x-app-layout>
                <div class="container-xxl flex-grow-1 container-p-y">    
                   <h4 class="py-3 mb-4">
-                    <span class="text-muted fw-light">Employee /</span> List
+                    <span class="text-muted fw-light">Patient /</span> Registered
                   </h4>                   
-                  <div class="row g-4 mb-4">
-                    <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="d-flex align-items-start justify-content-between">
-                            <div class="content-left">
-                              <span>Locum</span>
-                              <div class="d-flex align-items-end mt-2">
-                                <h4 class="mb-0 me-2">{{ $countlocum }}</h4>
-                                <!-- <small class="text-success">(+29%)</small> -->
+                <!-- Hour chart  -->
+               <div class="card bg-transparent shadow-none my-6 border-0">
+                  <div class="card-body row p-0 pb-6 g-6">
+                    <div class="col-12 col-lg-8 card-separator">
+                      <h5 class="mb-2">
+                         {{ Auth::user()->othername }}
+                      </h5>
+                      <div class="col-12 col-lg-5">
+                        <p>
+                          Your progress this week is Awesome. let's keep it up and get a lot of points reward !
+                        </p>
+                      </div>
+                      <div class="d-flex justify-content-between flex-wrap gap-4 me-12">
+                        <div class="d-flex align-items-center gap-4 me-6 me-sm-0">
+                          <div class="avatar avatar-lg">
+                            <div class="avatar-initial bg-label-primary rounded">
+                              <div>
+                               
                               </div>
-                              <p class="mb-0">Active Members </p>
                             </div>
-                            <div class="avatar">
-                              <span class="avatar-initial rounded bg-label-primary">
-                                <i class="bx bx-user bx-sm"></i>
-                              </span>
+                          </div>
+                          <div class="content-right">
+                            <p class="mb-0 fw-medium">Out Patient</p>
+                            <h4 class="text-primary mb-0">34</h4>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-4">
+                          <div class="avatar avatar-lg">
+                            <div class="avatar-initial bg-label-info rounded">
+                              <div>
+                          
+                              </div>
                             </div>
+                          </div>
+                          <div class="content-right">
+                            <p class="mb-0 fw-medium">In-Patient</p>
+                            <h4 class="text-info mb-0">82</h4>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-4">
+                          <div class="avatar avatar-lg">
+                            <div class="avatar-initial bg-label-warning rounded">
+                              <div>
+                               
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-right">
+                            <p class="mb-0 fw-medium">Appointments </p>
+                            <h4 class="text-warning mb-0">14</h4>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="d-flex align-items-start justify-content-between">
-                            <div class="content-left">
-                              <span>Permanent</span>
-                              <div class="d-flex align-items-end mt-2">
-                                <h4 class="mb-0 me-2">{{ $countpermanent }}</h4>
-                                <!-- <small class="text-success">(+18%)</small> -->
-                              </div>
-                              <p class="mb-0">Active Members </p>
-                            </div>
-                            <div class="avatar">
-                              <span class="avatar-initial rounded bg-label-danger">
-                                <i class="bx bx-user-check bx-sm"></i>
-                              </span>
-                            </div>
+                    <div class="col-12 col-lg-4 ps-md-4 ps-lg-6">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <div>
+                            <h5 class="mb-1">Time Spendings</h5>
+                            <p class="mb-9">Weekly report</p>
+                          </div>
+                          <div class="time-spending-chart">
+                            <h4 class="mb-2">231<span class="text-body">h</span> 14<span class="text-body">m</span></h4>
+                           
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="d-flex align-items-start justify-content-between">
-                            <div class="content-left">
-                              <span>Active</span>
-                              <div class="d-flex align-items-end mt-2">
-                                <h4 class="mb-0 me-2">{{ $count_active }}</h4>
-                                <!-- <small class="text-danger">(-14%)</small> -->
-                              </div>
-                              <p class="mb-0">Active Members </p>
-                            </div>
-                            <div class="avatar">
-                              <span class="avatar-initial rounded bg-label-success">
-                                <i class="bx bx-group bx-sm"></i>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="d-flex align-items-start justify-content-between">
-                            <div class="content-left">
-                              <span>Inactive </span>
-                              <div class="d-flex align-items-end mt-2">
-                                <h4 class="mb-0 me-2">{{ $count_inactive }}</h4>
-                                <!-- <small class="text-success">(+42%)</small> -->
-                              </div>
-                              <p class="mb-0">Active Members </p>
-                            </div>
-                            <div class="avatar">
-                              <span class="avatar-initial rounded bg-label-warning">
-                                <i class="bx bx-user-voice bx-sm"></i>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
+                        <div id="leadsReportChart"></div>
                       </div>
                     </div>
                   </div>
+                </div>
                   <!-- Fixed Header -->
+                   <br>
                   <div class="card">
                     <!-- <h5 class="card-header">List of Employees</h5> -->
                     <div class="card-datatable table-responsive">
-                      <div style="margin:15px">
-                        <a class="btn btn-primary me-sm-3 me-1 pull-right" data-bs-toggle="modal" data-bs-target="#addemployee" style="color: white;">Add New Employee</a>
+                      <div style="margin:15px" class="sm-3">
+                        <!-- <a class="btn btn-primary me-sm-3 me-1 pull-right" data-bs-toggle="modal" data-bs-target="#addemployee" style="color: white;">Add New Employee</a> -->
+                      </div>
+                      <!-- <div class="col-lg-8" style="padding-left: 20px;">
+                        <input type="text" class="form-control me-sm-3 me-1" name="search_patient" id="search_patient" style="padding: 10px;">
+                        <button class="btn btn-primary">search</button>
+                        <br>
+                      </div> -->
+                      <div class="col" style="padding-left:20px;"> 
+                          <table>
+                            <tr>
+                              <td> <input type="text" class="form-control me-sm-3 me-1" name="search_patient" id="search_patient">
+                              </td>
+                              <td> <button class="btn btn-primary">Submit</button></td>
+                            </tr>
+                          </table>
                       </div>
                       <table class="datatables-customers table border-top" id="users_list">
                         <thead>
@@ -114,18 +114,18 @@
                               $counter = 1;
                             @endphp
 
-                          @foreach($workers as $employee)
+                          @foreach($patient_list as $patient)
                           <tr> 
                               <td align="center">{{ $counter++ }}</td>
-                              <td><span class="fw-medium">{{ $employee->fullname }}</span></td>
-                              <td><span class="fw-medium">{{ $employee->gender }}</span></td>
-                              <td>{{ $employee->email }}</td>
-                              <td>{{ $employee->staff_type }}</td>
-                              <td>{{ \Carbon\Carbon::parse($employee->added_date)->format('d-m-Y') }}</td>
+                              <td><span class="fw-medium">{{ $patient->fullname }}</span></td>
+                              <td><span class="fw-medium">{{ $patient->gender }}</span></td>
+                              <td>{{ $patient->email }}</td>
+                              <td>{{ $patient->staff_type }}</td>
+                              <td>{{ \Carbon\Carbon::parse($patient->added_date)->format('d-m-Y') }}</td>
                               <td>
-                                @if($employee->status === 'Active')
+                                @if($patient->status === 'Active')
                                   <span class="badge bg-label-info me-1">Active</span>
-                                @elseif ($employee->status === 'Inactive')
+                                @elseif ($patient->status === 'Inactive')
                                   <span class="badge bg-label-danger me-1">Inactive</span>
                                 @endif
                               </td>
@@ -135,14 +135,14 @@
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                           </button>
                                               <div class="dropdown-menu">
-                                                  <a class="dropdown-item" href="{{ route('employee.show', ['employee_id' => $employee->employee_id]) }}">
+                                                  <a class="dropdown-item" href="#">
                                                     <i class="bx bx-edit-alt me-1"></i> More
                                                   </a>
-                                                  <!-- <a class="dropdown-item" href="{{ url('/modify-user')}}">
+                                                  <a class="dropdown-item" href="#">
                                                     <i class="bx bx-lock-alt me-1"></i> Details 
-                                                  </a> -->
+                                                  </a>
                                                   <a class="dropdown-item" href="javascript:void(0);">
-                                                      <i class="bx bx-trash me-1"></i> Delete
+                                                      <i class="bx bx-trash me-1"></i> Add a Service
                                                   </a>
                                             </div>
                                   </div>
@@ -183,9 +183,7 @@
                     <label class="form-label" for="title">Title</label>
                     <select class="form-select" name="title" id="title">
                         <option disabled selected>-select-</option>
-                            @foreach($title as $tit)                                        
-                        <option value="{{ $tit->title }}">{{ $tit->title }}</option>
-                            @endforeach
+                           
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
@@ -204,9 +202,7 @@
                     <label class="form-label" for="gender">Gender <label class="text-danger" style="font-size: 15px;">*</label></label>
                     <select class="form-select" name="gender" id="gender">
                       <option disabled selected>-select-</option>
-                          @foreach($gender as $g)                                        
-                          <option value="{{ $g->gender }}">{{ $g->gender }}</option>
-                          @endforeach
+                          
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
@@ -233,18 +229,14 @@
                     <label class="form-label" for="department_id">Department <label class="text-danger" style="font-size: 15px;">*</label></label>
                     <select id="department_id" name="department_id" class="select2 form-select" data-allow-clear="true">
                       <option disabled selected>-Select-</option>
-                      @foreach($department as $depart)                                        
-                          <option value="{{ $depart->department_id }}">{{ $depart->department }}</option>
-                          @endforeach
+                      
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
                     <label class="form-label" for="designation_id">Designation <label class="text-danger" style="font-size: 15px;">*</label></label>
                     <select id="designation_id" name="designation_id" class="select2 form-select" data-allow-clear="true">
                     <option disabled selected>-select-</option>
-                        @foreach($designation as $designate)                                        
-                          <option value="{{ $designate->designation_id }}">{{ $designate->designation }}</option>
-                          @endforeach
+                       
                     </select>
                   </div>
                   <div class="col-12 col-md-6">

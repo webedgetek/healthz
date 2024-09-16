@@ -1,20 +1,90 @@
 <x-app-layout>
             <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Hour chart  -->
+                <!-- <div class="card bg-transparent shadow-none my-6 border-0">
+                  <div class="card-body row p-0 pb-6 g-6">
+                    <div class="col-12 col-lg-8 card-separator">
+                      <h5 class="mb-2">
+                        {!! $greeting !!}, {{ Auth::user()->othername }}
+                      </h5>
+                      <div class="col-12 col-lg-5">
+                        <p>
+                          Your progress this week is Awesome. let's keep it up and get a lot of points reward !
+                        </p>
+                      </div>
+                      <div class="d-flex justify-content-between flex-wrap gap-4 me-12">
+                        <div class="d-flex align-items-center gap-4 me-6 me-sm-0">
+                          <div class="avatar avatar-lg">
+                            <div class="avatar-initial bg-label-primary rounded">
+                              <div>
+                               
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-right">
+                            <p class="mb-0 fw-medium">Out Patient</p>
+                            <h4 class="text-primary mb-0">34</h4>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-4">
+                          <div class="avatar avatar-lg">
+                            <div class="avatar-initial bg-label-info rounded">
+                              <div>
+                          
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-right">
+                            <p class="mb-0 fw-medium">In-Patient</p>
+                            <h4 class="text-info mb-0">82</h4>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-4">
+                          <div class="avatar avatar-lg">
+                            <div class="avatar-initial bg-label-warning rounded">
+                              <div>
+                               
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-right">
+                            <p class="mb-0 fw-medium">Appointments </p>
+                            <h4 class="text-warning mb-0">14</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-4 ps-md-4 ps-lg-6">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <div>
+                            <h5 class="mb-1">Time Spendings</h5>
+                            <p class="mb-9">Weekly report</p>
+                          </div>
+                          <div class="time-spending-chart">
+                            <h4 class="mb-2">231<span class="text-body">h</span> 14<span class="text-body">m</span></h4>
+                           
+                          </div>
+                        </div>
+                        <div id="leadsReportChart"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- Hour chart End  -->
+            <br>
               <div class="row">
                 <div class="col-lg-8 mb-4 order-0">
                   <div class="card">
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-7">
                         <div class="card-body">
-                             <h5 class="card-title text-primary">Welcome, {{ Auth::user()->fullname }} 🎉</h5>
-                          <!-- <p class="mb-4">
-                            You have done <span class="fw-medium">72%</span> more sales today. Check your new badge in
-                            your profile.
-                          </p> -->
+                             <h3 class="card-title text-primary"> 
+                               {!! $greeting !!}, {{ Auth::user()->othername }}</h3>
                           <p class="mb-4">
-                            The way to get started is to quit talking and begin doing.
+                           The way to get started is to quit talking and begin doing.
                           </p>
-                          <a href="{{ url('profile-details') }}" class="btn btn-sm btn-outline-primary">View Profile</a>
+                          <!-- <a href="{{ url('profile-details') }}" class="btn btn-sm btn-outline-primary">View Profile</a> -->
                         </div>
                       </div>
                       <div class="col-sm-5 text-center text-sm-left">
@@ -60,14 +130,34 @@
                     </div>
                   </div>
                 </div>
-               
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="card">
-                    <div class="card-body">
-                        
-                    </div>
+                  input
                 </div>
-             </div>
+              </div> -->
+                <!-- <div class="card">
+                    <div class="card-body">
+                      <div align="center">
+                        
+                      </div>
+                    </div>
+                </div> -->
+                <br>
+                <div class="card">
+                  <div class="card-body">
+                      <h3>Actions</h3>
+                        <div class="card">
+                        <div class="card-body">
+                          <div align="center">
+                              <a href="/patients" class="btn btn-primary">Register New Patient</a>
+                              <a href="/service" class="btn btn-primary">Register Attendance</a>
+                              <a href="/appointments" class="btn btn-primary">Appointments</a>
+                              <a href="#" class="btn btn-primary">Walk-In Services</a>
+                          </div>
+                      </div>
+                        </div>
+                  </div>
+                </div>
             </div>
     </x-app-layout>

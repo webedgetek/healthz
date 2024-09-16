@@ -7,9 +7,11 @@
           <p class="text-muted">Add new patient to the system</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-3">
-          <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Search Patient</button>
-          <button class="btn btn-primary">Service Request</button>
-          <button type="submit" class="btn btn-primary">Sponsorship</button>
+          <!-- <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Search Patient</button> -->
+          <!-- <button class="btn btn-primary">Go to Registered Patients</button> -->
+          <a href="{{ url('search-patient') }}" class="btn btn-primary">Search Patient</a>
+          <a href="{{ url('view-patient') }}" class="btn btn-primary">View Patient</a>
+          <!-- <button type="submit" class="btn btn-primary">Patient Sponsorship</button> -->
         </div>
       </div>
   <div class="row">
@@ -209,10 +211,10 @@
             <label class="form-label mb-1" for="sponsor_type">Sponsor Type</label>
              <select name="sponsor_type" id="sponsor_type" class="form-control sponsorship_type">
               <option disable selected>-Select sponsor-</option>
-               <option value="Cash">Cash</option> 
-              <option value="NHIS">Public NHIS</option>
-              <option value="Company">Co-operate Company</option>
-              <option value="Private Insurance">Private Insurance</option>
+               <option value="1001">Cash</option> 
+              <option value="20001">Public NHIS</option>
+              <option value="3000">Co-operate Company</option>
+              <option value="4004">Private Insurance</option>
             </select>
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
@@ -246,8 +248,8 @@
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
             <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="end_date">
-              <span style="color: red;">Active</span></label>
-            <!-- <input type="date" name="end_date" id="end_date" class="form-control"> -->
+              <span style="color: red;">Card Status</span></label>
+            <input type="text" name="status" id="status" class="form-control" disabled>
           </div>
         </div>
       </div>
@@ -269,16 +271,45 @@
                         <thead>
                           <tr>
                             <th>Sn</th>
-                            <th>Product</th>
-                            <th>Categories</th>
-                            <th>Barcode</th>
-                            <th class="text-nowrap text-sm-end">Stocked &nbsp;</th>
-                            <th class="text-nowrap text-sm-end">Expirable</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th class="text-nowrap text-sm-end">Sponsor &nbsp;</th>
+                            <th class="text-nowrap text-sm-end">Telephone</th>
                             <th>Status</th>
                             <th class="text-lg-center">Actions</th>
                           </tr>
                         </thead>
                         <tbody>
+                        @foreach($patients as $pat)   
+                          <tr>
+                            <td>1</td>
+                            <td>{{ $pat->title }} {{ $pat->firstname }} {{$pat->middlename}} {{$pat->lastname}}</td>
+                            <td>{{ $pat->gender }}</td>
+                            <td>{{ \Carbon\Carbon::parse($pat->birth_date)->format('d-m-Y') }}</td>
+                            <td>{{ $pat->age }}</td>
+                            <td>{{ $pat->telephone }}</td>
+                            <td>{{ \Carbon\Carbon::parse($pat->added_date)->format('d-m-Y') }}</td>
+                            <td>
+                            <div class="dropdown" align="center">
+                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                              <i class="bx bx-dots-vertical-rounded"></i>
+                                          </button>
+                                              <div class="dropdown-menu">
+                                                  <a class="dropdown-item patient_edit_btn" data-id="{{ $pat->patient_id}}" href="#">
+                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                  </a>
+                                                  <a class="dropdown-item" href="javascript:void(0);">
+                                                    <i class="bx bx-lock-alt me-1"></i> Details 
+                                                  </a>
+                                                  <!-- <a class="dropdown-item" href="javascript:void(0);">
+                                                      <i class="bx bx-trash me-1"></i> Delete
+                                                  </a> -->
+                                            </div>
+                                  </div>
+                            </td>
+                          </tr>
+                          @endforeach
                         </tbody>
                         <tfoot>
                         <tr>

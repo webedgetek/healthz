@@ -164,22 +164,22 @@ $(document).ready( function () {
     });
 
 
-    $(document).on('click', '.product_edit_btn', function() {
-      var product_id = $(this).data('id');
+    $(document).on('click', '.patient_edit_btn', function() {
+      var patient_id = $(this).data('id');
 
       $.ajax({
-        url: '/product/' + product_id + '/edit',
+        url: '/patients/' + patient_id + '/edit',
         type: 'GET',
         success: function(response) {
-          $('#product_id').val(response.product.product_id)[0];
-          $('#product_name').val(response.product.product_name)[0];
-          $('#category').val(response.product.category_id).trigger('change');
-          $('#product_description').val(response.product.description);
-          $('#manufacturer').val(response.product.manufacturer);
-          $('#expirable').val(response.product.expirable);
-          $('#stockable').val(response.product.stocked);
-          $('#sales_type').val(response.product.sales_type);
-          $('#status').val(response.product.status);
+          $('#patient_id').val(response.patient.patient_id)[0];
+          // $('#product_name').val(response.product.product_name)[0];
+          // $('#category').val(response.product.category_id).trigger('change');
+          // $('#product_description').val(response.product.description);
+          // $('#manufacturer').val(response.product.manufacturer);
+          // $('#expirable').val(response.product.expirable);
+          // $('#stockable').val(response.product.stocked);
+          // $('#sales_type').val(response.product.sales_type);
+          // $('#status').val(response.product.status);
           
         },
         error: function(xhr, status, error) {

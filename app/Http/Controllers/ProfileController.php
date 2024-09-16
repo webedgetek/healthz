@@ -15,7 +15,6 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-
      public function index(Request $request): View
      {
         $user = User::where('archived', 'No')->where('status', '=','Active')->get();
@@ -62,4 +61,10 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
         return Redirect::to('/');
     }
+
+    public function login()
+    {
+        return view('login');
+    }
+
 }

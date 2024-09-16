@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceRequestController;
+use App\Http\Controllers\SearchPatientController;
 use App\Http\Controllers\SponsorController;
 use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +26,11 @@ Route::get('/', function (){
     return view('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,6 +44,9 @@ Route::middleware('auth')->group(function () {
           return Redirect::route('patient.create');
     });
 
+    Route::resource('search-patient', SearchPatientController::class);
+    Route::get('/view-patient', [PatientController::class, 'view_patient']); //add  employee
+    // Route::resource('view-patient', SearchPatientController::class);
     Route::resource('service', ServiceRequestController::class);
     Route::resource('users', ProfileController::class);
     Route::resource('sponsors', SponsorController::class); 
