@@ -25,18 +25,18 @@ class PatientController extends Controller
     {
         $title = Title::where('archived', 'No')->where('status', '=','Active')->get();
         $religion = Religion::where('archived', 'No')->where('status', '=','Active')->get();
-        $gender = Gender::where('archived', 'No')->where('status', '=','Active')->get();
+        $gender = Gender::where('archived', 'No')->where('status', '=','Active')->where('usage', '=','1')->get();
         $region = Region::where('archived', 'No')->where('status', '=','Active')->get();
         $relation = Relation::where('archived', 'No')->where('status', '=','Active')->get();
         // $news = Relation::with('users')->get();
         // $patients = Patient::where('archived', 'No')->where('status', '=', 'Active')->get();
 
         $patients = DB::table('patient_info')
-            ->join('gender', 'patient_info.gender', '=', 'gender.gender_id')
-            ->join('title', 'patient_info.title', '=', 'title.title_id')
-            ->join('religion', 'patient_info.religion', '=', 'religion.religion_id')
-            ->select('patient_info.patient_id', 'title.title', 'patient_info.firstname', 'patient_info.lastname', 'patient_info.middlename',  
-            'gender.gender', 'patient_info.birth_date', 'patient_info.added_date','patient_info.telephone', 'religion.religion',
+            ->join('gender', 'patient_info.gender_id', '=', 'gender.gender_id')
+            ->join('title', 'patient_info.title_id', '=', 'title.title_id')
+            ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname',  'gender.gender', 
+            'patient_info.birth_date', 'patient_info.added_date', 
+            'patient_info.telephone', 
             DB::raw('TIMESTAMPDIFF(YEAR, patient_info.birth_date, CURDATE()) as age'))
             ->get();
 
@@ -113,11 +113,11 @@ class PatientController extends Controller
             'contact_person' => 'nullable',
             'contact_telephone' => 'nullable',
             'contact_relationship' => 'nullable',
-            'sponsor_type' => 'nullable',
-            'sponsor_name' => 'nullable',
-            'member_no' => 'nullable',
-            'start_date' => 'nullable',
-            'end_date' => 'nullable',
+            // 'sponsor_type' => 'nullable',
+            // 'sponsor_name' => 'nullable',
+            // 'member_no' => 'nullable',
+            // 'start_date' => 'nullable',
+            // 'end_date' => 'nullable',
             'dependant' => 'nullable',
         ]);
 
@@ -148,15 +148,15 @@ class PatientController extends Controller
              
             $patient = new Patient();
             $patient->patient_id = $pat_id;
-            $patient->title = $request->input('title');
+            $patient->title_id = $request->input('title');
             $patient->firstname = $request->input('firstname');
             $patient->middlename = $request->input('middlename');
             $patient->lastname = $request->input('lastname');
             $patient->birth_date = $request->input('birth_date');
-            $patient->gender = $request->input('gender');
+            $patient->gender_id = $request->input('gender');
             $patient->occupation = $request->input('occupation');
             $patient->education = $request->input('education');
-            $patient->religion = $request->input('religion');
+            $patient->religion_id = $request->input('religion');
             $patient->nationality = $request->input('nationality');
             $patient->old_folder = $request->input('old_folder');
             $patient->telephone = $request->input('telephone');
@@ -168,9 +168,9 @@ class PatientController extends Controller
             $patient->contact_person = $request->input('contact_person');
             $patient->contact_telephone = $request->input('contact_telephone');
             $patient->contact_relationship = $request->input('contact_relationship');
-            $patient->sponsor_type = $request->input('sponsor_type');
-            $patient->sponsor_name = $request->input('sponsor_name');
-            $patient->member_no = $request->input('member_no');
+            // $patient->sponsor_type = $request->input('sponsor_type');
+            // $patient->sponsor_name = $request->input('sponsor_name');
+            // $patient->member_no = $request->input('member_no');
             $patient->added_date = now();
             $patient->records_id = $transaction;
             $patient->user_id =  Auth::user()->user_id;

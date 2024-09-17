@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-       Schema::create('gender', function (Blueprint $table) {
-            $table->string('gender_id', 50);
-            $table->string('gender', 150);
+        Schema::create('health_facility_levels', function (Blueprint $table) {
+            $table->string('h_f_id', 50);
+            $table->string('levels', 100);
             $table->string('user_id', 100)->nullable();
-            $table->string('usage', 100)->nullable();           
-            $table->string('added_id', 100)->nullable();
             $table->timestamp('added_date')->nullable();
             $table->string('updated_by', 100)->nullable();
             $table->string('status', 100)->default('Active')->index();
@@ -26,7 +24,7 @@ return new class extends Migration
             $table->string('archived_id', 100)->nullable();
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
-            $table->primary('gender_id');
+            $table->primary('h_f_id');
             $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gender');
+        Schema::dropIfExists('health_facility_levels');
     }
 };

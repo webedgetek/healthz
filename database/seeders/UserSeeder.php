@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
        $faker = Faker::create();
         
         $userdata = User::create([
-            'user_id' => '6541258-xxxxx-xxxxx-xxxxx-6541258',
+            'user_id' => 'b2c362bf-56df-4337-be34-7062ffae8bd5',
             'username' => 'admin',
             'password'  => '$2y$10$V4.AAnGPPrhLLJsBT28H3.1vF9rpK25BnMr5v420szqNbIWVNq9k6',   //@Mohammed200535
             'oldpassword' => 'Mohammed',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'role' => 'Developer',
             // 'permission' => 'ontheway',
             // 'image' => $faker->imageUrl(),
-            'added_id' => '6541258-xxxxx-xxxxx-xxxxx-6541258',
+            'added_id' => 'b2c362bf-56df-4337-be34-7062ffae8bd5',
             'added_date' => now(),
             'status' => 'Active',
             'archived' => 'No',

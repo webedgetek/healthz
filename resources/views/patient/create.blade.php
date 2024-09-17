@@ -281,10 +281,14 @@
                           </tr>
                         </thead>
                         <tbody>
+                        @php
+                              $counter = 1;
+                            @endphp
+
                         @foreach($patients as $pat)   
                           <tr>
-                            <td>1</td>
-                            <td>{{ $pat->title }} {{ $pat->firstname }} {{$pat->middlename}} {{$pat->lastname}}</td>
+                            <td>{{ $counter++ }}</td>
+                            <td>{{ $pat->title }} {{ $pat->fullname }}</td>
                             <td>{{ $pat->gender }}</td>
                             <td>{{ \Carbon\Carbon::parse($pat->birth_date)->format('d-m-Y') }}</td>
                             <td>{{ $pat->age }}</td>

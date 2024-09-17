@@ -21,6 +21,7 @@ class GenderSeeder extends Seeder
         $gender = Gender::create([
             'gender_id' => '1',
             'gender' => 'All',
+            'usage' => '0',
             'user_id' => $user->user_id,
             'added_date' => now(),
             'status' => 'Active',
@@ -30,6 +31,7 @@ class GenderSeeder extends Seeder
         $gender = Gender::create([
             'gender_id' => '2',
             'gender' => 'Male',
+            'usage' => '1',
             'user_id' => $user->user_id,
             'added_date' => now(),
             'status' => 'Active',
@@ -39,6 +41,7 @@ class GenderSeeder extends Seeder
         $gender = Gender::create([
             'gender_id' => '3',
             'gender' => 'Female',
+            'usage' => '1',
             'user_id' => $user->user_id,
             'added_date' => now(),
             'status' => 'Active',

@@ -15,20 +15,20 @@ return new class extends Migration
     {
        Schema::create('patient_info', function (Blueprint $table) {
             $table->string('patient_id', 50);
-            $table->string('title', 20);
+            $table->string('title_id', 50);
             $table->string('firstname', 100);
             $table->string('middlename', 100);
             $table->string('lastname', 100);
-            $table->string('fullname')->virtualAs("CONCAT(title, ' ', firstname, ' ', middlename, ' ', lastname)");
+            $table->string('fullname')->virtualAs("CONCAT(firstname, ' ', middlename, ' ', lastname)");
             $table->date('birth_date');
             $table->string('age', 10)->nullable();
-            $table->string('gender', 150);
+            $table->string('gender_id', 50);
             $table->string('occupation', 100)->nullable();
             $table->string('education', 100)->nullable();
-            $table->string('religion', 100)->nullable();
+            $table->string('religion_id', 50)->nullable();
             $table->string('nationality', 100)->nullable();
             $table->string('old_folder', 100)->nullable();
-            $table->string('telephone', 50)->nullable();
+            $table->string('telephone', 50)->nullable()->index();
             $table->string('work_telephone', 50)->nullable();
             $table->string('email', 100)->nullable()->unique();
             $table->string('address', 150)->nullable();
@@ -37,13 +37,13 @@ return new class extends Migration
             $table->string('contact_person', 50)->nullable();
             $table->string('contact_telephone', 50)->nullable();
             $table->string('contact_relationship', 100)->nullable();
-            $table->string('sponsor_type', 100);
-            $table->string('sponsor_name', 100);
-            $table->string('member_no', 150);
+            // $table->string('sponsor_type', 100)->nullable();
+            // $table->string('sponsor_name', 100)->nullable();
+            // $table->string('member_no', 150)->nullable();
             $table->string('dependant', 50)->nullable();
             $table->string('email_verified', 20)->nullable();
-            $table->string('allow_sms', 50)->nullable();
-            $table->string('allow_email', 50)->nullable();
+            $table->string('allow_sms', 50)->default('No');
+            $table->string('allow_email', 50)->default('No');
             $table->string('records_id', 100)->nullable();
             $table->string('user_id', 100)->nullable();
             $table->string('added_id', 100)->nullable();
