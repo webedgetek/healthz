@@ -243,7 +243,7 @@
                   <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <i class="bx bx-power-off me-2"></i>
-                      <span class="align-middle" :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                      <span class="align-middle" :href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
                         Log Out
                        </span>
                   </form>

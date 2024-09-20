@@ -10,7 +10,7 @@
           <!-- <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Search Patient</button> -->
           <!-- <button class="btn btn-primary">Go to Registered Patients</button> -->
           <a href="{{ url('search-patient') }}" class="btn btn-primary">Search Patient</a>
-          <a href="{{ url('view-patient') }}" class="btn btn-primary">View Patient</a>
+          <a href="#" class="btn btn-primary">Add Attendance</a>
           <!-- <button type="submit" class="btn btn-primary">Patient Sponsorship</button> -->
         </div>
       </div>
@@ -204,7 +204,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="row mb 3">
-                <h5 class="card-tile mb-0"><b>Sponsorship Details</b></h5>
+                <h5 class="card-tile mb-0"><b>Sponsorship Type</b></h5>
           </div>
           <br>
         <div class="mb-3 col ecommerce-select2-dropdown">
@@ -217,6 +217,10 @@
               <option value="4004">Private Insurance</option>
             </select>
           </div>
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0"><b>Sponsorship Details</b></h5>
+          </div>
+          <br>
           <div class="mb-3 col ecommerce-select2-dropdown">
             <label class="form-label mb-1" for="sponsor_name">Sponsor Name </label>
             <select id="sponsor_name" name="sponsor_name" class="select2 form-select sponsor_name">
@@ -247,8 +251,8 @@
             <input type="date" name="end_date" id="end_date" class="form-control">
           </div>
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="end_date">
-              <span style="color: red;">Card Status</span></label>
+            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="status">
+              <span>Card Status</span></label>
             <input type="text" name="status" id="status" class="form-control" disabled>
           </div>
         </div>
@@ -273,10 +277,11 @@
                             <th>Sn</th>
                             <th>Name</th>
                             <th>Gender</th>
-                            <th>Age</th>
-                            <th class="text-nowrap text-sm-end">Sponsor &nbsp;</th>
+                            <th>Birth Date</th>
+                            <th class="text-nowrap text-sm-end">Age &nbsp;</th>
                             <th class="text-nowrap text-sm-end">Telephone</th>
-                            <th>Status</th>
+                            <th class="text-nowrap text-sm-end">Category</th>
+                            <th>Date Added</th>
                             <th class="text-lg-center">Actions</th>
                           </tr>
                         </thead>
@@ -293,6 +298,16 @@
                             <td>{{ \Carbon\Carbon::parse($pat->birth_date)->format('d-m-Y') }}</td>
                             <td>{{ $pat->age }}</td>
                             <td>{{ $pat->telephone }}</td>
+                            <td> @if($pat->default_sponsor === '0001')
+                                      <span class="badge bg-label-info me-1">Cash & Carry</span>
+                                    @elseif ($pat->default_sponsor === '2001')
+                                      <span class="badge bg-label-danger me-1">Private Insurance</span>
+                                    @elseif ($pat->default_sponsor === '3001')
+                                      <span class="badge bg-label-primary me-1">Co-operate</span>
+                                    @elseif ($pat->default_sponsor === '5001')
+                                      <span class="badge bg-label-warning me-1"> N-H-I-S</span>
+                                    @endif
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($pat->added_date)->format('d-m-Y') }}</td>
                             <td>
                             <div class="dropdown" align="center">
@@ -300,10 +315,10 @@
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                           </button>
                                               <div class="dropdown-menu">
-                                                  <a class="dropdown-item patient_edit_btn" data-id="{{ $pat->patient_id}}" href="#">
+                                                  <a class="dropdown-item"  href="#">
                                                     <i class="bx bx-edit-alt me-1"></i> Edit
                                                   </a>
-                                                  <a class="dropdown-item" href="javascript:void(0);">
+                                                  <a class="dropdown-item" href="{{ route('patient.show', ['patient_id' => $pat->patient_id]) }}">
                                                     <i class="bx bx-lock-alt me-1"></i> Details 
                                                   </a>
                                                   <!-- <a class="dropdown-item" href="javascript:void(0);">
@@ -318,12 +333,13 @@
                         <tfoot>
                         <tr>
                             <th>Sn</th>
-                            <th>Product</th>
-                            <th>Categories</th>
-                            <th>Barcode</th>
-                            <th class="text-nowrap text-sm-end">Stocked &nbsp;</th>
-                            <th class="text-nowrap text-sm-end">Expirable </th>
-                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Birth Date</th>
+                            <th class="text-nowrap text-sm-end">Age &nbsp;</th>
+                            <th class="text-nowrap text-sm-end">Telephone</th>
+                            <th class="text-nowrap text-sm-end">Category</th>
+                            <th>Date Added</th>
                             <th class="text-lg-center">Actions</th>
                           </tr>
                         </tfoot>

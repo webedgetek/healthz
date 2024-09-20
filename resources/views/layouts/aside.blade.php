@@ -74,14 +74,14 @@
         </li>
          <li class="menu-item">
           <a href="{{ url('search-patient') }}" class="menu-link">
-            <div class="text-truncate" data-i18n="List">Search</div>
+            <div class="text-truncate" data-i18n="List">Search Patient</div>
           </a>
         </li>
-         <!-- <li class="menu-item">
+         <li class="menu-item">
           <a href="/employees" class="menu-link">
-            <div class="text-truncate" data-i18n="List">Employee List</div>
+            <div class="text-truncate" data-i18n="List">Create Attendance</div>
           </a>
-        </li> -->
+        </li>
       </ul>
     </li>
   <!-- -----------------------------------products------------------------------------------------- -->

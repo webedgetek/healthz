@@ -28,13 +28,14 @@ class PatientController extends Controller
         $gender = Gender::where('archived', 'No')->where('status', '=','Active')->where('usage', '=','1')->get();
         $region = Region::where('archived', 'No')->where('status', '=','Active')->get();
         $relation = Relation::where('archived', 'No')->where('status', '=','Active')->get();
+
         // $news = Relation::with('users')->get();
-        // $patients = Patient::where('archived', 'No')->where('status', '=', 'Active')->get();
 
         $patients = DB::table('patient_info')
+            ->whereDate('patient_info.register_date', now())
             ->join('gender', 'patient_info.gender_id', '=', 'gender.gender_id')
             ->join('title', 'patient_info.title_id', '=', 'title.title_id')
-            ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname',  'gender.gender', 
+            ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname', 'patient_info.default_sponsor',  'gender.gender', 
             'patient_info.birth_date', 'patient_info.added_date', 
             'patient_info.telephone', 
             DB::raw('TIMESTAMPDIFF(YEAR, patient_info.birth_date, CURDATE()) as age'))
@@ -56,38 +57,7 @@ class PatientController extends Controller
         // return view('patient.create', compact('title','religion','gender', 'region', 'relation'));
     }
 
-    private function pat_id_gen()
-   {
-            $patient_id = (string) Str::uuid();
-
-            $current_year = date('Y');
-            $small_year = date('y');
-
-            $yearly_count = YearlyCount::firstOrCreate(
-                ['year' => $current_year],
-                ['count' => 0]
-              );
-
-            if ($yearly_count->wasRecentlyCreated) {
-                 $yearly_count->count = 1; 
-            } else {
-                 $yearly_count->count += 1;
-            }
-                // $yearly_count->count += 1;
-                $yearly_count->save();
-
-            // Format the incremented count as a 6-digit number with leading zeros
-            $formatted_id = str_pad($yearly_count->count, 6, '0', STR_PAD_LEFT);
-
-            // $patient_id = $formatted_id . $current_year;
-            $patient_number = 'G' . $formatted_id . $small_year;
-
-            return [
-                'patient_id' => $patient_id,
-                'patient_number' => $patient_number
-            ];
-    }
-
+   
     public function store(Request $request)
     {
 
@@ -214,9 +184,40 @@ class PatientController extends Controller
         }
     }
 
-    public function show()
+    public function show(Request $request, $patient_id)
     {
+        $patients = DB::table('patient_info')
+            ->where('patient_info.patient_id', $patient_id)
+            ->join('gender', 'patient_info.gender_id', '=', 'gender.gender_id')
+            ->join('title', 'patient_info.title_id', '=', 'title.title_id')
+            ->join('users', 'patient_info.user_id', '=', 'users.user_id')
+            ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname',  'gender.gender', 
+            'patient_info.birth_date', 'patient_info.email','patient_info.address', 'patient_info.contact_person', 'patient_info.contact_relationship', 'patient_info.contact_telephone', 'patient_info.added_date', 
+            'patient_info.telephone',  'users.user_fullname',
+            DB::raw('TIMESTAMPDIFF(YEAR, patient_info.birth_date, CURDATE()) as age'))
+            ->orderBy('patient_info.added_date', 'asc') 
+            // ->first();
+            ->paginate(5);
 
+            return view('patient.show', compact('patients'));
+    }
+
+    public function show_today(Request $request, $patient_id)
+    {
+        $patients = DB::table('patient_info')
+            // ->where('patient_info.added_date', now())
+            ->where('patient_info.patient_id', $patient_id)
+            ->join('gender', 'patient_info.gender_id', '=', 'gender.gender_id')
+            ->join('title', 'patient_info.title_id', '=', 'title.title_id')
+            ->join('users', 'patient_info.user_id', '=', 'users.user_id')
+            ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname',  'gender.gender', 
+            'patient_info.birth_date', 'patient_info.email','patient_info.address', 'patient_info.contact_person', 'patient_info.contact_relationship', 'patient_info.contact_telephone', 'patient_info.added_date', 
+            'patient_info.telephone',  'users.user_fullname',
+            DB::raw('TIMESTAMPDIFF(YEAR, patient_info.birth_date, CURDATE()) as age'))
+            ->orderBy('patient_info.added_date', 'asc') 
+            ->first();
+
+            return view('patient.show', compact('patients'));
     }
 
     public function edit($patient_id)
@@ -284,18 +285,63 @@ class PatientController extends Controller
         return 201;
 
     }
-    
-    public function view_patient()
-    {
-        return view('patient.view-patient');
-    }
 
-    public function request_(Request $request)
+
+    private function pat_id_gen()
+    {
+             $patient_id = (string) Str::uuid();
+ 
+             $current_year = date('Y');
+             $small_year = date('y');
+ 
+             $yearly_count = YearlyCount::firstOrCreate(
+                 ['year' => $current_year],
+                 ['count' => 0]
+               );
+ 
+             if ($yearly_count->wasRecentlyCreated) {
+                  $yearly_count->count = 1; 
+             } else {
+                  $yearly_count->count += 1;
+             }
+                 // $yearly_count->count += 1;
+                 $yearly_count->save();
+ 
+             // Format the incremented count as a 6-digit number with leading zeros
+             $formatted_id = str_pad($yearly_count->count, 6, '0', STR_PAD_LEFT);
+ 
+             // $patient_id = $formatted_id . $current_year;
+             $patient_number = 'G' . $formatted_id . $small_year;
+ 
+             return [
+                 'patient_id' => $patient_id,
+                 'patient_number' => $patient_number
+             ];
+     }
+
+     public function attendance(Request $request, $patient_id)
+     {
+        $patients = DB::table('patient_info')
+            ->where('patient_info.patient_id', $patient_id)
+            ->join('gender', 'patient_info.gender_id', '=', 'gender.gender_id')
+            ->join('title', 'patient_info.title_id', '=', 'title.title_id')
+            ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname',  'gender.gender', 
+            'patient_info.birth_date', 'patient_info.email','patient_info.address',  'patient_info.added_date', 
+            'patient_info.telephone', 
+            DB::raw('TIMESTAMPDIFF(YEAR, patient_info.birth_date, CURDATE()) as age'))
+            ->orderBy('patient_info.added_date', 'asc') 
+            ->first();
+
+            // return view('patient.show', compact('patients'));
+
+     }
+     
+    public function request_ccc(Request $request)
     {
         // API URL and authentication details
         $apiUrl = "https://elig.nhia.gov.gh:5000/api/hmis/genCCC";
-        $apiKey = "hp6658"; // API Key
-        $secret = "ncgxs3"; // Secret
+        $apiKey = //"hp6658"; // API Key
+        $secret = //"ncgxs3"; // Secret
 
         // Get the CardType and CardNo from the request (assuming form data is posted)
         $cardType = $request->input('cardType');

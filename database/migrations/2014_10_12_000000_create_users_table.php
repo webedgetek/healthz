@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('oldpassword', 100);
             $table->string('firstname', 150);
             $table->string('othername', 150);
-            $table->string('fullname')->virtualAs("CONCAT(firstname, ' ', othername)");
+            $table->string('user_fullname')->virtualAs("CONCAT(firstname, ' ', othername)");
             $table->string('salt', 100)->nullable();
             $table->string('telephone', 50);
             $table->string('telephone_verified', 50)->nullable();

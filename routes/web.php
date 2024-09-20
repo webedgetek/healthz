@@ -5,6 +5,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\SearchPatientController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\SponsorController;
 use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +23,11 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
-Route::get('/', function (){
-    return view('login');
-});
+// Route::get('/', function (){
+//     return view('login');
+// });
+
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
  Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -43,9 +46,10 @@ Route::middleware('auth')->group(function () {
         ->missing(function (Request $request){
           return Redirect::route('patient.create');
     });
-
+    Route::get('patients/details/{patient_id}', [PatientController::class, 'show_today'])->name('patient.show');
+    // Route::get('patients/add-visit/{patient_id}', [PatientController::class, 'attendance'])->name('patient.show');
     Route::resource('search-patient', SearchPatientController::class);
-    Route::get('/view-patient', [PatientController::class, 'view_patient']); //add  employee
+    // Route::get('/view-patient', [PatientController::class, 'view_patient']); //add  employee
     // Route::resource('view-patient', SearchPatientController::class);
     Route::resource('service', ServiceRequestController::class);
     Route::resource('users', ProfileController::class);

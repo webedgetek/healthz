@@ -8,7 +8,7 @@
                   <div class="card-body row p-0 pb-6 g-6">
                     <div class="col-12 col-lg-8 card-separator">
                       <h5 class="mb-2">
-                         {{ Auth::user()->othername }}
+                        Hi, {{ Auth::user()->othername }}
                       </h5>
                       <div class="col-12 col-lg-5">
                         <p>
@@ -103,8 +103,9 @@
                             <th>Name</th>
                             <th>Gender</th>
                             <th>Email</th>
-                            <th>Employment Type</th>
-                            <th>Joined Date</th>
+                            <th>Age</th>
+                            <th>Telephone</th>
+                            <th>Added Date</th>
                             <th>Status</th>
                             <th>Action</th>
                           </tr>
@@ -120,30 +121,35 @@
                               <td><span class="fw-medium">{{ $patient->fullname }}</span></td>
                               <td><span class="fw-medium">{{ $patient->gender }}</span></td>
                               <td>{{ $patient->email }}</td>
-                              <td>{{ $patient->staff_type }}</td>
+                              <td>{{$patient->age }}</td>
+                              <td>{{$patient->telephone }}</td>
                               <td>{{ \Carbon\Carbon::parse($patient->added_date)->format('d-m-Y') }}</td>
                               <td>
-                                @if($patient->status === 'Active')
-                                  <span class="badge bg-label-info me-1">Active</span>
-                                @elseif ($patient->status === 'Inactive')
-                                  <span class="badge bg-label-danger me-1">Inactive</span>
-                                @endif
+                                    @if($patient->default_sponsor === '0001')
+                                      <span class="badge bg-label-info me-1">Cash & Carry</span>
+                                    @elseif ($patient->default_sponsor === '2001')
+                                      <span class="badge bg-label-danger me-1">Private Insurance</span>
+                                    @elseif ($patient->default_sponsor === '3001')
+                                      <span class="badge bg-label-primary me-1">Co-operate</span>
+                                    @elseif ($patient->default_sponsor === '5001')
+                                      <span class="badge bg-label-warning me-1"> N-H-I-S</span>
+                                    @endif
                               </td>
                               <td>
-                                  <div class="dropdown" align="center">
+                                <div class="dropdown" align="center">
                                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                           </button>
                                               <div class="dropdown-menu">
-                                                  <a class="dropdown-item" href="#">
-                                                    <i class="bx bx-edit-alt me-1"></i> More
+                                                  <a class="dropdown-item"  href="#">
+                                                    <i class="bx bx-edit-alt me-1"></i> Edit
                                                   </a>
-                                                  <a class="dropdown-item" href="#">
+                                                  <a class="dropdown-item" href="{{ route('patient.show', ['patient_id' => $patient->patient_id]) }}">
                                                     <i class="bx bx-lock-alt me-1"></i> Details 
                                                   </a>
-                                                  <a class="dropdown-item" href="javascript:void(0);">
-                                                      <i class="bx bx-trash me-1"></i> Add a Service
-                                                  </a>
+                                                  <!-- <a class="dropdown-item" href="javascript:void(0);">
+                                                      <i class="bx bx-trash me-1"></i> Delete
+                                                  </a> -->
                                             </div>
                                   </div>
                               </td>
@@ -152,14 +158,15 @@
                         </tbody>
                         <tfoot>
                           <tr>
-                            <th>S/N</th>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Email</th>
-                            <th>Employment Type</th>
-                            <th>Joined Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                              <th>S/N</th>
+                              <th>Name</th>
+                              <th>Gender</th>
+                              <th>Email</th>
+                              <th>Age</th>
+                              <th>Telephone</th>
+                              <th>Added Date</th>
+                              <th>Status</th>
+                              <th>Action</th>
                           </tr>
                         </tfoot>
                       </table>

@@ -1,376 +1,299 @@
 <x-app-layout>
-   
-  <div class="container-xxl flex-grow-1 container-p-y">
-    
-  <h4 class="py-3 mb-4">
-     <span class="text-muted fw-light">Employee / </span> Employee Details
-  </h4>
-
-<div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between mb-4 text-center text-sm-start gap-2">
-  <div class="mb-2 mb-sm-0">
-    <h4 class="mb-1">
-        {{ $staff->fullname }}
-    </h4>
-    <p class="mb-0">
-      Date Joined: {{ \Carbon\Carbon::parse($staff->added_date)->format('d-m-Y') }}
-    </p>
-  </div>
-  <button type="button" class="btn btn-label-danger delete-customer">Delete Employee</button>
-</div>
-<div class="row">
-  <!-- Customer-detail Sidebar -->
-  <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
-    <!-- Customer-detail Card -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="customer-avatar-section">
-          <div class="d-flex align-items-center flex-column">
-            <img class="img-fluid rounded my-3" src="{{ asset('img/avatars/blank.png')}}" height="110" width="110" alt="User avatar" />
-            <div class="customer-info text-center">
-              <h4 class="mb-1">{{ $staff->fullname }}</h4>
-              <small>Designation {{ $staff->designation_id }}</small>
-            </div>
-          </div>
+<div class="container-xxl flex-grow-1 container-p-y">    
+          <div class="app-ecommerce">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         </div>
-        <!-- <div class="d-flex justify-content-around flex-wrap mt-4 py-3">
-          <div class="d-flex align-items-center gap-2">
-            <div class="avatar">
-              <div class="avatar-initial rounded bg-label-primary"><i class='bx bx-cart-alt bx-sm'></i>
-              </div>
-            </div>
-            <div>
-              <h5 class="mb-0">184</h5>
-              <span>Orders</span>
-            </div>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="avatar">
-              <div class="avatar-initial rounded bg-label-primary"><i class='bx bx-dollar bx-sm'></i>
-              </div>
-            </div>
-            <div>
-              <h5 class="mb-0">12</h5>
-              <span>Years Spent</span>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="info-container">
-          <small class="d-block pt-4 border-top fw-normal text-uppercase text-muted my-3">DETAILS</small>
-          <ul class="list-unstyled">
-            <li class="mb-3">
-              <span class="fw-medium me-2">Email:</span>
-              <span>{{ $staff->email }}</span>
-            </li>
-            <li class="mb-3">
-              <span class="fw-medium me-2">Status:</span>
-              <span class="badge bg-label-success">Active</span>
-            </li>
-            <li class="mb-3">
-              <span class="fw-medium me-2">Contact:</span>
-              <span>{{ $staff->telephone }}</span>
-            </li>
-
-            <li class="mb-3">
-              <span class="fw-medium me-2">Department:</span>
-              <span>{{ $staff->department_id }}</span>
-            </li>
-            <li class="mb-3">
-              <span class="fw-medium me-2">Entry by:</span>
-              <span>{{ $staff->name }}</span>
-            </li>
-          </ul>
-          <div class="d-flex justify-content-center">
-            <a href="javascript:;" class="btn btn-primary me-3" data-bs-target="#editUser" data-bs-toggle="modal">
-              Edit Details</a>
-          </div>
+  <div class="row">
+   <!-- First column-->
+   <div class="col-12 col-lg-8">
+   <!-- <h6 class="text-muted">Filled Tabs</h6> -->
+    <div class="nav-align-top nav-tabs-shadow mb-6">
+      <ul class="nav nav-tabs nav-fill" role="tablist">
+        <li class="nav-item">
+          <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-home" aria-controls="navs-justified-home" aria-selected="true">
+            <span class="d-none d-sm-block"><i class="tf-icons bx bx-home bx-sm me-1_5 align-text-bottom"></i> Bio Info 
+            <!-- <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1_5 pt-50">3</span> -->
+            </span><i class="bx bx-home bx-sm d-sm-none"></i></button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-profile" aria-controls="navs-justified-profile" aria-selected="false">
+              <span class="d-none d-sm-block"><i class="tf-icons bx bx-user bx-sm me-1_5 align-text-bottom"></i> Profile</span>
+              <i class="bx bx-user bx-sm d-sm-none"></i>
+            </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-messages" aria-controls="navs-justified-messages" aria-selected="false">
+            <span class="d-none d-sm-block"><i class="tf-icons bx bx-message-square bx-sm me-1_5 align-text-bottom"></i> Messages</span>
+            <i class="bx bx-message-square bx-sm d-sm-none"></i>
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="navs-justified-home" role="tabpanel">
+          <p>
+            Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps powder. Bear
+            claw
+            candy topping.
+          </p>
+          <p class="mb-0">
+            Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon jelly-o
+            jelly-o ice
+            cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow jujubes sweet.
+          </p>
+        </div>
+        <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
+          <p>
+            Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice cream. Gummies
+            halvah
+            tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream cheesecake fruitcake.
+          </p>
+          <p class="mb-0">
+            Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy
+            liquorice caramels.
+          </p>
+        </div>
+        <div class="tab-pane fade" id="navs-justified-messages" role="tabpanel">
+          <p>
+            Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies cupcake gummi
+            bears
+            cake chocolate.
+          </p>
+          <p class="mb-0">
+            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing
+            sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie
+            jelly.
+          </p>
         </div>
       </div>
     </div>
-    <!-- /Customer-detail Card -->
-    <!-- Plan Card -->
-    <div class="card mb-4 bg-info">
-      <div class="card-body">
-        <div class="row justify-content-between mb-3">
-          <div class="col-md-12 col-lg-7 col-xl-12 col-xxl-7 text-center text-lg-start text-xl-center text-xxl-start order-1  order-lg-0 order-xl-1 order-xxl-0">
-            <h4 class="card-title text-white text-nowrap">Upgrade to premium</h4>
-            <p class="card-text text-white">Drop File to upload.</p>
-          </div>
-          <span class="col-md-12 col-lg-5 col-xl-12 col-xxl-5 text-center mx-auto mx-md-0 mb-2">
-            <!-- <img src="{{ asset('img/illustrations/rocket.png') }}" class="w-px-75 m-2" alt="3dRocket"> -->
-          </span>
+      <!-- <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-tile mb-0"><b>Bio-information</b></h5>
         </div>
-        <!-- <button class="btn btn-white text-primary w-100 fw-medium shadow-sm" 
-        data-bs-target="#upgradePlanModal" data-bs-toggle="modal">Upgrade to premium</button> -->
-      </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <table class="table">
+              <tr>
+                <td><b>Fullname</b></td>
+                <td>{{ $patients->fullname}}</td>
+              </tr>
+              <tr>
+                <td><b>Gender</b></td>
+                <td>{{ $patients->gender}}</td>
+              </tr>
+              <tr>
+                <td><b>Age</b></td>
+                <td>{{ $patients->age}}</td>
+              </tr>
+              <tr>
+                <td><b>Blood Group</b></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+         <br>
+          
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0"><b>Contact Information</b></h5>
+          </div>
+          <br>
+          <div class="row mb-3">
+            <table class="table table-hover">
+              <tr>
+                <td><b>Email</b></td>
+                <td>{{ $patients->email}}</td>
+              </tr>
+              <tr>
+                <td><b>Address</b></td>
+                <td>{{ $patients->address}}</td>
+              </tr>
+              <tr>
+                <td><b>Telephone</b></td>
+                <td>{{ $patients->telephone}}</td>
+              </tr>
+            </table>
+          </div>
+          <br>
+          <div class="row mb 3">
+                <h5 class="card-tile mb-0"><b>Emergency Contact</b></h5>
+          </div>
+          <br>
+          <div class="row mb-3">
+            <table class="table" align="left">
+              <tr>
+                <td><b>Fullname</b></td>
+                <td>{{ $patients->contact_person}}</td>
+              </tr>
+              <tr>
+                <td><b>Telephone</b></td>
+                <td>{{ $patients->contact_telephone }}</td>
+              </tr>
+              <tr>
+                <td><b>Relationship</b></td>
+                <td>{{ $patients->contact_relationship}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div> -->
     </div>
-    
-    <!-- /Plan Card -->
-  </div>
-  <!--/ Customer Sidebar -->
-<!-- Customer Content -->
-<div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-    <!-- Customer Pills -->
-    <ul class="nav nav-pills flex-column flex-md-row mb-4">
-      <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>Overview</a></li>
-      <!-- <li class="nav-item"><a class="nav-link" href="app-ecommerce-customer-details-security.html"><i class="bx bx-lock-alt me-1"></i>Security</a></li>
-      <li class="nav-item"><a class="nav-link" href="app-ecommerce-customer-details-billing.html"><i class="bx bx-detail me-1"></i>Address & Billing</a></li>
-      <li class="nav-item"><a class="nav-link" href="app-ecommerce-customer-details-notifications.html"><i class="bx bx-bell me-1"></i>Notifications</a></li> -->
-    </ul>
-    <!--/ Customer Pills -->
- <!-- / Customer cards -->
- <div class="row text-nowrap">
-      <div class="col-md-6 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="card-icon mb-3">
-              <div class="avatar">
-                <div class="avatar-initial rounded bg-label-primary"><i class='bx bx-dollar bx-sm'></i>
-                </div>
-              </div>
-            </div>
-            <div class="card-info">
-              <h4 class="card-title mb-3">Monthly Salary</h4>
-              <div class="d-flex align-items-end mb-1 gap-1">
-                <h4 class="text-primary mb-0">Ghs 2345</h4>
-                <!-- <p class="mb-0"> Ghana Cedis</p> -->
-              </div>
-              <p class="text-muted mb-0 text-truncate">Monthly basic salary</p>
-            </div>
+    <div class="col-12 col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row mb 3">
+                <!-- <h5 class="card-tile mb-0"><b>Sponsorship Details</b></h5> -->
           </div>
-        </div>
-      </div>
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-icon mb-3">
-              <div class="avatar">
-                <div class="avatar-initial rounded bg-label-success"><i class='bx bx-gift bx-sm'></i>
-                </div>
-              </div>
-            </div>
-            <div class="card-info">
-              <h4 class="card-title mb-3">Monthly Allowance</h4>
-              <span class="badge bg-label-success mb-1">Platinum member</span>
-              <p class="text-muted mb-0">3000 points to next tier</p>
-            </div>
+          <!-- <br> -->
+           <div class="mb-3 col ecommerce-select2-dropdown" align="center">
+            <img src="{{$patients->gender==='Female' ? asset('img/avatars/female.jpg') : asset('img/avatars/male.jpg') }}" alt="Patient Image" class="rounded-pill" style="border:1px;border-color:black; box-shadow:10px ">
           </div>
-        </div>
-      </div>
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-icon mb-3">
-              <div class="avatar">
-                <div class="avatar-initial rounded bg-label-warning"><i class='bx bx-star bx-sm'></i>
-                </div>
-              </div>
-            </div>
-            <div class="card-info">
-              <h4 class="card-title mb-3">Wishlist</h4>
-              <div class="d-flex align-items-end mb-1 gap-1">
-                <h4 class="text-warning mb-0">15</h4>
-                <p class="mb-0">Items in wishlist</p>
-              </div>
-              <p class="text-muted mb-0 text-truncate">Receive notification when items go on sale</p>
-            </div>
+          <div class="mb-3 col ecommerce-select2-dropdown" align="center">
+            <h5 class="card-tile mb-0"><b>{{ $patients->title}} {{$patients->fullname}}</b></h5>
           </div>
-        </div>
-      </div>
-      <div class="col-md-6 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-icon mb-3">
-              <div class="avatar">
-                <div class="avatar-initial rounded bg-label-info"><i class='bx bxs-discount bx-sm'></i>
-                </div>
-              </div>
-            </div>
-            <div class="card-info">
-              <h4 class="card-title mb-3">Coupons</h4>
-              <div class="d-flex align-items-end mb-1 gap-1">
-                <h4 class="text-info mb-0">21</h4>
-                <p class="mb-0">Coupons you win</p>
-              </div>
-              <p class="text-muted mb-0 text-truncate">Use coupon on next purchase</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<!-- / customer cards -->
- <!-- Invoice table -->
- <div class="card mb-4"> 
-    <div style="margin:10px">
-    <h4 class="card-title mb-3">Salary Summary</h4>
-    </div>
-      <div class="table-responsive mb-3" style="margin: 10px;">
-        <table class="table datatables-customer-order border-top" id="employee_details" >
-          <thead>
+          <div class="mb-3 col ecommerce-select2-dropdown">
+           <table class="table">
             <tr>
-              <th>SN</th>
-              <th>Month</th>
-              <th>Amount</th>
-              <th>Tax</th>
-              <th>Ssnit A</th>
-              <th>Ssnit B</th>
-              <th class="text-md-center">Actions</th>
+              <td><b>Folder #</b>:</td>
+              <td>{{ $patients->title}}</td>
             </tr>
-          </thead>
-          @php
-             $counter = 1;
-          @endphp
-          <tbody>
-          @foreach($salary_list as $list)
             <tr>
-              <td align="center">{{ $counter++ }}</td>
-              <td align="center">{{ \Carbon\Carbon::parse($list->added_date)->format('M') }}, {{ \Carbon\Carbon::parse($list->added_date)->format('Y') }}</td>
-              <td align="center">{{ $list->basic_salary }}</td>
-              <td align="center">{{ $list->paye }}</td>
-              <td align="center">{{ $list->ssnit_a }}</td>
-              <td align="center">{{ $list->ssnit_b }}</td>
-              <td align="center"></td>
+              <td><b>Date Registered</b>:</td>
+              <td>{{ \Carbon\Carbon::parse($patients->added_date)->format('d-m-Y') }}</td>
             </tr>
-            @endforeach
-          </tbody>
-          <tfoot>
             <tr>
-              <th>SN</th>
-              <th>Month</th>
-              <th>Amount</th>
-              <th>Tax</th>
-              <th>Ssnit A</th>
-              <th>Ssnit B</th>
-              <th class="text-md-center">Actions</th>
+              <td><b>Registered By</b>:</td>
+              <td>{{ $patients->user_fullname}}</td>
             </tr>
-          </tfoot>
-        </table>
+            <tr>
+              <td colspan="2">
+                <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i>Edit </a>
+               
+                <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> Visits</a>
+              </td>
+            </tr>
+           </table>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- /Invoice table -->
+    <!-- <div class="d-flex align-content-center flex-wrap gap-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-label-secondary">clear</button>
+    </div> -->
   </div>
-  <!--/ Customer Content -->
 </div>
-
-<!-- Modal -->
-<!-- Edit User Modal -->
-<div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-simple modal-edit-user">
-    <div class="modal-content p-3 p-md-5">
-      <div class="modal-body">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="text-center mb-4">
-          <h3>Edit User Information</h3>
-          <p>Updating user details will receive a privacy audit.</p>
-        </div>
-        <form id="editUserForm" class="row g-3" onsubmit="return false">
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserFirstName">First Name</label>
-            <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="John" />
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserLastName">Last Name</label>
-            <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Doe" />
-          </div>
-          <div class="col-12">
-            <label class="form-label" for="modalEditUserName">Username</label>
-            <input type="text" id="modalEditUserName" name="modalEditUserName" class="form-control" placeholder="john.doe.007" />
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserEmail">Email</label>
-            <input type="text" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" placeholder="example@domain.com" />
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserStatus">Status</label>
-            <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select" aria-label="Default select example">
-              <option selected>Status</option>
-              <option value="1">Active</option>
-              <option value="2">Inactive</option>
-              <option value="3">Suspended</option>
-            </select>
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditTaxID">Tax ID</label>
-            <input type="text" id="modalEditTaxID" name="modalEditTaxID" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserPhone">Phone Number</label>
-            <div class="input-group input-group-merge">
-              <span class="input-group-text">+1</span>
-              <input type="text" id="modalEditUserPhone" name="modalEditUserPhone" class="form-control phone-number-mask" placeholder="202 555 0111" />
+<br>
+      <div class="app-ecommerce-category">
+                  <div class="card">
+                    <div class="card-datatable table-responsive">
+                      <div style="margin:15px">
+                      </div>
+                      <table class="datatables-category-list table border-top" id="product_list">
+                        <thead>
+                          <tr>
+                            <th>Sn</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th class="text-nowrap text-sm-end">Sponsor &nbsp;</th>
+                            <th class="text-nowrap text-sm-end">Telephone</th>
+                            <th>Status</th>
+                            <th class="text-lg-center">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                       
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Sn</th>
+                            <th>Product</th>
+                            <th>Categories</th>
+                            <th>Barcode</th>
+                            <th class="text-nowrap text-sm-end">Stocked &nbsp;</th>
+                            <th class="text-nowrap text-sm-end">Expirable </th>
+                            <th>Status</th>
+                            <th class="text-lg-center">Actions</th>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </div>   
+             </div>
+</div>   
+          <!-- add Modal -->
+          <div class="modal fade" id="mdoal_form" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+            <div class="modal-content p-3 p-md-5">
+              <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                  <h3>Patient Search Criteria</h3>
+                  <!-- <p>Enter Search criteria <b style="color:red">All fields marked (*) are mandatory.</b></p> -->
+                </div>
+                <form id="employee_add" class="row g-3" onsubmit="return false" method="post">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="telephone">Search Criteria <label class="text-danger" style="font-size: 15px;">*</label></label>
+                     <select name="search_name" id="search_name" class="form-control">
+                      <option selected disabled>-Select-</option>
+                      <option value="opd_number">OPD #</option>
+                      <option value="membership_number">Membership #</option>
+                      <option value="firstname">Firstname</option>
+                      <option value="surname">Surname</option>
+                      <option value="middlename">Middlename</option>
+                      <option value="telephone">Telephone</option>
+                     </select>
+                  </div>
+                  <!-- <div class="col-12 col-md-6">
+                    <label class="form-label" for="ssnit_number">Registration Date</label>
+                    <input type="date" id="data_search" name="data_search" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div> -->
+                  <!-- <div class="col-12 col-md-6">
+                    <label class="form-label" for="gh_card">Date of Birth</label>
+                    <input type="date" id="gh_card" name="gh_card" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+                  </div> -->
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="staff_type">Criteria<label class="text-danger" style="font-size: 15px;">*</label></label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Firstname/Middlename/Surname">
+                  </div>
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Search</button>
+                    <button type="reset" class="btn btn-label-warning me-sm-3 me-1">Clear</button>
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="modal" aria-label="Close">close</button>
+                  </div>
+                </form>
+              </div>
+              <div class="table table-hover">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Sn</th>
+                      <th>Patient Name</th>
+                      <th>Date of Birth</th>
+                      <th>Category</th>
+                      <th>Member #</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="6" align="center">No Data Available</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                      <th>Sn</th>
+                      <th>Patient Name</th>
+                      <th>Date of Birth</th>
+                      <th>Category</th>
+                      <th>Member #</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserLanguage">Language</label>
-            <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select" multiple>
-              <option value="">Select</option>
-              <option value="english" selected>English</option>
-              <option value="spanish">Spanish</option>
-              <option value="french">French</option>
-              <option value="german">German</option>
-              <option value="dutch">Dutch</option>
-              <option value="hebrew">Hebrew</option>
-              <option value="sanskrit">Sanskrit</option>
-              <option value="hindi">Hindi</option>
-            </select>
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="modalEditUserCountry">Country</label>
-            <select id="modalEditUserCountry" name="modalEditUserCountry" class="select2 form-select" data-allow-clear="true">
-              <option value="">Select</option>
-              <option value="Australia">Australia</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Belarus">Belarus</option>
-              <option value="Brazil">Brazil</option>
-              <option value="Canada">Canada</option>
-              <option value="China">China</option>
-              <option value="France">France</option>
-              <option value="Germany">Germany</option>
-              <option value="India">India</option>
-              <option value="Indonesia">Indonesia</option>
-              <option value="Israel">Israel</option>
-              <option value="Italy">Italy</option>
-              <option value="Japan">Japan</option>
-              <option value="Korea">Korea, Republic of</option>
-              <option value="Mexico">Mexico</option>
-              <option value="Philippines">Philippines</option>
-              <option value="Russia">Russian Federation</option>
-              <option value="South Africa">South Africa</option>
-              <option value="Thailand">Thailand</option>
-              <option value="Turkey">Turkey</option>
-              <option value="Ukraine">Ukraine</option>
-              <option value="United Arab Emirates">United Arab Emirates</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="United States">United States</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <label class="switch">
-              <input type="checkbox" class="switch-input">
-              <span class="switch-toggle-slider">
-                <span class="switch-on"></span>
-                <span class="switch-off"></span>
-              </span>
-              <span class="switch-label">Use as a billing address?</span>
-            </label>
-          </div>
-          <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!--/ Edit User Modal -->
-
-
-
-
-
-<!-- User Profile Content -->
-
-<!--/ User Profile Content -->
-</div>
+        </div>
+        <!-- end modal -->
 </x-app-layout>

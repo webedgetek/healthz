@@ -23,7 +23,7 @@ class PatientFactory extends Factory
     {
 
         $user = User::inRandomOrder()->first();
-        $gender = Gender::inRandomOrder()->first();
+        $gender = Gender::inRandomOrder()->where('usage','=','1')->first();
         $title = Title::inRandomOrder()->first();
         $religion = Religion::inRandomOrder()->first(); 
 
@@ -41,7 +41,13 @@ class PatientFactory extends Factory
             'religion_id' => $religion->religion_id,
             'nationality' => $this->faker->randomElement(['Ghanaian', 'Non-Ghanaian']),
             'telephone' => $this->faker->phoneNumber(),
+            'telephone_verified' => $this->faker->randomElement(['Yes', 'No']),
             'email' => $this->faker->email(),
+            'address' => $this->faker->city(),
+            'contact_person' => $this->faker->firstName,
+            'contact_telephone' => $this->faker->phoneNumber,
+            'contact_relationship' => $this->faker->colorName(),
+            // 'contact_relationship' => $this->faker->city(),
             'user_id' =>  $user->user_id,
             // 'remember_token' => Str::random(10),
         ];
