@@ -10,46 +10,124 @@
     <div class="nav-align-top nav-tabs-shadow mb-6">
       <ul class="nav nav-tabs nav-fill" role="tablist">
         <li class="nav-item">
-          <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-home" aria-controls="navs-justified-home" aria-selected="true">
-            <span class="d-none d-sm-block"><i class="tf-icons bx bx-home bx-sm me-1_5 align-text-bottom"></i> Bio Info 
+          <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#nav_home" aria-controls="navs-justified-home" aria-selected="true">
+            <span class="d-none d-sm-block">
+              <i class="tf-icons bx bx-home bx-sm me-1_5 align-text-bottom"></i> 
+              Bio Info 
             <!-- <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1_5 pt-50">3</span> -->
-            </span><i class="bx bx-home bx-sm d-sm-none"></i></button>
+            </span>
+            <i class="bx bx-home bx-sm d-sm-none"></i>
+          </button>
         </li>
         <li class="nav-item">
             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-profile" aria-controls="navs-justified-profile" aria-selected="false">
-              <span class="d-none d-sm-block"><i class="tf-icons bx bx-user bx-sm me-1_5 align-text-bottom"></i> Profile</span>
+              <span class="d-none d-sm-block">
+                <i class="tf-icons bx bx-user bx-sm me-1_5 align-text-bottom"></i> 
+                Patient Sponsor
+              </span>
               <i class="bx bx-user bx-sm d-sm-none"></i>
             </button>
         </li>
         <li class="nav-item">
           <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-messages" aria-controls="navs-justified-messages" aria-selected="false">
-            <span class="d-none d-sm-block"><i class="tf-icons bx bx-message-square bx-sm me-1_5 align-text-bottom"></i> Messages</span>
+            <span class="d-none d-sm-block">
+              <i class="tf-icons bx bx-message-square bx-sm me-1_5 align-text-bottom"></i> Attendance History
+            </span>
+            <i class="bx bx-message-square bx-sm d-sm-none"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-messages" aria-controls="navs-justified-messages" aria-selected="false">
+            <span class="d-none d-sm-block">
+              <i class="tf-icons bx bx-message-square bx-sm me-1_5 align-text-bottom"></i> Medications
+            </span>
             <i class="bx bx-message-square bx-sm d-sm-none"></i>
           </button>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane fade show active" id="navs-justified-home" role="tabpanel">
+        <div class="tab-pane fade show active" id="nav_home" role="tabpanel">
           <p>
-            Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps powder. Bear
-            claw
-            candy topping.
+              <div class="card-header">
+                  <h5 class="card-tile mb-0"><b>Bio-information</b></h5>
+              </div>
+                <table class="table">
+                    <tr>
+                      <td><b>Fullname</b></td>
+                      <td>{{ $patients->fullname}}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Gender</b></td>
+                      <td>{{ $patients->gender}}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Age</b></td>
+                      <td>{{ $patients->age}}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Blood Group</b></td>
+                      <td></td>
+                   </tr>
+                   <tr>
+                       <td colspan="2">
+                          <h5><b>Contact</b></h5>
+                       </td>
+                    </tr>
+                      <tr>
+                        <td><b>Email</b></td>
+                        <td>{{ $patients->email}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Address</b></td>
+                        <td>{{ $patients->address}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Telephone</b></td>
+                        <td>{{ $patients->telephone}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <h5><b>Emergency Contact Person</b></h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Fullname</b></td>
+                        <td>{{ $patients->contact_person}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Telephone</b></td>
+                        <td>{{ $patients->contact_telephone }}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Relationship</b></td>
+                        <td>{{ $patients->contact_relationship}}</td>
+                      </tr>
+                    </table>
           </p>
-          <p class="mb-0">
-            Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon jelly-o
-            jelly-o ice
-            cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow jujubes sweet.
-          </p>
+          
         </div>
         <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
           <p>
-            Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice cream. Gummies
-            halvah
-            tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream cheesecake fruitcake.
-          </p>
-          <p class="mb-0">
-            Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy
-            liquorice caramels.
+            <div>
+              <h5>Sponsors</h5>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sponsor Type</th>
+                  <th>Member #</th>
+                  <th>Effect Date</th>
+                  <th>Expiry Date</th>
+                  <th># Status</th>
+                  <th>Active?</th>
+
+                </tr>
+              </thead>
+              <tr>
+
+              </tr>
+
+            </table>
           </p>
         </div>
         <div class="tab-pane fade" id="navs-justified-messages" role="tabpanel">
