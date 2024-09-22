@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceRequestController;
-use App\Http\Controllers\SearchPatientController;
+use App\Http\Controllers\PatientVisitsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\SponsorController;
 use App\Models\ServiceRequest;
@@ -28,8 +28,7 @@ use Illuminate\Support\Facades\Redirect;
 // });
 
 Route::get('/', [AuthenticatedSessionController::class, 'create']);
-
- Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -39,21 +38,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // Route::get('/add-patient', [EmployeeController::class, 'index']); //fetch employee
-    // Route::get('/patients', \App\Http\Livewire\PatientRegister::class);
-    // Route::get('/patients', \App\Http\Livewire\Patient::class);
     Route::resource('patients', PatientController::class)
         ->missing(function (Request $request){
           return Redirect::route('patient.create');
     });
-    Route::get('patients/details/{patient_id}', [PatientController::class, 'show_today'])->name('patient.show');
+
+    Route::get('patients/details/{patient_id}', [PatientController::class, 'show'])->name('patient.show');
     // Route::get('patients/add-visit/{patient_id}', [PatientController::class, 'attendance'])->name('patient.show');
-    Route::resource('search-patient', SearchPatientController::class);
-    // Route::get('/view-patient', [PatientController::class, 'view_patient']); //add  employee
-    // Route::resource('view-patient', SearchPatientController::class);
+    Route::get('search-patient', [ PatientController::class, 'search']);
     Route::resource('service', ServiceRequestController::class);
     Route::resource('users', ProfileController::class);
     Route::resource('sponsors', SponsorController::class); 
+    Route::get('patient/visits/{patient_id}', [PatientVisitsController::class, 'index'])->name('attendance.index');
 });
 
 require __DIR__.'/auth.php';

@@ -20,7 +20,7 @@
           </button>
         </li>
         <li class="nav-item">
-            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-profile" aria-controls="navs-justified-profile" aria-selected="false">
+            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#nav_sponsor" aria-controls="navs-justified-profile" aria-selected="false">
               <span class="d-none d-sm-block">
                 <i class="tf-icons bx bx-user bx-sm me-1_5 align-text-bottom"></i> 
                 Patient Sponsor
@@ -29,7 +29,7 @@
             </button>
         </li>
         <li class="nav-item">
-          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-messages" aria-controls="navs-justified-messages" aria-selected="false">
+          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#nav_attendance" aria-controls="navs-justified-messages" aria-selected="false">
             <span class="d-none d-sm-block">
               <i class="tf-icons bx bx-message-square bx-sm me-1_5 align-text-bottom"></i> Attendance History
             </span>
@@ -37,7 +37,7 @@
           </button>
         </li>
         <li class="nav-item">
-          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-messages" aria-controls="navs-justified-messages" aria-selected="false">
+          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#nav_medications" aria-controls="navs-justified-messages" aria-selected="false">
             <span class="d-none d-sm-block">
               <i class="tf-icons bx bx-message-square bx-sm me-1_5 align-text-bottom"></i> Medications
             </span>
@@ -49,50 +49,47 @@
         <div class="tab-pane fade show active" id="nav_home" role="tabpanel">
           <p>
               <div class="card-header">
-                  <h5 class="card-tile mb-0"><b>Bio-information</b></h5>
+                  <h5 class="card-tile mb-0"><b>BIO-INFORMATION</b></h5>
               </div>
                 <table class="table">
                     <tr>
                       <td><b>Fullname</b></td>
-                      <td>{{ $patients->fullname}}</td>
+                      <td>{{ $patients->fullname }}</td>
                     </tr>
                     <tr>
                       <td><b>Gender</b></td>
-                      <td>{{ $patients->gender}}</td>
+                      <td>{{ $patients->gender }}</td>
                     </tr>
                     <tr>
                       <td><b>Age</b></td>
-                      <td>{{ $patients->age}}</td>
+                      <td>{{ $patients->age }}</td>
                     </tr>
-                    <tr>
-                      <td><b>Blood Group</b></td>
-                      <td></td>
-                   </tr>
+                    
                    <tr>
                        <td colspan="2">
-                          <h5><b>Contact</b></h5>
+                          <h5><b>CONTACT</b></h5>
                        </td>
                     </tr>
                       <tr>
                         <td><b>Email</b></td>
-                        <td>{{ $patients->email}}</td>
+                        <td>{{ $patients->email }}</td>
                       </tr>
                       <tr>
                         <td><b>Address</b></td>
-                        <td>{{ $patients->address}}</td>
+                        <td>{{ $patients->address }}</td>
                       </tr>
                       <tr>
                         <td><b>Telephone</b></td>
-                        <td>{{ $patients->telephone}}</td>
+                        <td>{{ $patients->telephone }}</td>
                       </tr>
                       <tr>
                         <td colspan="2">
-                          <h5><b>Emergency Contact Person</b></h5>
+                          <h5><b>EMERGENCY CONTACT PERSON</b></h5>
                         </td>
                       </tr>
                       <tr>
                         <td><b>Fullname</b></td>
-                        <td>{{ $patients->contact_person}}</td>
+                        <td>{{ $patients->contact_person }}</td>
                       </tr>
                       <tr>
                         <td><b>Telephone</b></td>
@@ -104,117 +101,146 @@
                       </tr>
                     </table>
           </p>
-          
         </div>
-        <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
+        <div class="tab-pane fade" id="nav_sponsor" role="tabpanel">
           <p>
             <div>
               <h5>Sponsors</h5>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover" id="data_table">
               <thead>
                 <tr>
-                  <th>Sponsor Type</th>
+                  <th>S/N</th>
+                  <th>Type</th>
                   <th>Member #</th>
                   <th>Effect Date</th>
                   <th>Expiry Date</th>
                   <th># Status</th>
                   <th>Active?</th>
-
+                  <th></th>
                 </tr>
               </thead>
-              <tr>
-
-              </tr>
-
+              <tbody>
+              @php
+                    $counter = 1;
+                     @endphp
+                     @foreach($sponsor as $pat_sponsor)
+                <tr>
+                  <td>{{ $counter++ }}</td>
+                  <td>{{ $pat_sponsor->sponsor_type}}</td>
+                  <td>{{ $pat_sponsor->member_no}}</td>
+                  <td>{{ \Carbon\Carbon::parse($pat_sponsor->start_date)->format('d-m-Y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($pat_sponsor->end_date)->format('d-m-Y') }}</td>
+                  <td>{{ $pat_sponsor->sponsor_type}}</td>
+                  <td>{{ $pat_sponsor->sponsor_type}}</td>
+                  <td>
+                  <div class="dropdown" align="center">
+                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                              <i class="bx bx-dots-vertical-rounded"></i>
+                                          </button>
+                                              <div class="dropdown-menu">
+                                                  <a class="dropdown-item"  href="#">
+                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                  </a>
+                                                  <a class="dropdown-item" href="#">
+                                                    <i class="bx bx-lock-alt me-1"></i> Details 
+                                                  </a>
+                                                  <!-- <a class="dropdown-item" href="javascript:void(0);">
+                                                      <i class="bx bx-trash me-1"></i> Delete
+                                                  </a> -->
+                                            </div>
+                                  </div>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>S/N</th>
+                  <th>Type</th>
+                  <th>Member #</th>
+                  <th>Effect Date</th>
+                  <th>Expiry Date</th>
+                  <th># Status</th>
+                  <th>Active?</th>
+                  <th></th>
+                </tr>
+              </tfoot>
             </table>
           </p>
         </div>
-        <div class="tab-pane fade" id="navs-justified-messages" role="tabpanel">
-          <p>
-            Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies cupcake gummi
-            bears
-            cake chocolate.
-          </p>
-          <p class="mb-0">
-            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing
-            sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie
-            jelly.
+        <div class="tab-pane fade" id="nav_attendance" role="tabpanel">
+        <p>
+            <div>
+              <h5>Attendance History</h5>
+            </div>
+            <table class="table table-hover" id="employee_details">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Type</th>
+                  <th>Member #</th>
+                  <th>Effect Date</th>
+                  <th>Expiry Date</th>
+                  <th># Status</th>
+                  <th>Active?</th>
+                  <th></th>
+                </tr>
+              </thead>
+             
+              <tfoot>
+                <tr>
+                  <th>S/N</th>
+                  <th>Type</th>
+                  <th>Member #</th>
+                  <th>Effect Date</th>
+                  <th>Expiry Date</th>
+                  <th># Status</th>
+                  <th>Active?</th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
           </p>
         </div>
+        <div class="tab-pane fade" id="nav_medications" role="tabpanel">
+        <p>
+            <div>
+              <h5>Appointments History</h5>
+            </div>
+            <table class="table table-hover" id="app_list">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Type</th>
+                  <th>Member #</th>
+                  <th>Effect Date</th>
+                  <th>Expiry Date</th>
+                  <th># Status</th>
+                  <th>Active?</th>
+                  <th></th>
+                </tr>
+              </thead>
+             
+              <tfoot>
+                <tr>
+                  <th>S/N</th>
+                  <th>Type</th>
+                  <th>Member #</th>
+                  <th>Effect Date</th>
+                  <th>Expiry Date</th>
+                  <th># Status</th>
+                  <th>Active?</th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </p>
+        </div>
+       
       </div>
     </div>
-      <!-- <div class="card mb-4">
-        <div class="card-header">
-          <h5 class="card-tile mb-0"><b>Bio-information</b></h5>
-        </div>
-        <div class="card-body">
-          <div class="row mb-3">
-            <table class="table">
-              <tr>
-                <td><b>Fullname</b></td>
-                <td>{{ $patients->fullname}}</td>
-              </tr>
-              <tr>
-                <td><b>Gender</b></td>
-                <td>{{ $patients->gender}}</td>
-              </tr>
-              <tr>
-                <td><b>Age</b></td>
-                <td>{{ $patients->age}}</td>
-              </tr>
-              <tr>
-                <td><b>Blood Group</b></td>
-                <td></td>
-              </tr>
-            </table>
-          </div>
-         <br>
-          
-          <div class="row mb 3">
-                <h5 class="card-tile mb-0"><b>Contact Information</b></h5>
-          </div>
-          <br>
-          <div class="row mb-3">
-            <table class="table table-hover">
-              <tr>
-                <td><b>Email</b></td>
-                <td>{{ $patients->email}}</td>
-              </tr>
-              <tr>
-                <td><b>Address</b></td>
-                <td>{{ $patients->address}}</td>
-              </tr>
-              <tr>
-                <td><b>Telephone</b></td>
-                <td>{{ $patients->telephone}}</td>
-              </tr>
-            </table>
-          </div>
-          <br>
-          <div class="row mb 3">
-                <h5 class="card-tile mb-0"><b>Emergency Contact</b></h5>
-          </div>
-          <br>
-          <div class="row mb-3">
-            <table class="table" align="left">
-              <tr>
-                <td><b>Fullname</b></td>
-                <td>{{ $patients->contact_person}}</td>
-              </tr>
-              <tr>
-                <td><b>Telephone</b></td>
-                <td>{{ $patients->contact_telephone }}</td>
-              </tr>
-              <tr>
-                <td><b>Relationship</b></td>
-                <td>{{ $patients->contact_relationship}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div> -->
-    </div>
+  </div>
     <div class="col-12 col-lg-4">
       <div class="card mb-4">
         <div class="card-body">
@@ -239,14 +265,31 @@
               <td>{{ \Carbon\Carbon::parse($patients->added_date)->format('d-m-Y') }}</td>
             </tr>
             <tr>
+              <td><b>Blood Group</b>:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><b>Sickling</b>:</td>
+              <td>Negative</td>
+            </tr>
+            <tr>
               <td><b>Registered By</b>:</td>
               <td>{{ $patients->user_fullname}}</td>
             </tr>
             <tr>
               <td colspan="2">
-                <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i>Edit </a>
-               
-                <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i> Visits</a>
+                  <a href="#" class="btn btn-warning">
+                    <i class="fas fa-edit"></i>
+                    Edit 
+                  </a>
+                  <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-print"></i> 
+                    Id Card
+                  </a>
+                  <a href="{{ route('attendance.index', ['patient_id' => $patients->patient_id]) }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> 
+                    Add Visit
+                  </a>
               </td>
             </tr>
            </table>
@@ -254,13 +297,9 @@
         </div>
       </div>
     </div>
-    <!-- <div class="d-flex align-content-center flex-wrap gap-3">
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="reset" class="btn btn-label-secondary">clear</button>
-    </div> -->
   </div>
 </div>
-<br>
+<!-- <br>
       <div class="app-ecommerce-category">
                   <div class="card">
                     <div class="card-datatable table-responsive">
@@ -297,81 +336,7 @@
                       </table>
                     </div>
                   </div>   
-             </div>
+             </div> -->
 </div>   
-          <!-- add Modal -->
-          <div class="modal fade" id="mdoal_form" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-          <div class="modal-dialog modal-lg modal-simple modal-edit-user">
-            <div class="modal-content p-3 p-md-5">
-              <div class="modal-body">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="text-center mb-4">
-                  <h3>Patient Search Criteria</h3>
-                  <!-- <p>Enter Search criteria <b style="color:red">All fields marked (*) are mandatory.</b></p> -->
-                </div>
-                <form id="employee_add" class="row g-3" onsubmit="return false" method="post">
-                  <div class="col-12 col-md-6">
-                    <label class="form-label" for="telephone">Search Criteria <label class="text-danger" style="font-size: 15px;">*</label></label>
-                     <select name="search_name" id="search_name" class="form-control">
-                      <option selected disabled>-Select-</option>
-                      <option value="opd_number">OPD #</option>
-                      <option value="membership_number">Membership #</option>
-                      <option value="firstname">Firstname</option>
-                      <option value="surname">Surname</option>
-                      <option value="middlename">Middlename</option>
-                      <option value="telephone">Telephone</option>
-                     </select>
-                  </div>
-                  <!-- <div class="col-12 col-md-6">
-                    <label class="form-label" for="ssnit_number">Registration Date</label>
-                    <input type="date" id="data_search" name="data_search" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
-                  </div> -->
-                  <!-- <div class="col-12 col-md-6">
-                    <label class="form-label" for="gh_card">Date of Birth</label>
-                    <input type="date" id="gh_card" name="gh_card" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
-                  </div> -->
-                  <div class="col-12 col-md-6">
-                    <label class="form-label" for="staff_type">Criteria<label class="text-danger" style="font-size: 15px;">*</label></label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Firstname/Middlename/Surname">
-                  </div>
-                  <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Search</button>
-                    <button type="reset" class="btn btn-label-warning me-sm-3 me-1">Clear</button>
-                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="modal" aria-label="Close">close</button>
-                  </div>
-                </form>
-              </div>
-              <div class="table table-hover">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Sn</th>
-                      <th>Patient Name</th>
-                      <th>Date of Birth</th>
-                      <th>Category</th>
-                      <th>Member #</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td colspan="6" align="center">No Data Available</td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                      <th>Sn</th>
-                      <th>Patient Name</th>
-                      <th>Date of Birth</th>
-                      <th>Category</th>
-                      <th>Member #</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end modal -->
+         
 </x-app-layout>

@@ -111,8 +111,9 @@
  
 <script type="text/javascript">
      $(document).ready( function () {
-        $('#users_list').DataTable();
+        $('#app_list').DataTable();
         $('#employee_details').DataTable();
+        $('#data_table').DataTable();
         $('#product_list').DataTable();
 
         $('.sponsor_name').select2();

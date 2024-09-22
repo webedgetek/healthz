@@ -4,78 +4,7 @@
                     <span class="text-muted fw-light">Patient /</span> Registered
                   </h4>                   
                 <!-- Hour chart  -->
-               <div class="card bg-transparent shadow-none my-6 border-0">
-                  <div class="card-body row p-0 pb-6 g-6">
-                    <div class="col-12 col-lg-8 card-separator">
-                      <h5 class="mb-2">
-                        Hi, {{ Auth::user()->othername }}
-                      </h5>
-                      <div class="col-12 col-lg-5">
-                        <p>
-                          Your progress this week is Awesome. let's keep it up and get a lot of points reward !
-                        </p>
-                      </div>
-                      <div class="d-flex justify-content-between flex-wrap gap-4 me-12">
-                        <div class="d-flex align-items-center gap-4 me-6 me-sm-0">
-                          <div class="avatar avatar-lg">
-                            <div class="avatar-initial bg-label-primary rounded">
-                              <div>
-                               
-                              </div>
-                            </div>
-                          </div>
-                          <div class="content-right">
-                            <p class="mb-0 fw-medium">Out Patient</p>
-                            <h4 class="text-primary mb-0">34</h4>
-                          </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                          <div class="avatar avatar-lg">
-                            <div class="avatar-initial bg-label-info rounded">
-                              <div>
-                          
-                              </div>
-                            </div>
-                          </div>
-                          <div class="content-right">
-                            <p class="mb-0 fw-medium">In-Patient</p>
-                            <h4 class="text-info mb-0">82</h4>
-                          </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-4">
-                          <div class="avatar avatar-lg">
-                            <div class="avatar-initial bg-label-warning rounded">
-                              <div>
-                               
-                              </div>
-                            </div>
-                          </div>
-                          <div class="content-right">
-                            <p class="mb-0 fw-medium">Appointments </p>
-                            <h4 class="text-warning mb-0">14</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12 col-lg-4 ps-md-4 ps-lg-6">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <div>
-                            <h5 class="mb-1">Time Spendings</h5>
-                            <p class="mb-9">Weekly report</p>
-                          </div>
-                          <div class="time-spending-chart">
-                            <h4 class="mb-2">231<span class="text-body">h</span> 14<span class="text-body">m</span></h4>
-                           
-                          </div>
-                        </div>
-                        <div id="leadsReportChart"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                  <!-- Fixed Header -->
-                   <br>
+                   
                   <div class="card">
                     <!-- <h5 class="card-header">List of Employees</h5> -->
                     <div class="card-datatable table-responsive">
