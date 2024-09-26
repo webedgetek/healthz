@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', ProfileController::class);
     Route::resource('sponsors', SponsorController::class); 
     Route::get('patient/visits/{patient_id}', [PatientVisitsController::class, 'index'])->name('attendance.index');
+    Route::get('patient/attendance/{patient_id}', [PatientVisitsController::class, 'show'])->name('attendance.show');
 });
 
 require __DIR__.'/auth.php';

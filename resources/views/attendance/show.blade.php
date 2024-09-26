@@ -47,8 +47,8 @@
                 <td>43 Years</td>
               </tr>
               <tr>
-                <td><b>Sponsor</b></td>
-                <td><span class="badge bg-label-primary">Nhis</span></td>
+                <td><b>Active Sponsor</b></td>
+                <td><span class="badge bg-label-danger">Private Insurance</span></td>
               </tr>
             </table>
            </p>
@@ -92,11 +92,11 @@
               </tr>
               <tr>
                 <td>
-                <a href="{{ route('attendance.show', ['patient_id' => $patients->patient_id]) }}" class="btn btn-primary rounded-pill">
-                    <i class="fas fa-plus"></i> 
-                    Add New Visit
-                  </a>
                   <!-- <input type="submit" name="new_visit" id="new_visit" class="btn btn-primary rounded-pill" value="Add New Visit"> -->
+                  <a href="{{ route('attendance.show', ['patient_id' => $patients->patient_id]) }}" class="btn btn-primary rounded-pill">
+                    <i class="fas fa-plus"></i> 
+                    Add Visit
+                  </a>
                 </td>
               </tr>
               <tr>
