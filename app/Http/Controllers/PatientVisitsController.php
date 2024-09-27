@@ -42,4 +42,7 @@ class PatientVisitsController extends Controller
 
         return view('attendance.show' , compact('patients'));
     }
+
+
 }
+

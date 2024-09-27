@@ -115,7 +115,8 @@
         $('#employee_details').DataTable();
         $('#data_table').DataTable();
         $('#product_list').DataTable();
-
+        $('#product_list').DataTable();
+        patient_list
         $('.sponsor_name').select2();
         $('.sponsorship_type').select2();
 

@@ -25,7 +25,7 @@
                             </tr>
                           </table>
                       </div>
-                      <table class="datatables-customers table border-top" id="users_list">
+                      <table class="datatables-customers table border-top" id="patient_list">
                         <thead>
                           <tr>
                             <th>S/N</th>
