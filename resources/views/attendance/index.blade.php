@@ -96,6 +96,7 @@
                     <i class="fas fa-plus"></i> 
                     Add New Visit
                   </a>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewAddress"> Show </button>
                   <!-- <input type="submit" name="new_visit" id="new_visit" class="btn btn-primary rounded-pill" value="Add New Visit"> -->
                 </td>
               </tr>

@@ -97,6 +97,7 @@
                     <i class="fas fa-plus"></i> 
                     Add Visit
                   </a>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewAddress"> Show </button>
                 </td>
               </tr>
               <tr>

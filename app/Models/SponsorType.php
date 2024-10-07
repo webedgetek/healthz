@@ -19,6 +19,11 @@ class SponsorType extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function sponsor()
+    {
+        return $this->hasMany(Sponsors::class, 'sponsor_type_id');
+    }
     
     protected $fillable = [
         'sponsor_type_id',

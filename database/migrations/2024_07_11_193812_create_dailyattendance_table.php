@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('daily_attendance', function (Blueprint $table) {
+        Schema::create('attendance_request', function (Blueprint $table) {
             $table->string('patient_id', 50);
             $table->string('opd_number', 50);
             $table->date('attendance_date');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('reg_status'); 
             $table->string('membership_number'); 
             $table->string('insured'); 
+            $table->string('service_issued')->default('0'); 
             $table->string('claims_check_code'); 
             $table->string('episode_id'); 
             $table->string('sponsor_id'); 
@@ -58,6 +59,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_attendance');
+        Schema::dropIfExists('attendance_request');
     }
 };

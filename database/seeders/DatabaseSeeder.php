@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(40)->create();
 
          $this->call([
             UserSeeder::class,
@@ -29,9 +29,11 @@ class DatabaseSeeder extends Seeder
             AttendanceServiceSeeder::class,
             ClinicSeeder::class,
             SponsorTypeSeeder::class,
+            SponsorsSeeder::class,
         ]);
         
         \App\Models\Patient::factory(1000)->create();
-        \App\Models\PatientSponsor::factory(500)->create();
+        \App\Models\PatientSponsor::factory(100)->create();
+        // \App\Models\PatientSponsor::factory(1000)->create();
     }
 }

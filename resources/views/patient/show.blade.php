@@ -4,9 +4,7 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         </div>
   <div class="row">
-   <!-- First column-->
    <div class="col-12 col-lg-8">
-   <!-- <h6 class="text-muted">Filled Tabs</h6> -->
     <div class="nav-align-top nav-tabs-shadow mb-6">
       <ul class="nav nav-tabs nav-fill" role="tablist">
         <li class="nav-item">
@@ -14,7 +12,6 @@
             <span class="d-none d-sm-block">
               <i class="tf-icons bx bx-home bx-sm me-1_5 align-text-bottom"></i> 
               Bio Info 
-            <!-- <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1_5 pt-50">3</span> -->
             </span>
             <i class="bx bx-home bx-sm d-sm-none"></i>
           </button>
@@ -48,10 +45,15 @@
       <div class="tab-content">
         <div class="tab-pane fade show active" id="nav_home" role="tabpanel">
           <p>
-              <div class="card-header">
-                  <h5 class="card-tile mb-0"><b>BIO-INFORMATION</b></h5>
-              </div>
+              <!-- <div class="card-header">
+                  <h5 class="card-tile mb-0 text-primary"><b>BIO-INFORMATION</b></h5>
+              </div> -->
                 <table class="table">
+                   <tr>
+                        <td colspan="2">
+                          <h5 class="text-primary"><b>BIO-INFORMATION</b></h5>
+                        </td>
+                      </tr>
                     <tr>
                       <td><b>Fullname</b></td>
                       <td>{{ $patients->fullname }}</td>
@@ -67,7 +69,7 @@
                     
                    <tr>
                        <td colspan="2">
-                          <h5><b>CONTACT</b></h5>
+                          <h5 class="text-primary"><b>CONTACT</b></h5>
                        </td>
                     </tr>
                       <tr>
@@ -84,7 +86,7 @@
                       </tr>
                       <tr>
                         <td colspan="2">
-                          <h5><b>EMERGENCY CONTACT PERSON</b></h5>
+                          <h5 class="text-primary"><b>EMERGENCY CONTACT PERSON</b></h5>
                         </td>
                       </tr>
                       <tr>
@@ -127,12 +129,17 @@
                      @foreach($sponsor as $pat_sponsor)
                 <tr>
                   <td>{{ $counter++ }}</td>
-                  <td>{{ $pat_sponsor->sponsor_type}}</td>
+                  <td>{{ $pat_sponsor->sponsor_name}}</td>
                   <td>{{ $pat_sponsor->member_no}}</td>
                   <td>{{ \Carbon\Carbon::parse($pat_sponsor->start_date)->format('d-m-Y') }}</td>
                   <td>{{ \Carbon\Carbon::parse($pat_sponsor->end_date)->format('d-m-Y') }}</td>
-                  <td>{{ $pat_sponsor->sponsor_type}}</td>
-                  <td>{{ $pat_sponsor->sponsor_type}}</td>
+                  <td> @if($pat_sponsor->status === 'Active')
+                          <span class="badge bg-label-success me-1">Active</span>
+                           @elseif ($pat_sponsor->status === 'Inactive')
+                          <span class="badge bg-label-primary me-1">Inactive</span>
+                       @endif
+                  </td>
+                  <td></td>
                   <td>
                   <div class="dropdown" align="center">
                                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -273,24 +280,30 @@
               <td>Negative</td>
             </tr>
             <tr>
+              <td><b>Allergy</b>:</td>
+              <td>Negative</td>
+            </tr>
+            <tr>
               <td><b>Registered By</b>:</td>
               <td>{{ $patients->user_fullname}}</td>
             </tr>
             <tr>
               <td colspan="2">
+                  <a href="#" class="btn btn-secondary">
+                    Generate ID
+                  </a>
                   <a href="#" class="btn btn-warning">
-                    <i class="fas fa-edit"></i>
                     Edit 
                   </a>
-                  <a href="#" class="btn btn-secondary">
-                    <i class="fas fa-print"></i> 
-                    Id Card
-                  </a>
-                  <a href="{{ route('attendance.index', ['patient_id' => $patients->patient_id]) }}" class="btn btn-primary">
+                  <!-- <a href="{{ route('attendance.index', ['patient_id' => $patients->patient_id]) }}" class="btn btn-primary">
                     <i class="fas fa-plus"></i> 
                     Add Visit
+                  </a> -->
+                  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewAddress"> Show </button> -->
+                  <a href="" class="btn btn-primary" data-bs-toggle='modal' data-bs-target="#addattendance">
+                    Add visit
                   </a>
-              </td>
+                </td>
             </tr>
            </table>
           </div>
@@ -299,44 +312,109 @@
     </div>
   </div>
 </div>
-<!-- <br>
+<br>
       <div class="app-ecommerce-category">
                   <div class="card">
                     <div class="card-datatable table-responsive">
                       <div style="margin:15px">
+                        <h5>Patient Attendance History</h5>
                       </div>
                       <table class="datatables-category-list table border-top" id="product_list">
                         <thead>
-                          <tr>
-                            <th>Sn</th>
-                            <th>Name</th>
+                          <tr class="" align="center">
+                            <th>S/N</th>  
+                            <th>Att ID</th>
+                            <th>Attendate Date</th>
+                            <th>Clinic</th>
                             <th>Gender</th>
                             <th>Age</th>
-                            <th class="text-nowrap text-sm-end">Sponsor &nbsp;</th>
-                            <th class="text-nowrap text-sm-end">Telephone</th>
+                            <th>Sponsor &nbsp;</th>
+                            <th>Service Fee</th>
                             <th>Status</th>
-                            <th class="text-lg-center">Actions</th>
+                            <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody>
                        
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <th>Sn</th>
-                            <th>Product</th>
-                            <th>Categories</th>
-                            <th>Barcode</th>
-                            <th class="text-nowrap text-sm-end">Stocked &nbsp;</th>
-                            <th class="text-nowrap text-sm-end">Expirable </th>
-                            <th>Status</th>
-                            <th class="text-lg-center">Actions</th>
-                          </tr>
+                          <tr class="" align="center">
+                              <th>S/N</th>  
+                              <th>Att ID</th>
+                              <th>Attendate Date</th>
+                              <th>Clinic</th>
+                              <th>Gender</th>
+                              <th>Age</th>
+                              <th>Sponsor &nbsp;</th>
+                              <th>Service Fee</th>
+                              <th>Status</th>
+                              <th>Actions</th>
+                            </tr>
                         </tfoot>
                       </table>
                     </div>
                   </div>   
-             </div> -->
+             </div>
 </div>   
-         
+  
+<!-- Add New Address Modal -->
+<div class="modal fade" id="addattendance" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-6">
+          <h4 class="address-title mb-2">Patient Attendance Registration</h4>
+          <p class="address-subtitle">Add new patient attendance registration</p>
+        </div>
+        <form id="addNewAddressForm" class="row g-6" onsubmit="return false">
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="clinics">Service Category</label>
+             <select name="clinics" id="clinics" class="form-control">
+                <option>-Select-</option>
+                @foreach($clinic as $clinics)                                        
+                  <option value="{{ $clinics->clinic_id }}">{{ $clinics->clinic }}</option>
+                 @endforeach
+             </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="specialty">Service Type</label>
+            <select name="specialty" id="specialty" class="form-control">
+                <option>-Select-</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="credit_amount">Credit Fee</label>
+            <input type="text" id="credit_amount" name="credit_amount" class="form-control" placeholder="0.00" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="cash_amount">Cash Fee</label>
+            <input type="text" id="cash_amount" name="cash_amount" class="form-control" placeholder="0.00"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="gdrg_code"> Service G-DRG</label>
+            <input type="text" id="gdrg_code" name="gdrg_code" class="form-control" placeholder="0.00" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressZipCode">Zip Code</label>
+            <input type="text" id="modalAddressZipCode" name="modalAddressZipCode" class="form-control" placeholder="0.00" />
+          </div>
+          <div class="col-12">
+            <div class="form-check form-switch my-2 ms-2">
+              <!-- <input type="checkbox" class="form-check-input" id="billingAddress" /> -->
+              <!-- <label for="billingAddress" class="switch-label">Use as a billing address?</label> -->
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary me-3">Submit</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Add New Address Modal -->
+
+       
 </x-app-layout>

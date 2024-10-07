@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\PatientVisitsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\PDFReportController;
 use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Route;
 use illuminate\Http\Request;
@@ -51,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('sponsors', SponsorController::class); 
     Route::get('patient/visits/{patient_id}', [PatientVisitsController::class, 'index'])->name('attendance.index');
     Route::get('patient/attendance/{patient_id}', [PatientVisitsController::class, 'show'])->name('attendance.show');
+    Route::get('pdf', [PDFReportController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';

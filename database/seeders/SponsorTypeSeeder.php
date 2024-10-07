@@ -37,7 +37,7 @@ class SponsorTypeSeeder extends Seeder
         ]);
 
         $sponsor = SponsorType::create([
-            'sponsor_type_id' => 'P003',
+            'sponsor_type_id' => 'PI03',
             'sponsor_type' => 'PRIVATE INSURANCE',
             'user_id' => $user->user_id,
             'added_date' => now(),

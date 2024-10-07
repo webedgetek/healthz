@@ -304,5 +304,24 @@
    
 <!-- ---------------------------------------------------------------------------- -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text" data-i18n="Components">Reports</span></li>
+<li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-collection"></i>
+        <div class="text-truncate" data-i18n="Cards">Users</div>
+        <!-- <span class="badge badge-center rounded-pill bg-danger ms-auto">6</span> -->
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="/pdf" class="menu-link">
+            <div class="text-truncate" data-i18n="Basic">User List</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link">
+            <div class="text-truncate" data-i18n="Advance">SSNIT</div>
+          </a>
+        </li>
+      </ul>
+    </li>
   </ul>
 </aside>

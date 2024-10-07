@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class PatientSponsor extends Model
 {
     use HasFactory;
@@ -20,17 +21,25 @@ class PatientSponsor extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function patient()
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
+
+    public function sponsor()
+    {
+        return $this->belongsTo(Sponsors::class, 'sponsor_id'); 
+    }
+    // public function sponsors()
     // {
-    //     return $this->belongsTo(Patient::class, 'patient_id');
+    //     return $this->belongsTo(PatientSponsor::class, 'patient_id');
     // }
     
     protected $fillable = [
         'patient_id',
         'opd_number',
         'member_no',
-        'sponsor_type',
-        'sponsor_name',
+        'sponsor_id',
         'start_date',
         'end_date',
         'dependant',

@@ -17,12 +17,14 @@ return new class extends Migration
             $table->string('patient_id', 50);
             $table->string('opd_number', 20)->nullable();
             $table->string('member_no', 150);
-            $table->string('sponsor_type', 50)->nullable();
-            $table->string('sponsor_name', 50)->nullable();
+            $table->string('sponsor_id', 50)->nullable();
+            $table->string('card_serial', 50)->nullable();
             $table->date('start_date', 100)->nullable();
             $table->date('end_date', 100)->nullable();
             $table->string('dependant', 50)->default('0');
             $table->string('records_id', 100)->nullable();
+            $table->string('priority', 100)->nullable();
+            $table->string('is_active', 100)->default('Yes');
             $table->string('user_id', 100)->nullable();
             $table->string('added_id', 100)->nullable();
             $table->timestamp('added_date')->nullable();
@@ -34,6 +36,7 @@ return new class extends Migration
             $table->date('archived_date', 100)->nullable();
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('patient_id')->references('patient_id')->on('patient_info');
+            $table->foreign('sponsor_id')->references('sponsor_id')->on('sponsors');
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ use App\Models\Relation;
 use App\Models\Patient;
 use App\Models\PatientSponsor;
 use App\Models\PatNumber;
+use App\Models\Sponsors;
 use App\Models\YearlyCount;
 use Carbon\Carbon;
 
@@ -191,9 +193,21 @@ class PatientController extends Controller
             ->orderBy('patient_info.added_date', 'asc') 
             ->first();
 
-            $sponsor = PatientSponsor::where('archived', 'No')->where('patient_id', '=', $patient_id)->get();
+            $sponsor = DB::table('patient_sponsorship')
+            ->where('patient_sponsorship.archived', 'No')
+            ->where('patient_id', $patient_id)
+            ->join('sponsors', 'patient_sponsorship.sponsor_id', '=', 'sponsors.sponsor_id')
+            ->select('patient_sponsorship.member_no', 'patient_sponsorship.sponsor_id', 
+            'sponsors.sponsor_name', 'patient_sponsorship.start_date', 'patient_sponsorship.end_date', 
+            'patient_sponsorship.status', 'patient_sponsorship.priority', 'patient_sponsorship.is_active'
+            )
+            ->get();
+        
+        // $sponsor = PatientSponsor::where('archived', 'No')->where('patient_id', '=', $patient_id)->get();
 
-            return view('patient.show', compact('patients', 'sponsor'));
+        $clinic = Clinic::where('archived', 'No')->get();
+
+        return view('patient.show', compact('patients', 'sponsor', 'clinic'));
         
     }
 
@@ -202,11 +216,16 @@ class PatientController extends Controller
          $patient_list = DB::table('patient_info')
             ->join('gender', 'patient_info.gender_id', '=', 'gender.gender_id')
             ->join('title', 'patient_info.title_id', '=', 'title.title_id')
+            ->join('patient_sponsorship', 'patient_info.patient_id', '=', 'patient_sponsorship.patient_id')
+            ->leftJoin('sponsors', 'patient_sponsorship.sponsor_id', '=', 'sponsors.sponsor_id') 
+            ->leftJoin('sponsor_type', 'sponsors.sponsor_type_id', '=', 'sponsor_type.sponsor_type_id')
             ->select('patient_info.patient_id', 'title.title', 'patient_info.fullname', 'patient_info.default_sponsor', 'patient_info.email',  'gender.gender', 
-            'patient_info.birth_date', 'patient_info.added_date', 
+            'patient_info.birth_date', 'patient_info.added_date', 'sponsors.sponsor_name', 'sponsors.sponsor_type_id', 'sponsor_type.sponsor_type',
             'patient_info.telephone', DB::raw('TIMESTAMPDIFF(YEAR, patient_info.birth_date, CURDATE()) as age'))
             ->get();
     
+        $sponsors = Sponsors::with('SponsorType')->get();
+
         return view('patient.index', compact('patient_list'));
     }
 
