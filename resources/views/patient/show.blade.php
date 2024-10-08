@@ -117,8 +117,8 @@
                   <th>Member #</th>
                   <th>Effect Date</th>
                   <th>Expiry Date</th>
-                  <th># Status</th>
-                  <th>Active?</th>
+                  <th>Sponsorhip Status</th>
+                  <th>Current Sponsor</th>
                   <th></th>
                 </tr>
               </thead>
@@ -136,10 +136,16 @@
                   <td> @if($pat_sponsor->status === 'Active')
                           <span class="badge bg-label-success me-1">Active</span>
                            @elseif ($pat_sponsor->status === 'Inactive')
-                          <span class="badge bg-label-primary me-1">Inactive</span>
+                          <span class="badge bg-label-danger me-1">Inactive</span>
                        @endif
                   </td>
-                  <td></td>
+                  <td>
+                   @if($pat_sponsor->is_active === 'Yes')
+                          <span class="badge bg-label-primary me-1">Yes</span>
+                           @elseif ($pat_sponsor->is_active === 'No')
+                          <span class="badge bg-label-primary me-1">No</span>
+                       @endif
+                  </td>
                   <td>
                   <div class="dropdown" align="center">
                                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -168,8 +174,8 @@
                   <th>Member #</th>
                   <th>Effect Date</th>
                   <th>Expiry Date</th>
-                  <th># Status</th>
-                  <th>Active?</th>
+                  <th>Sponsorhip Status</th>
+                  <th>Current Sponsor</th>
                   <th></th>
                 </tr>
               </tfoot>
