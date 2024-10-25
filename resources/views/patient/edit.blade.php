@@ -4,12 +4,11 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div class="d-flex flex-column justify-content-center">
           <h4 class="mb-1 mt-3">Patient Registration</h4>
-          <p class="text-muted">Add new patient to the system</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-3">
           <!-- <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdoal_form" >Search Patient</button> -->
           <!-- <button class="btn btn-primary">Go to Registered Patients</button> -->
-          <a href="{{ url('patient/search') }}" class="btn btn-primary">Search Patient</a>
+          <a href="{{ url('search-patient') }}" class="btn btn-primary">Search Patient</a>
           <a href="#" class="btn btn-primary">Add Attendance</a>
           <!-- <button type="submit" class="btn btn-primary">Patient Sponsorship</button> -->
         </div>
@@ -38,7 +37,7 @@
             </div>
             <div class="col">
               <label class="form-label" for="firstname">Firstname <a style="color: red;">*</a></label>
-              <input type="text" class="form-control" id="firstname" name="firstname" value="" placeholder="Firstname" autocomplete="off">
+              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" autocomplete="off">
               @error('firstname') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col">
@@ -290,45 +289,8 @@
                               $counter = 1;
                             @endphp
 
-                        @foreach($patients as $pat)   
-                          <tr>
-                            <td>{{ $counter++ }}</td>
-                            <td>{{ $pat->title }} {{ $pat->fullname }}</td>
-                            <td>{{ $pat->gender }}</td>
-                            <td>{{ \Carbon\Carbon::parse($pat->birth_date)->format('d-m-Y') }}</td>
-                            <td>{{ $pat->age }}</td>
-                            <td>{{ $pat->telephone }}</td>
-                            <td> @if($pat->default_sponsor === '0001')
-                                      <span class="badge bg-label-info me-1">Cash & Carry</span>
-                                    @elseif ($pat->default_sponsor === '2001')
-                                      <span class="badge bg-label-danger me-1">Private Insurance</span>
-                                    @elseif ($pat->default_sponsor === '3001')
-                                      <span class="badge bg-label-primary me-1">Co-operate</span>
-                                    @elseif ($pat->default_sponsor === '5001')
-                                      <span class="badge bg-label-warning me-1"> N-H-I-S</span>
-                                    @endif
-                            </td>
-                            <td>{{ \Carbon\Carbon::parse($pat->added_date)->format('d-m-Y') }}</td>
-                            <td>
-                            <div class="dropdown" align="center">
-                                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                              <i class="bx bx-dots-vertical-rounded"></i>
-                                          </button>
-                                              <div class="dropdown-menu">
-                                                  <a class="dropdown-item"  href="#">
-                                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                                  </a>
-                                                  <a class="dropdown-item" href="{{ route('patient.show', ['patient_id' => $pat->patient_id]) }}">
-                                                    <i class="bx bx-lock-alt me-1"></i> Details 
-                                                  </a>
-                                                  <!-- <a class="dropdown-item" href="javascript:void(0);">
-                                                      <i class="bx bx-trash me-1"></i> Delete
-                                                  </a> -->
-                                            </div>
-                                  </div>
-                            </td>
-                          </tr>
-                          @endforeach
+                       
+                          
                         </tbody>
                         <tfoot>
                         <tr>

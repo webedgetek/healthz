@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sponsor_type', function (Blueprint $table) {
             $table->string('sponsor_type_id',50);
             $table->string('sponsor_type',150); 
+            $table->string('facility_id', 50)->nullable();  
             $table->string('user_id',50)->nullable();        
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();

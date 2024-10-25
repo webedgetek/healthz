@@ -51,7 +51,7 @@
                 <table class="table">
                    <tr>
                         <td colspan="2">
-                          <h5 class="text-primary"><b>BIO-INFORMATION</b></h5>
+                          <h5 class="text-dark"><b">BIO-INFORMATION</b></h5>
                         </td>
                       </tr>
                     <tr>
@@ -147,7 +147,7 @@
                        @endif
                   </td>
                   <td>
-                  <div class="dropdown" align="center">
+                                 <div class="dropdown" align="center">
                                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                           </button>
@@ -295,18 +295,15 @@
             </tr>
             <tr>
               <td colspan="2">
-                  <a href="#" class="btn btn-secondary">
-                    Generate ID
-                  </a>
+                    @if($pat_sponsor->sponsor_id === '000')
+                            <a href="#" class="btn btn-secondary" data-bs-toggle='modal' data-bs-target="#claims_check_code">Get CC</a>
+                    @else
+                      <a></a>
+                    @endif
                   <a href="#" class="btn btn-warning">
                     Edit 
                   </a>
-                  <!-- <a href="{{ route('attendance.index', ['patient_id' => $patients->patient_id]) }}" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> 
-                    Add Visit
-                  </a> -->
-                  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewAddress"> Show </button> -->
-                  <a href="" class="btn btn-primary" data-bs-toggle='modal' data-bs-target="#addattendance">
+                  <a href="#" class="btn btn-primary" data-bs-toggle='modal' data-bs-target="#addattendance">
                     Add visit
                   </a>
                 </td>
@@ -363,7 +360,7 @@
              </div>
 </div>   
   
-<!-- Add New Address Modal -->
+<!-- service_request Modal -->
 <div class="modal fade" id="addattendance" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
     <div class="modal-content">
@@ -378,8 +375,8 @@
             <label class="form-label" for="clinics">Service Category</label>
              <select name="clinics" id="clinics" class="form-control">
                 <option>-Select-</option>
-                @foreach($clinic as $clinics)                                        
-                  <option value="{{ $clinics->clinic_id }}">{{ $clinics->clinic }}</option>
+                @foreach($clinic_attendance as $clinics)                                        
+                  <option value="{{ $clinics->attendance_type_id }}">{{ $clinics->attendance_type }}</option>
                  @endforeach
              </select>
           </div>
@@ -407,8 +404,6 @@
           </div>
           <div class="col-12">
             <div class="form-check form-switch my-2 ms-2">
-              <!-- <input type="checkbox" class="form-check-input" id="billingAddress" /> -->
-              <!-- <label for="billingAddress" class="switch-label">Use as a billing address?</label> -->
             </div>
           </div>
           <div class="col-12 text-center">
@@ -420,7 +415,60 @@
     </div>
   </div>
 </div>
-<!--/ Add New Address Modal -->
+<!--/ service_request Modal -->
+/
+<!-- check claims code Modal -->
+<div class="modal fade" id="claims_check_code" tabindex="-1" aria-hidden="true" data-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-6">
+          <h4 class="address-title mb-2">Patient NHIS Verification</h4>
+          <p class="address-subtitle">Click on the generate to get CCC or enter it in the CCC input box</p>
+          <p class="address-subtitle" id="error" style="color:red"></p>
+        </div>
+        <form id="generate_ccc" class="row g-6" onsubmit="return false">
+           @csrf
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="credit_amount">Member #</label>
+            <input type="text" name="card_type" id="card_type" hidden value="NHISCARD">
+            <input type="text" id="member_no" name="member_no" class="form-control" placeholder="12345678" value="{{$pat_sponsor->member_no}}"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="cash_amount">Claims Check Code (CCC) <a href="#" style="color: red;">*</a></label>
+            <input type="text" id="claim_code" name="claim_code" class="form-control" placeholder="xxxxx" maxlength="5" require/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="gdrg_code"> Start Date <a href="#" style="color: red;">*</a></label>
+            <input type="date" id="start_date" name="start_date" class="form-control" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressZipCode">End Date <a href="#" style="color: red;">*</a></label>
+            <input type="date" id="end_date" name="end_date" class="form-control"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="gdrg_code"> HIN # <a href="#" style="color: red;">*</a></label>
+            <input type="text" id="hin_no" name="hin_no" class="form-control" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="status">Status </label>
+            <input type="text" id="card_status" name="card_status" class="form-control"/>
+          </div>
+          <div class="col-12 col-md-12">
+            <!-- <label class="form-label">Fullname</label> -->
+              <input type="text" name="fullname" id="fullname" class="form-control" readonly disabled>
+          </div>
+          <!-- <br><br> -->
+          <div class="col-12 text-center">
+          <button type="button" class="btn btn-label-info" onclick="generateCC()">Generate CC</button>
+            <button type="submit" class="btn btn-primary me-3">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ service_request Modal -->
 
-       
 </x-app-layout>

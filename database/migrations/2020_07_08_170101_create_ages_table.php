@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('age_description',150); 
             $table->string('min_age',150); 
             $table->string('max_age',150); 
-            $table->string('user_id',50);        
+            $table->string('user_id',50); 
+            $table->string('facility_id', 50)->nullable();       
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();
             $table->date('added_date')->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->primary('age_id');
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

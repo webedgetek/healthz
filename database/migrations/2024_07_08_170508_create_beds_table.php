@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('bed_condition',150);//free or occupaid 
             $table->string('bed_type',150);//real or virtual 
             $table->string('admission_record',150);
-            $table->string('admission_opd_no',150); 
+            $table->string('admission_opd_no',150);
+            $table->string('facility_id', 50)->nullable(); 
             $table->string('user_id',50);        
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->primary('bed_id');
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

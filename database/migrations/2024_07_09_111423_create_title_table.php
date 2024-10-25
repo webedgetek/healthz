@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('title', function (Blueprint $table) {
             $table->string('title_id',50);
             $table->string('title',150); 
+            $table->string('facility_id', 50)->nullable();
             $table->string('gender_id',50); 
             $table->string('user_id',50)->nullable();        
             $table->string('added_id', 50)->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->primary('title_id');
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('gender_id')->references('gender_id')->on('gender');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

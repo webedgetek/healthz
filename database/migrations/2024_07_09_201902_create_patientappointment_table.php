@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('patient_appointment', function (Blueprint $table) {
             $table->string('appointment_id',50);
             $table->string('patient_id',50); 
+            $table->string('facility_id', 50)->nullable();
             $table->string('opd_number',50); 
             $table->string('purpose',150); 
             $table->date('appointment_date'); 
             $table->timestamp('appointment_time'); 
             $table->date('request_date'); 
-            // $table->timestamp('request_time'); 
             $table->string('user_id',50)->nullable();        
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->primary('appointment_id');
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

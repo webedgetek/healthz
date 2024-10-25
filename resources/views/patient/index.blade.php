@@ -26,7 +26,6 @@
                             @php
                               $counter = 1;
                             @endphp
-
                           @foreach($patient_list as $patient)
                           <tr> 
                               <td align="center">{{ $counter++ }}</td>
@@ -51,7 +50,7 @@
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                           </button>
                                               <div class="dropdown-menu">
-                                                  <a class="dropdown-item"  href="#">
+                                                  <a class="dropdown-item"  href="{{ route('patient.index', ['patient_id' => $patient->patient_id]) }}">
                                                     <i class="bx bx-edit-alt me-1"></i> Edit
                                                   </a>
                                                   <a class="dropdown-item" href="{{ route('patient.show', ['patient_id' => $patient->patient_id]) }}">

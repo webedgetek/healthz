@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('age_id',50); 
             $table->string('child_code',50)->nullable(); 
             $table->string('adult_code',50)->nullable(); 
+            $table->string('facility_id', 50)->nullable();
             $table->string('user_id',50)->nullable();        
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();
@@ -34,6 +35,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('age_id')->references('age_id')->on('ages');
             $table->foreign('gender_id')->references('gender_id')->on('gender');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

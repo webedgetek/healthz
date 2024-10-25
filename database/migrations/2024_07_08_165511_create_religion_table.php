@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('religion', function (Blueprint $table) {
             $table->string('religion_id',50);
             $table->string('religion',150); 
-            $table->string('user_id',50);        
+            $table->string('user_id',50);   
+            $table->string('facility_id', 50)->nullable();     
             $table->string('added_id', 50)->nullable();
             $table->string('added_by', 100)->nullable();
             $table->date('added_date')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->primary('religion_id');
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

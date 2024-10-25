@@ -19,9 +19,9 @@ class AgeSeeder extends Seeder
         $user = User::inRandomOrder()->first(); 
 
         $age = Age::create([
-            'age_id' => 'A1',
+            'age_id' => '1',
             'age_description' => 'CHILD',
-            'min_age' => '3',
+            'min_age' => '0',
             'max_age' => '12',
             'user_id' => $user->user_id,
             'added_date' => now(),
@@ -30,7 +30,7 @@ class AgeSeeder extends Seeder
         ]);
 
         $age = Age::create([
-            'age_id' => 'A2',
+            'age_id' => '2',
             'age_description' => 'ADULT',
             'min_age' => '13',
             'max_age' => '1000',
@@ -41,7 +41,7 @@ class AgeSeeder extends Seeder
         ]);
 
         $age = Age::create([
-            'age_id' => 'A3',
+            'age_id' => '3',
             'age_description' => 'ALL',
             'min_age' => '0',
             'max_age' => '1000',
@@ -52,25 +52,25 @@ class AgeSeeder extends Seeder
         ]);
 
         $age = Age::create([
-            'age_id' => 'A4',
+            'age_id' => '4',
             'age_description' => 'INFANT',
             'min_age' => '0',
             'max_age' => '3',
             'user_id' => $user->user_id,
             'added_date' => now(),
             'status' => 'Active',
-            'archived' => 'No',
+            'archived' => 'Yes',
         ]);
 
         $age = Age::create([
-            'age_id' => 'A5',
+            'age_id' => '5',
             'age_description' => 'INFANT CHILD',
             'min_age' => '0',
             'max_age' => '12',
             'user_id' => $user->user_id,
             'added_date' => now(),
             'status' => 'Active',
-            'archived' => 'No',
+            'archived' => 'Yes',
         ]);
 
     }

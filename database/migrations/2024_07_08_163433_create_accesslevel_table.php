@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('delete',150); 
             $table->string('print',150); 
             $table->string('accesslevel',150); 
+            $table->string('facility_id', 50)->nullable();
             $table->timestamp('registered_date')->nullable(); 
             $table->string('user_id',50);        
             $table->string('added_id', 50)->nullable();
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->date('archived_date')->nullable();
             $table->string('archived_by', 100)->nullable();
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 

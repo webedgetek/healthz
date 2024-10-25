@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,15 +14,17 @@ return new class extends Migration
      */
     public function up()
     {
-       Schema::create('patient_nos', function (Blueprint $table) {
-            $table->string('patient_id', 50);
-            $table->string('opd_number', 50);
-            $table->string('clinic_code', 100)->nullable();
-            $table->date('registration_date')->nullable();
-            $table->timestamp('registration_time')->nullable();
+        Schema::create('nhia_mdcs', function (Blueprint $table) {
+            $table->string('mdcs_id', 50);
+            $table->string('mdc', 100);
+            $table->string('age_id', 100)->nullable();
+            $table->string('gender_id', 100);
+            $table->string('service_type_id', 50);
+            $table->string('is_mdc', 50)->nullable();
+            $table->string('specialty_code', 50)->nullable();
+            $table->string('is_capitation', 50)->nullable();
+            $table->string('code', 100)->index();
             $table->string('user_id', 100)->nullable();
-            $table->string('facility_id', 50)->nullable();
-            $table->string('added_id', 100)->nullable();
             $table->timestamp('added_date')->nullable();
             $table->string('updated_by', 100)->nullable();
             $table->string('status', 100)->default('Active')->index();
@@ -29,10 +32,14 @@ return new class extends Migration
             $table->string('archived_id', 100)->nullable();
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
+            $table->primary('mdcs_id');
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('patient_id')->references('patient_id')->on('patient_info');
-            $table->foreign('facility_id')->references('facility_id')->on('facility');
+            $table->foreign('age_id')->references('age_id')->on('ages');
+            $table->foreign('gender_id')->references('gender_id')->on('gender');
+            // $table->foreign('service_type_id')->references('service_type_id')->on('service_types');
         });
+
+        // DB::unprepared (file_get_contents(__DIR__. 'mdcs.sql'));
     }
 
     /**
@@ -42,6 +49,6 @@ return new class extends Migration
      */
     public function down()
     {
-         Schema::dropIfExists('patient_nos');
+        Schema::dropIfExists('nhia_mdcs');
     }
 };

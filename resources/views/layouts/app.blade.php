@@ -120,12 +120,21 @@
         $('.sponsor_name').select2();
         $('.sponsorship_type').select2();
 
+        
+
 });
 
 $(document).ready( function () {
         // $('#product_list').DataTable();
 });
 </script>
+<script>
+  $(document).ready(function() {
+    // Show the modal
+    
+  });
+</script>
+
 <script>
     // Handle delete functionality
     $(document).on('click', '.product_delete_btn', function() {
@@ -314,4 +323,54 @@ $(document).ready( function () {
     });
 
 </script> -->
+
+<script>
+function generateCC() {
+    // Get the member number and card type from the input fields
+    var member_no = $('#member_no').val();
+    var card_type = $('#card_type').val();
+
+    // Perform AJAX request
+    $.ajax({
+        url: '/code_generate',
+        type: 'POST', 
+        data: { member_no: member_no, card_type: card_type }, 
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Ensure CSRF token is fetched correctly
+        },
+        success: function(response) {
+            if (response.success) {
+              var result = JSON.parse(response.result);
+                $('#claim_code').val(result.MobCCC || ''); // Set to empty if null
+                $('#start_date').val(result.EligibilityStartDate.split('T')[0])
+                $('#end_date').val(result.EligibilityEndDate.split('T')[0]);
+                $('#hin_no').val(result.HIN); 
+                $('#card_status').val(result.Status);
+                $('#fullname').val(result.MemberName);
+               
+            } else {
+                // alert('Error: ' + response.message); 
+                $('#error').val(result.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle AJAX error
+            console.error('AJAX Error: ', error);
+            alert('An error occurred while generating CC. Please try again.');
+        }
+    });
+}
+
+function clearForm() {
+    $('#generate_ccc')[0].reset(); // Reset the form
+    $('#claim_code').val(''); // Clear specific fields if necessary
+    $('#status').val('');
+    // Add any other fields you want to reset explicitly
+}
+
+$('#claims_check_code').on('hidden.bs.modal', function () {
+        clearForm();
+    });
+</script>
 

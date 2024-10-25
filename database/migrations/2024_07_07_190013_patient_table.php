@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('fullname')->virtualAs("CONCAT(firstname, ' ', middlename, ' ', lastname)");
             $table->date('birth_date');
             // $table->string('age', 10)->nullable();
-            $table->string('gender_id', 50);
+            $table->string('gender_id', 50)->nullable();
             $table->string('occupation', 100)->nullable();
             $table->string('education', 100)->nullable();
             $table->string('religion_id', 50)->nullable();
@@ -44,6 +44,7 @@ return new class extends Migration
             $table->string('default_sponsor', 100)->default('0001')->nullable();
             // $table->string('sponsor_name', 100)->nullable();
             // $table->string('member_no', 150)->nullable();
+            $table->string('facility_id', 50)->nullable();
             $table->string('dependant', 50)->nullable();
             $table->string('email_verified', 20)->default('No');
             $table->string('telephone_verified', 20)->default('No');
@@ -61,6 +62,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
             $table->primary('patient_id');
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
             $table->foreign('user_id')->references('user_id')->on('users');
 
         });

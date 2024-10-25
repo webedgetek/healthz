@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('telephone', 50);
             $table->string('telephone_verified', 50)->nullable();
             $table->string('expiry', 50)->nullable();
-            // $table->string('locked', 50)->default('No');
+            $table->string('locked', 50)->default('No');
             $table->timestamp('expiry_date')->nullable();
             $table->timestamp('telephone_verified_at')->nullable();
             $table->string('gender', 100);
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('email_verified', 20)->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('facility_id', 50)->nullable();
             $table->string('added_id', 100)->nullable();
             $table->timestamp('added_date')->nullable()->index();
             $table->string('updated_by', 100)->nullable();
@@ -43,7 +44,7 @@ return new class extends Migration
             $table->string('archived_by', 100)->nullable();
             $table->date('archived_date', 100)->nullable();
             $table->primary('user_id');
-            // $table->index(['status']);
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
         });
     }
 
